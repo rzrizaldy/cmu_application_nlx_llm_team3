@@ -1,0 +1,53 @@
+{
+  "records": 854,
+  "tabular_share": 0.539,
+  "subtopics": {
+    "01_streets_mobility_afaq": {
+      "lead": 1,
+      "title": "Streets and Mobility",
+      "member": "afaq",
+      "records": 190,
+      "modality": {
+        "mixed": 70,
+        "text": 120
+      },
+      "tabular_share": 0.368,
+      "records_with_location_fields_removed": 0
+    },
+    "02_waste_neighborhood_rutomo": {
+      "lead": 2,
+      "title": "Waste and Neighborhood Cleanliness",
+      "member": "rutomo",
+      "records": 180,
+      "modality": {
+        "table": 74,
+        "text": 106
+      },
+      "tabular_share": 0.411,
+      "records_with_location_fields_removed": 0
+    },
+    "03_buildings_construction_mahika": {
+      "lead": 3,
+      "title": "Buildings, Construction, and Accessibility",
+      "member": "mahika",
+      "records": 260,
+      "modality": {
+        "mixed": 260
+      },
+      "tabular_share": 1.0,
+      "records_with_location_fields_removed": 251
+    },
+    "04_parks_public_spaces_mingchin": {
+      "lead": 4,
+      "title": "Parks, Trees, Animals, and Public Facilities",
+      "member": "mingchin",
+      "records": 224,
+      "modality": {
+        "table": 56,
+        "text": 168
+      },
+      "tabular_share": 0.25,
+      "records_with_location_fields_removed": 0
+    }
+  }
+}

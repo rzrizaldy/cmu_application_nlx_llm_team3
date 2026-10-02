@@ -1,12 +1,12 @@
-# Original submission archives (Assignment 1)
+# Original submission ZIPs
 
-Consistent names for Canvas / team handoff. Unpack into [members/](../members/) to reproduce each author tree.
+Each archive is the member's Assignment 1 package as received. The unpacked contents are in [corpora/](../corpora/) under the same name.
 
 | File | Member | Subtopic |
 |---|---|---|
-| [as01_afaq_streets_mobility.zip](as01_afaq_streets_mobility.zip) | Afaq | Streets and Mobility |
-| [as01_rutomo_waste.zip](as01_rutomo_waste.zip) | Rutomo | Waste and Neighborhood Cleanliness |
-| [as01_mahika_buildings.zip](as01_mahika_buildings.zip) | Mahika | Buildings, Construction, and Accessibility |
-| [as01_mingchin_parks.zip](as01_mingchin_parks.zip) | Mingchin | Parks, Trees, Animals, and Public Facilities |
+| [01_streets_mobility_afaq.zip](01_streets_mobility_afaq.zip) | Afaq | Streets and Mobility |
+| [02_waste_neighborhood_rutomo.zip](02_waste_neighborhood_rutomo.zip) | Rutomo | Waste and Neighborhood Cleanliness |
+| [03_buildings_construction_mahika.zip](03_buildings_construction_mahika.zip) | Mahika | Buildings, Construction, and Accessibility |
+| [04_parks_public_spaces_mingchin.zip](04_parks_public_spaces_mingchin.zip) | Mingchin | Parks, Trees, Animals, and Public Facilities |
 
-Mingchin’s full WPRDC `311_data.csv` inside the parks ZIP is large; the committed [members/mingchin/corpus.jsonl](../members/mingchin/corpus.jsonl) is enough for merge and appendix unless you rebuild the corpus locally.
+The parks ZIP includes the full WPRDC `311_data.csv` (237 MB unpacked). That file is gitignored in `corpora/04_parks_public_spaces_mingchin/`; unzip it only to rebuild that corpus.

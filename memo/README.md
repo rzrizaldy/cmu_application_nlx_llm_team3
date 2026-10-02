@@ -1,10 +1,10 @@
-# Assignment 1 memos (PDF)
+# Assignment 1 memos
 
 | File | Member | Subtopic |
 |---|---|---|
-| [memo_afaq_streets_mobility.pdf](memo_afaq_streets_mobility.pdf) | Afaq | Streets and Mobility |
-| [memo_rutomo_waste.pdf](memo_rutomo_waste.pdf) | Rutomo | Waste and Neighborhood Cleanliness |
-| [memo_mahika_buildings.pdf](memo_mahika_buildings.pdf) | Mahika | Buildings, Construction, and Accessibility |
-| [memo_mingchin_parks.pdf](memo_mingchin_parks.pdf) | Mingchin | Parks, Trees, Animals, and Public Facilities |
+| [01_streets_mobility_afaq.pdf](01_streets_mobility_afaq.pdf) | Afaq | Streets and Mobility |
+| [02_waste_neighborhood_rutomo.pdf](02_waste_neighborhood_rutomo.pdf) | Rutomo | Waste and Neighborhood Cleanliness |
+| [03_buildings_construction_mahika.pdf](03_buildings_construction_mahika.pdf) | Mahika | Buildings, Construction, and Accessibility |
+| [04_parks_public_spaces_mingchin.pdf](04_parks_public_spaces_mingchin.pdf) | Mingchin | Parks, Trees, Animals, and Public Facilities |
 
-Corpus code and data for each author remain under [members/](../members/).
+The matching corpus and code are in [corpora/](../corpora/) under the same name.

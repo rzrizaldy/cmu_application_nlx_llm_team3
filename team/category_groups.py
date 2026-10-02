@@ -1,4 +1,4 @@
-"""Exact Pittsburgh 311 category filters from the group brief (shared dictionary)."""
+"""Shared subtopic split from the team brief (brief/team_corpus_brief.pdf)."""
 
 CATEGORY_GROUPS = {
     "streets_mobility": [
@@ -28,16 +28,18 @@ CATEGORY_GROUPS = {
     ],
 }
 
-MEMBER_SUBTOPIC = {
-    "afaq": "streets_mobility",
-    "rutomo": "waste_neighborhood",
-    "mahika": "buildings_construction",
-    "mingchin": "parks_public_spaces",
-}
+# Lead order matches the brief's subtopic table. The folder name is shared by
+# corpora/, sources/*.zip and memo/*.pdf.
+SUBTOPICS = [
+    {"lead": 1, "key": "streets_mobility", "member": "afaq",
+     "title": "Streets and Mobility"},
+    {"lead": 2, "key": "waste_neighborhood", "member": "rutomo",
+     "title": "Waste and Neighborhood Cleanliness"},
+    {"lead": 3, "key": "buildings_construction", "member": "mahika",
+     "title": "Buildings, Construction, and Accessibility"},
+    {"lead": 4, "key": "parks_public_spaces", "member": "mingchin",
+     "title": "Parks, Trees, Animals, and Public Facilities"},
+]
 
-MEMBER_DISPLAY = {
-    "afaq": "Streets and Mobility (Afaq Khan)",
-    "rutomo": "Waste and Neighborhood Cleanliness (Rutomo)",
-    "mahika": "Buildings, Construction, and Accessibility (Mahika Gunjkar)",
-    "mingchin": "Parks, Trees, Animals, and Public Facilities (Mingchin)",
-}
+for _s in SUBTOPICS:
+    _s["folder"] = f"{_s['lead']:02d}_{_s['key']}_{_s['member']}"

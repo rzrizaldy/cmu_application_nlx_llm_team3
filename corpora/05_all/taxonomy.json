@@ -57,8 +57,35 @@
     "02_waste_neighborhood_rutomo": {
       "member": "rutomo",
       "title": "Waste and Neighborhood Cleanliness",
-      "fields": null,
-      "defined_in": "corpora/02_waste_neighborhood_rutomo/extraction.py"
+      "fields": {
+        "service_focus": {
+          "kind": "label",
+          "values": [
+            "collection",
+            "dumping",
+            "litter",
+            "graffiti",
+            "weeds/debris",
+            "other_neighborhood",
+            "multiple",
+            "not_stated"
+          ],
+          "description": "the central waste or neighborhood service the record is about"
+        },
+        "information_type": {
+          "kind": "label",
+          "values": [
+            "service_guidance",
+            "issue_taxonomy",
+            "operational_summary"
+          ],
+          "description": "service_guidance = instructions/FAQ; issue_taxonomy = codebook row; operational_summary = historical counts/timing"
+        },
+        "responsible_department": {
+          "kind": "list",
+          "description": "department, bureau, or service-unit names explicitly stated in the input, copied exactly; empty if none"
+        }
+      }
     },
     "03_buildings_construction_mahika": {
       "member": "mahika",

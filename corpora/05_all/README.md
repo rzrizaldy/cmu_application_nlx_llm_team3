@@ -20,4 +20,4 @@ The merge also refreshes [appendix/original_dataset.jsonl](../../appendix/origin
 
 Coordinates and address fields are removed from the merged copy per the brief's data rule, and listed in `metadata.redacted_fields`. This currently affects 251 Buildings records (`x`, `y`). The member folders keep their data as submitted.
 
-Human label fields differ by member because each subtopic defined its own extraction schema; see `taxonomy.json`. Rutomo's schema is defined in `02_waste_neighborhood_rutomo/extraction.py` rather than a taxonomy file.
+Human label fields differ by member because each subtopic defined its own extraction schema; see `taxonomy.json`. The waste subtopic's `taxonomy.json` was derived afterwards from its `extraction.py`, which remains that pipeline's source of truth.

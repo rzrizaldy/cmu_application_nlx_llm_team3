@@ -1,30 +1,42 @@
 # CMU NL(X) and LLM — Group 3 (Pittsburgh 311)
 
-Public team repository for **Group 3**: four Assignment 1 subtopic corpora merged into one knowledge base, plus Assignment 2 appendix scaffolding for Canvas uploads.
+One continuous project: **corpus (A1) → LLM API & evaluation (A2+)**. Canvas code uploads follow [code_appendix_team](code_appendix_team) under [appendix/](appendix/).
 
-## Assignments
+## Layout
 
-| Assignment | Status | Location |
-|---|---|---|
-| Assignment 1 — corpus construction | Ready | [assignment01/](assignment01/) |
-| Assignment 2 — LLM API design & evaluation | Appendix scaffold only | [assignment02/](assignment02/) |
+| Path | Role |
+|---|---|
+| [brief/](brief/) | Team corpus brief and split diagram |
+| [members/](members/) | Four subtopic corpora + each author’s scripts |
+| [team/](team/) | Merge to 854-record team corpus |
+| [sources/](sources/) | Renamed original submission ZIPs |
+| [memo/](memo/) | Renamed Assignment 1 memo PDFs |
+| [appendix/](appendix/) | Canvas datasets & API ZIP slots (see checklist) |
+| [docs/local_phi_model.md](docs/local_phi_model.md) | Phi-4-mini weights in [cmu_application_of_nlx_llm](https://github.com/rzrizaldy/cmu_nlx_llm_lab) |
 
-## Quick start
+## Merge team corpus
 
 ```bash
-# Rebuild the combined 854-record corpus
-python3 assignment01/team/merge_corpus.py
+python3 team/merge_corpus.py
 ```
 
-Member-specific code and memos: [assignment01/members/](assignment01/members/).
+Writes [team/corpus.jsonl](team/corpus.jsonl), [team/sources.csv](team/sources.csv), and refreshes [appendix/original_dataset.jsonl](appendix/original_dataset.jsonl).
 
-Canvas code appendix checklist: [code_appendix_team](code_appendix_team) and [assignment02/submission/appendix/](assignment02/submission/appendix/).
+## Phi model (local)
 
-## Group subtopics
+Weights live in the other course repo, not here:
+
+```bash
+export PHI_MODEL_PATH="/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct"
+```
+
+Details: [docs/local_phi_model.md](docs/local_phi_model.md).
+
+## Subtopics
 
 1. Streets and Mobility — `members/afaq`
 2. Waste and Neighborhood Cleanliness — `members/rutomo`
 3. Buildings, Construction, and Accessibility — `members/mahika`
 4. Parks, Trees, Animals, and Public Facilities — `members/mingchin`
 
-Team brief: [assignment01/brief/](assignment01/brief/).
+Appendix items still pending (dev/eval/chatlogs/metrics/API ZIP) are marked under [appendix/](appendix/).

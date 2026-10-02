@@ -12,10 +12,9 @@ Untitled/
 __MACOSX/
 
 # oversized raw data (WPRDC archive; rebuild locally from WPRDC)
-assignment01/members/mingchin/311_data.csv
-as01_mingchin.zip
+members/mingchin/311_data.csv
 
-# duplicate packages at repo root (canonical: assignment01/original_zips/)
+# duplicate packages at repo root (canonical: sources/)
 /Assignment_1_afaqk*.zip
 /assignment1_*.zip
 /as01_mingchin.zip

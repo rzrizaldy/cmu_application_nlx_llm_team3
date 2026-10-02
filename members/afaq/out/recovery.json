@@ -1,0 +1,1093 @@
+{
+  "original_prompt": "You label documents from a corpus about Streets and Mobility. Fill in every field:\n- category: the single 311 service category for this request -- one of Road/Street Issues, Traffic and Street Sign Issues, Street Light, Pedestrian/Bicycle Concerns, Parking.\n- department: the exact city unit that should handle the request -- a short value taken from the document.\n- entities: neighborhoods, streets or intersections named in the text, copied exactly -- a list of strings.",
+  "revised_prompt": "You are labeling a Pittsburgh 311 street complaint. Return ONLY a flat JSON object with exactly these three keys: category, department, entities. Do NOT wrap in 'type', 'properties', 'required', or any schema keywords. Do NOT add explanation.\n\nExample of the EXACT format required:\n{\"category\": \"Street Light\", \"department\": \"Allegheny City Electric\", \"entities\": [\"Forbes Ave\", \"Squirrel Hill\"]}\n\nRules:\n- category MUST be exactly one of: Road/Street Issues, Traffic and Street Sign Issues, Street Light, Pedestrian/Bicycle Concerns, Parking\n- department MUST be one of: DPW - Street Maintenance, DOMI - Asphalt, DOMI - Traffic, DOMI - Permits, DOMI - Construction, DOMI - Streets, Pittsburgh Water and Sewer Authority, Allegheny City Electric, DPW - Park Maintenance, Police - AVU, Police - Zones 1-6, Parking Authority, Permits, Licenses and Inspections, 311\n- Routing: pothole/snow/sinkhole/drainage/overgrowth -> DPW - Street Maintenance; repaving -> DOMI - Asphalt; sign repair or signal repair -> DOMI - Traffic; streetlight REPAIR -> Allegheny City Electric; new streetlight -> DOMI - Permits; generic 'Sign' complaint -> Permits, Licenses and Inspections; sidewalks/bike infra -> DOMI - Permits or Permits, Licenses and Inspections; illegal parking -> Police - Zones 1-6; abandoned vehicle -> Police - AVU; meters/permits -> Parking Authority\n- entities: list neighborhoods and streets exactly as written in the text; empty list if none\n\nReturn the flat JSON object now, nothing else.",
+  "n_rerun": 25,
+  "before": {
+    "all_fields_correct": 0,
+    "field_accuracy": {
+      "category": 0.0,
+      "department": 0.0,
+      "entities": 0.0
+    },
+    "field_errors": {
+      "category": 25,
+      "department": 25,
+      "entities": 25
+    }
+  },
+  "after": {
+    "all_fields_correct": 6,
+    "field_accuracy": {
+      "category": 0.84,
+      "department": 0.4,
+      "entities": 0.96
+    },
+    "field_errors": {
+      "department": 15,
+      "category": 4,
+      "entities": 1
+    }
+  },
+  "fixed_doc_ids": [
+    "cmp_002",
+    "cmp_019",
+    "cmp_048",
+    "cmp_056",
+    "cmp_074",
+    "cmp_101"
+  ],
+  "still_wrong_doc_ids": [
+    "cmp_001",
+    "cmp_003",
+    "cmp_009",
+    "cmp_024",
+    "cmp_028",
+    "cmp_029",
+    "cmp_030",
+    "cmp_043",
+    "cmp_058",
+    "cmp_068",
+    "cmp_076",
+    "cmp_078",
+    "cmp_080",
+    "cmp_081",
+    "cmp_084",
+    "cmp_092",
+    "cmp_104",
+    "cmp_105",
+    "cmp_107"
+  ],
+  "per_record_after": [
+    {
+      "doc_id": "cmp_001",
+      "modality": "text",
+      "human": {
+        "category": "Street Light",
+        "department": "DPW - Park Maintenance",
+        "entities": [
+          "South Side Flats"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "South Side Flats"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Street Light",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": false,
+          "human": "DPW - Park Maintenance",
+          "phi": "Allegheny City Electric"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_002",
+      "modality": "text",
+      "human": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Brookline"
+        ]
+      },
+      "phi": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Brookline"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Parking",
+          "phi": "Parking"
+        },
+        "department": {
+          "ok": true,
+          "human": "Parking Authority",
+          "phi": "Parking Authority"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_003",
+      "modality": "text",
+      "human": {
+        "category": "Road/Street Issues",
+        "department": "DPW - Street Maintenance",
+        "entities": [
+          "Craig St",
+          "Brighton Heights"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "DPW - Street Maintenance",
+        "entities": [
+          "Craig St",
+          "Brighton Heights"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": false,
+          "human": "Road/Street Issues",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": true,
+          "human": "DPW - Street Maintenance",
+          "phi": "DPW - Street Maintenance"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_009",
+      "modality": "text",
+      "human": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Greenfield"
+        ]
+      },
+      "phi": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DPW - Street Maintenance",
+        "entities": [
+          "Greenfield"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Pedestrian/Bicycle Concerns",
+          "phi": "Pedestrian/Bicycle Concerns"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DPW - Street Maintenance"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_019",
+      "modality": "text",
+      "human": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Wharton St",
+          "Carrick"
+        ]
+      },
+      "phi": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Wharton St",
+          "Carrick"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Parking",
+          "phi": "Parking"
+        },
+        "department": {
+          "ok": true,
+          "human": "Parking Authority",
+          "phi": "Parking Authority"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_024",
+      "modality": "text",
+      "human": {
+        "category": "Road/Street Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Wharton St",
+          "Shadyside"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Wharton St",
+          "Shadyside"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": false,
+          "human": "Road/Street Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": true,
+          "human": "DOMI - Traffic",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_028",
+      "modality": "text",
+      "human": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Brighton Heights"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Brighton Heights"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Traffic and Street Sign Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_029",
+      "modality": "text",
+      "human": {
+        "category": "Street Light",
+        "department": "DOMI - Permits",
+        "entities": [
+          "Bloomfield"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "Bloomfield"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Street Light",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Permits",
+          "phi": "Allegheny City Electric"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_030",
+      "modality": "text",
+      "human": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Perrysville Ave",
+          "South Side Flats"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Perrysville Ave",
+          "South Side Flats"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Traffic and Street Sign Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_043",
+      "modality": "text",
+      "human": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DOMI - Streets",
+        "entities": [
+          "Penn Ave",
+          "Beechview"
+        ]
+      },
+      "phi": {
+        "category": "Road/Street Issues",
+        "department": "DPW - Street Maintenance",
+        "entities": [
+          "Penn Ave",
+          "Beechview"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": false,
+          "human": "Pedestrian/Bicycle Concerns",
+          "phi": "Road/Street Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Streets",
+          "phi": "DPW - Street Maintenance"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_048",
+      "modality": "text",
+      "human": {
+        "category": "Parking",
+        "department": "Police - AVU",
+        "entities": [
+          "Stanton Heights"
+        ]
+      },
+      "phi": {
+        "category": "Parking",
+        "department": "Police - AVU",
+        "entities": [
+          "Stanton Heights"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Parking",
+          "phi": "Parking"
+        },
+        "department": {
+          "ok": true,
+          "human": "Police - AVU",
+          "phi": "Police - AVU"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_056",
+      "modality": "text",
+      "human": {
+        "category": "Road/Street Issues",
+        "department": "DOMI - Asphalt",
+        "entities": [
+          "Forbes Ave",
+          "Summer Hill"
+        ]
+      },
+      "phi": {
+        "category": "Road/Street Issues",
+        "department": "DOMI - Asphalt",
+        "entities": [
+          "Forbes Ave",
+          "Summer Hill"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Road/Street Issues",
+          "phi": "Road/Street Issues"
+        },
+        "department": {
+          "ok": true,
+          "human": "DOMI - Asphalt",
+          "phi": "DOMI - Asphalt"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_058",
+      "modality": "text",
+      "human": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Brownsville Rd",
+          "Polish Hill"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Brownsville Rd",
+          "Polish Hill"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Traffic and Street Sign Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_068",
+      "modality": "text",
+      "human": {
+        "category": "Street Light",
+        "department": "DOMI - Permits",
+        "entities": [
+          "Ellsworth Ave",
+          "Carrick"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "Ellsworth Ave",
+          "Carrick"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Street Light",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Permits",
+          "phi": "Allegheny City Electric"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_074",
+      "modality": "text",
+      "human": {
+        "category": "Parking",
+        "department": "Police - AVU",
+        "entities": [
+          "Braddock Ave",
+          "East Hills"
+        ]
+      },
+      "phi": {
+        "category": "Parking",
+        "department": "Police - AVU",
+        "entities": [
+          "Braddock Ave",
+          "East Hills"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Parking",
+          "phi": "Parking"
+        },
+        "department": {
+          "ok": true,
+          "human": "Police - AVU",
+          "phi": "Police - AVU"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_076",
+      "modality": "text",
+      "human": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Baum Blvd",
+          "Perry North"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Baum Blvd",
+          "Perry North"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Traffic and Street Sign Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_078",
+      "modality": "text",
+      "human": {
+        "category": "Road/Street Issues",
+        "department": "DOMI - Construction",
+        "entities": [
+          "Spring Hill-City View"
+        ]
+      },
+      "phi": {
+        "category": "Road/Street Issues",
+        "department": "DPW - Street Maintenance",
+        "entities": [
+          "Spring Hill-City View"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Road/Street Issues",
+          "phi": "Road/Street Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Construction",
+          "phi": "DPW - Street Maintenance"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_080",
+      "modality": "text",
+      "human": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "Permits, Licenses and Inspections",
+        "entities": [
+          "Lower Lawrenceville"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Lower Lawrenceville"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Traffic and Street Sign Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": false,
+          "human": "Permits, Licenses and Inspections",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_081",
+      "modality": "text",
+      "human": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DOMI - Permits",
+        "entities": [
+          "Troy Hill"
+        ]
+      },
+      "phi": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DPW - Park Maintenance",
+        "entities": [
+          "Troy Hill"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Pedestrian/Bicycle Concerns",
+          "phi": "Pedestrian/Bicycle Concerns"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Permits",
+          "phi": "DPW - Park Maintenance"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_084",
+      "modality": "text",
+      "human": {
+        "category": "Street Light",
+        "department": "DOMI - Permits",
+        "entities": [
+          "Squirrel Hill North"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "Squirrel Hill North"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Street Light",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": false,
+          "human": "DOMI - Permits",
+          "phi": "Allegheny City Electric"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_092",
+      "modality": "text",
+      "human": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "311",
+        "entities": [
+          "Greenfield"
+        ]
+      },
+      "phi": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DOMI - Permits",
+        "entities": [
+          "Greenfield"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Pedestrian/Bicycle Concerns",
+          "phi": "Pedestrian/Bicycle Concerns"
+        },
+        "department": {
+          "ok": false,
+          "human": "311",
+          "phi": "DOMI - Permits"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 1,
+          "n_predicted": 1,
+          "n_gold": 1,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_101",
+      "modality": "text",
+      "human": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "Fifth Ave",
+          "Brighton Heights"
+        ]
+      },
+      "phi": {
+        "category": "Street Light",
+        "department": "Allegheny City Electric",
+        "entities": [
+          "Fifth Ave",
+          "Brighton Heights"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": true,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Street Light",
+          "phi": "Street Light"
+        },
+        "department": {
+          "ok": true,
+          "human": "Allegheny City Electric",
+          "phi": "Allegheny City Electric"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_104",
+      "modality": "text",
+      "human": {
+        "category": "Road/Street Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Frankstown Ave",
+          "Fineview"
+        ]
+      },
+      "phi": {
+        "category": "Traffic and Street Sign Issues",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Frankstown Ave",
+          "Fineview"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": false,
+          "human": "Road/Street Issues",
+          "phi": "Traffic and Street Sign Issues"
+        },
+        "department": {
+          "ok": true,
+          "human": "DOMI - Traffic",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_105",
+      "modality": "text",
+      "human": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Murray Ave",
+          "Squirrel Hill North"
+        ]
+      },
+      "phi": {
+        "category": "Parking",
+        "department": "Parking Authority",
+        "entities": [
+          "Murray Ave",
+          "Squirrel Hill North",
+          "PPA"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Parking",
+          "phi": "Parking"
+        },
+        "department": {
+          "ok": true,
+          "human": "Parking Authority",
+          "phi": "Parking Authority"
+        },
+        "entities": {
+          "ok": false,
+          "hits": 2,
+          "n_predicted": 3,
+          "n_gold": 2,
+          "phi_only": [
+            "ppa"
+          ],
+          "human_only": []
+        }
+      }
+    },
+    {
+      "doc_id": "cmp_107",
+      "modality": "text",
+      "human": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "City Planning - Bicycles/Pedestrian traffic",
+        "entities": [
+          "Ellsworth Ave",
+          "East Allegheny"
+        ]
+      },
+      "phi": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "department": "DOMI - Traffic",
+        "entities": [
+          "Ellsworth Ave",
+          "East Allegheny"
+        ]
+      },
+      "violation": null,
+      "all_fields_correct": false,
+      "fields": {
+        "category": {
+          "ok": true,
+          "human": "Pedestrian/Bicycle Concerns",
+          "phi": "Pedestrian/Bicycle Concerns"
+        },
+        "department": {
+          "ok": false,
+          "human": "City Planning - Bicycles/Pedestrian traffic",
+          "phi": "DOMI - Traffic"
+        },
+        "entities": {
+          "ok": true,
+          "hits": 2,
+          "n_predicted": 2,
+          "n_gold": 2,
+          "phi_only": [],
+          "human_only": []
+        }
+      }
+    }
+  ]
+}

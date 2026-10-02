@@ -1,0 +1,3 @@
+source_url,source_name,retrieved_at,license_note,record_count
+https://data.wprdc.org/dataset/311-data,WPRDC 311 Data Archive (2015-2017 request log),2026-09-21T18:53:57Z,"Authored resident complaint, derived from a real filed 311 request (see derived_from_request_id); grounded in the WPRDC 311 archive (CC-BY). No real resident wording is reproduced.",185
+https://pittsburghpa.gov/311/,City of Pittsburgh 311,2026-09-21T18:53:57Z,"Public information, City of Pittsburgh 311; authored routing summary.",5

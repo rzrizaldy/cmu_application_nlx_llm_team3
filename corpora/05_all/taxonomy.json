@@ -1,0 +1,130 @@
+{
+  "group_topic": "Pittsburgh 311 Municipal Service Resolution",
+  "category_groups": {
+    "streets_mobility": [
+      "Road/Street Issues",
+      "Traffic and Street Sign Issues",
+      "Street Light",
+      "Pedestrian/Bicycle Concerns",
+      "Parking"
+    ],
+    "waste_neighborhood": [
+      "Garbage and Litter Issues",
+      "Neighborhood Issues",
+      "Graffiti Issues",
+      "Weeds/Debris"
+    ],
+    "buildings_construction": [
+      "Building Maintenance",
+      "Construction Issues",
+      "Permits",
+      "Accessibility"
+    ],
+    "parks_public_spaces": [
+      "Parks Issues",
+      "Tree Issues",
+      "Animal Issues",
+      "City Facilities and Infrastructure"
+    ]
+  },
+  "subtopics": {
+    "01_streets_mobility_afaq": {
+      "member": "afaq",
+      "title": "Streets and Mobility",
+      "fields": {
+        "category": {
+          "kind": "label",
+          "values": [
+            "Road/Street Issues",
+            "Traffic and Street Sign Issues",
+            "Street Light",
+            "Pedestrian/Bicycle Concerns",
+            "Parking"
+          ],
+          "description": "the single 311 service category for this request"
+        },
+        "department": {
+          "kind": "label",
+          "values": [],
+          "description": "the exact city unit that should handle the request"
+        },
+        "entities": {
+          "kind": "list",
+          "description": "neighborhoods, streets or intersections named in the text, copied exactly"
+        }
+      }
+    },
+    "02_waste_neighborhood_rutomo": {
+      "member": "rutomo",
+      "title": "Waste and Neighborhood Cleanliness",
+      "fields": null,
+      "defined_in": "corpora/02_waste_neighborhood_rutomo/extraction.py"
+    },
+    "03_buildings_construction_mahika": {
+      "member": "mahika",
+      "title": "Buildings, Construction, and Accessibility",
+      "fields": {
+        "issue_category": {
+          "kind": "label",
+          "values": [
+            "building_maintenance",
+            "construction",
+            "permits",
+            "accessibility"
+          ],
+          "description": "which of the four subtopic buckets this request falls into"
+        },
+        "request_type": {
+          "kind": "label",
+          "values": [],
+          "description": "the specific 311 issue named in the request, copied as written"
+        },
+        "responsible_department": {
+          "kind": "label",
+          "values": [],
+          "description": "the city department the request was routed to, or null if not stated"
+        },
+        "neighborhood": {
+          "kind": "label",
+          "values": [],
+          "description": "the Pittsburgh neighborhood named in the request, or null if not stated"
+        },
+        "entities": {
+          "kind": "list",
+          "description": "named organizations, places or facilities mentioned, copied exactly"
+        }
+      }
+    },
+    "04_parks_public_spaces_mingchin": {
+      "member": "mingchin",
+      "title": "Parks, Trees, Animals, and Public Facilities",
+      "fields": {
+        "request_type_id": {
+          "kind": "label",
+          "values": [],
+          "description": "official Pittsburgh 311 request type ID"
+        },
+        "issue": {
+          "kind": "label",
+          "values": [],
+          "description": "specific 311 issue described by the record"
+        },
+        "category": {
+          "kind": "label",
+          "values": [
+            "Parks Issues",
+            "Tree Issues",
+            "Animal Issues",
+            "City Facilities and Infrastructure"
+          ],
+          "description": "exact Pittsburgh 311 category"
+        },
+        "department": {
+          "kind": "label",
+          "values": [],
+          "description": "responsible city department"
+        }
+      }
+    }
+  }
+}

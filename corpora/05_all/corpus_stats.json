@@ -1,5 +1,6 @@
 {
   "records": 854,
+  "human_labels": 100,
   "tabular_share": 0.539,
   "subtopics": {
     "01_streets_mobility_afaq": {
@@ -7,6 +8,7 @@
       "title": "Streets and Mobility",
       "member": "afaq",
       "records": 190,
+      "human_labels": 25,
       "modality": {
         "mixed": 70,
         "text": 120
@@ -19,6 +21,7 @@
       "title": "Waste and Neighborhood Cleanliness",
       "member": "rutomo",
       "records": 180,
+      "human_labels": 25,
       "modality": {
         "table": 74,
         "text": 106
@@ -31,6 +34,7 @@
       "title": "Buildings, Construction, and Accessibility",
       "member": "mahika",
       "records": 260,
+      "human_labels": 25,
       "modality": {
         "mixed": 260
       },
@@ -42,6 +46,7 @@
       "title": "Parks, Trees, Animals, and Public Facilities",
       "member": "mingchin",
       "records": 224,
+      "human_labels": 25,
       "modality": {
         "table": 56,
         "text": 168

@@ -29,7 +29,7 @@ CATEGORY_GROUPS = {
 }
 
 # Lead order matches the brief's subtopic table. The folder name is shared by
-# corpora/, sources/*.zip and memo/*.pdf.
+# corpora/, sources/*.zip and memo/*.pdf. corpora/05_all is the merge output.
 SUBTOPICS = [
     {"lead": 1, "key": "streets_mobility", "member": "afaq",
      "title": "Streets and Mobility"},

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Validate the four subtopic corpora and write the combined team knowledge base.
+"""Merge corpora/01-04 into corpora/05_all.
 
-Outputs team/corpus.jsonl, team/sources.csv, team/corpus_stats.json and refreshes
-appendix/original_dataset.jsonl.
+Writes corpus.jsonl, human_labels.jsonl, sources.csv, taxonomy.json and
+corpus_stats.json here, then refreshes appendix/original_dataset.jsonl.
 """
 
 from __future__ import annotations
@@ -16,11 +16,11 @@ from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
 
-from category_groups import SUBTOPICS
+from category_groups import CATEGORY_GROUPS, SUBTOPICS
 
-TEAM_DIR = Path(__file__).resolve().parent
-REPO_ROOT = TEAM_DIR.parent
-CORPORA_DIR = REPO_ROOT / "corpora"
+ALL_DIR = Path(__file__).resolve().parent
+CORPORA_DIR = ALL_DIR.parent
+REPO_ROOT = CORPORA_DIR.parent
 APPENDIX_ORIGINAL = REPO_ROOT / "appendix" / "original_dataset.jsonl"
 
 REQUIRED_TOP = {
@@ -96,9 +96,43 @@ def read_sources(subtopic: dict, path: Path) -> list[dict]:
         return [{"subtopic": subtopic["folder"], **row} for row in csv.DictReader(f)]
 
 
+def read_labels(subtopic: dict, path: Path, corpus_ids: set[str]) -> list[dict]:
+    labels = []
+    for row in load_jsonl(path):
+        if row["doc_id"] not in corpus_ids:
+            raise ValueError(f"{subtopic['folder']}: label for unknown doc_id {row['doc_id']}")
+        labels.append({
+            "doc_id": row["doc_id"],
+            "member": subtopic["member"],
+            "subtopic_key": subtopic["key"],
+            "human_label": row["human_label"],
+        })
+    return labels
+
+
+def read_taxonomy(subtopic: dict, folder_dir: Path) -> dict:
+    path = folder_dir / "taxonomy.json"
+    entry = {"member": subtopic["member"], "title": subtopic["title"]}
+    if path.exists():
+        taxonomy = json.loads(path.read_text(encoding="utf-8"))
+        entry["fields"] = taxonomy.get("fields", {})
+    else:
+        entry["fields"] = None
+        entry["defined_in"] = f"corpora/{subtopic['folder']}/extraction.py"
+    return entry
+
+
+def write_jsonl(path: Path, rows: list[dict]) -> None:
+    with path.open("w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
 def main() -> int:
     all_rows: list[dict] = []
+    all_labels: list[dict] = []
     all_sources: list[dict] = []
+    taxonomies: dict[str, dict] = {}
     seen_ids: set[str] = set()
     stats: dict[str, dict] = {}
 
@@ -129,6 +163,11 @@ def main() -> int:
                 redacted += 1
             all_rows.append(stamped)
 
+        folder_dir = CORPORA_DIR / folder
+        labels = read_labels(subtopic, folder_dir / "human_labels.jsonl", {r["doc_id"] for r in rows})
+        all_labels.extend(labels)
+        taxonomies[folder] = read_taxonomy(subtopic, folder_dir)
+
         modality = Counter(r["modality"] for r in rows)
         tabular = sum(1 for r in rows if r["table_json"] is not None)
         stats[folder] = {
@@ -136,19 +175,24 @@ def main() -> int:
             "title": subtopic["title"],
             "member": subtopic["member"],
             "records": len(rows),
+            "human_labels": len(labels),
             "modality": dict(sorted(modality.items())),
             "tabular_share": round(tabular / len(rows), 3),
             "records_with_location_fields_removed": redacted,
         }
-        all_sources.extend(read_sources(subtopic, CORPORA_DIR / folder / "sources.csv"))
+        all_sources.extend(read_sources(subtopic, folder_dir / "sources.csv"))
 
-    out_corpus = TEAM_DIR / "corpus.jsonl"
-    out_sources = TEAM_DIR / "sources.csv"
-    out_stats = TEAM_DIR / "corpus_stats.json"
+    out_corpus = ALL_DIR / "corpus.jsonl"
+    out_sources = ALL_DIR / "sources.csv"
+    out_stats = ALL_DIR / "corpus_stats.json"
 
-    with out_corpus.open("w", encoding="utf-8") as f:
-        for row in all_rows:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    write_jsonl(out_corpus, all_rows)
+    write_jsonl(ALL_DIR / "human_labels.jsonl", all_labels)
+    (ALL_DIR / "taxonomy.json").write_text(json.dumps({
+        "group_topic": "Pittsburgh 311 Municipal Service Resolution",
+        "category_groups": CATEGORY_GROUPS,
+        "subtopics": taxonomies,
+    }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     fieldnames: list[str] = []
     for row in all_sources:
@@ -161,6 +205,7 @@ def main() -> int:
     tabular_total = sum(1 for r in all_rows if r["table_json"] is not None)
     out_stats.write_text(json.dumps({
         "records": len(all_rows),
+        "human_labels": len(all_labels),
         "tabular_share": round(tabular_total / len(all_rows), 3),
         "subtopics": stats,
     }, indent=2) + "\n", encoding="utf-8")
@@ -170,7 +215,8 @@ def main() -> int:
     for folder, s in stats.items():
         print(f"  {folder}: {s['records']} records, tabular {s['tabular_share']:.0%}, "
               f"location fields removed on {s['records_with_location_fields_removed']}")
-    print(f"  total: {len(all_rows)} records -> {out_corpus.relative_to(REPO_ROOT)}")
+    print(f"  total: {len(all_rows)} records, {len(all_labels)} human labels "
+          f"-> {ALL_DIR.relative_to(REPO_ROOT)}/")
     print(f"  synced {APPENDIX_ORIGINAL.relative_to(REPO_ROOT)}")
     return 0
 

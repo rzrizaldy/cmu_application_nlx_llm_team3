@@ -6,8 +6,8 @@ This repo is one continuous project. The four subtopic corpora (Assignment 1) ar
 
 ```mermaid
 flowchart LR
-  corpora["corpora/ (4 subtopics)"] --> merge["team/merge_corpus.py"]
-  merge --> kb["team/corpus.jsonl"]
+  corpora["corpora/01-04 (subtopics)"] --> merge["corpora/05_all/merge.py"]
+  merge --> kb["corpora/05_all/corpus.jsonl"]
   kb --> original["appendix/original_dataset.jsonl"]
   original --> api["LLM API: complaint to routed ticket (pending)"]
 ```
@@ -17,8 +17,7 @@ flowchart LR
 | Path | Contents |
 |---|---|
 | [brief/](brief/) | Team corpus brief, split diagram, Canvas appendix requirements |
-| [corpora/](corpora/) | Each member's corpus, labels, and code, as submitted |
-| [team/](team/) | Shared category split, merge script, merged corpus, sources, stats |
+| [corpora/](corpora/) | `01`–`04`: each member's corpus, labels, and code as submitted. `05_all`: merge code and merged datasets |
 | [appendix/](appendix/) | Canvas code appendix: datasets and API code ZIP |
 | [memo/](memo/) | Assignment 1 memos |
 | [sources/](sources/) | Original submission ZIPs |
@@ -32,14 +31,15 @@ Files for one subtopic share the same name across `corpora/`, `memo/`, and `sour
 | 2 | Waste and Neighborhood Cleanliness | Rutomo | `02_waste_neighborhood_rutomo` | 180 |
 | 3 | Buildings, Construction, and Accessibility | Mahika | `03_buildings_construction_mahika` | 260 |
 | 4 | Parks, Trees, Animals, and Public Facilities | Mingchin | `04_parks_public_spaces_mingchin` | 224 |
+| – | All four merged | Team | `corpora/05_all` | 854 |
 
-## Build the team knowledge base
+## Build the merged dataset
 
 ```bash
-python3 team/merge_corpus.py
+python3 corpora/05_all/merge.py
 ```
 
-The script checks the shared record contract and duplicate IDs. It writes `team/corpus.jsonl` (854 records), `team/sources.csv`, and `team/corpus_stats.json`, then refreshes `appendix/original_dataset.jsonl`.
+The script checks the shared record contract and duplicate IDs, then writes the merged corpus (854 records), human labels (100), sources, taxonomy, and stats into [corpora/05_all/](corpora/05_all/) and refreshes `appendix/original_dataset.jsonl`.
 
 Following the brief's data rule, coordinate and address fields are removed from the merged copy and listed in each record's `metadata.redacted_fields`. Member corpora in `corpora/` are not modified.
 

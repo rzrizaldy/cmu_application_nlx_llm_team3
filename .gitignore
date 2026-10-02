@@ -1,0 +1,28 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# local-only
+Untitled/
+.venv/
+.env
+__MACOSX/
+
+# oversized raw data (WPRDC archive; rebuild locally from WPRDC)
+assignment01/members/mingchin/311_data.csv
+as01_mingchin.zip
+
+# duplicate packages at repo root (canonical: assignment01/original_zips/)
+/Assignment_1_afaqk*.zip
+/assignment1_*.zip
+/as01_mingchin.zip
+/memo_mingchin.pdf
+
+# optional large caches
+**/cache/
+**/.pytest_cache/
+**/__pycache__/
+*.pyc

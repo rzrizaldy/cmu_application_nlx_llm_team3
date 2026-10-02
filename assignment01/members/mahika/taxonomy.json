@@ -1,0 +1,35 @@
+{
+  "_help": "Fills the starter template. extraction.py builds the schema, prompts and human-label template from this. issue_category is a constrained enum on purpose: it is where Phi's structured-output slips show up and is the target for the recovery experiment. Leave 'prompts' empty until you have seen the v1 errors, then add a 'v2_recovery' string that targets the failure Phi actually repeats.",
+
+  "group_topic": "pittsburgh 311 service requests",
+  "subtopic": "buildings, construction, and accessibility",
+
+  "fields": {
+    "issue_category": {
+      "kind": "label",
+      "values": ["building_maintenance", "construction", "permits", "accessibility"],
+      "description": "which of the four subtopic buckets this request falls into"
+    },
+    "request_type": {
+      "kind": "label",
+      "values": [],
+      "description": "the specific 311 issue named in the request, copied as written"
+    },
+    "responsible_department": {
+      "kind": "label",
+      "values": [],
+      "description": "the city department the request was routed to, or null if not stated"
+    },
+    "neighborhood": {
+      "kind": "label",
+      "values": [],
+      "description": "the Pittsburgh neighborhood named in the request, or null if not stated"
+    },
+    "entities": {
+      "kind": "list",
+      "description": "named organizations, places or facilities mentioned, copied exactly"
+    }
+  },
+
+  "prompts": {}
+}

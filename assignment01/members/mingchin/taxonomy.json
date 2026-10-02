@@ -1,0 +1,42 @@
+{
+  "_help": "Your group fills this in. Nothing here is fixed: rename the fields, add or remove them, and leave 'values' empty for an open field the model may answer freely. extraction.py builds the schema, the prompts and the human-label template from this file.",
+
+  "group_topic": "Pittsburgh 311 Municipal Service Requests",
+
+  "subtopic": "Parks, Trees, Animals, and Public Facilities",
+
+  "fields": {
+    "request_type_id": {
+      "kind": "label",
+      "values": [],
+      "description": "official Pittsburgh 311 request type ID"
+    },
+
+    "issue": {
+      "kind": "label",
+      "values": [],
+      "description": "specific 311 issue described by the record"
+    },
+
+    "category": {
+      "kind": "label",
+      "values": [
+        "Parks Issues",
+        "Tree Issues",
+        "Animal Issues",
+        "City Facilities and Infrastructure"
+      ],
+      "description": "exact Pittsburgh 311 category"
+    },
+
+    "department": {
+      "kind": "label",
+      "values": [],
+      "description": "responsible city department"
+    }
+  },
+
+  "prompts": {
+  "v2_recovery": "Classify the Pittsburgh 311 record using the official mapping below. First choose the single best request_type_id. Then copy the issue, category, and department EXACTLY from the same mapping row. Do not paraphrase, summarize, or rewrite any official label. The four output fields must all come from the same mapping row. Return ONLY one JSON object with exactly these keys: request_type_id, issue, category, department.\n\nOfficial mapping:\n10220 | Loose Dog(s) | Animal Issues | Animal Care & Control\n272 | Barking Dog | Animal Issues | Animal Care & Control\n361 | Animal Waste | Animal Issues | Animal Care & Control\n363 | Check Conditions | Animal Issues | Animal Care & Control\n364 | Dead Animal | Animal Issues | Animal Care & Control\n365 | Dog License | Animal Issues | Finance\n367 | Other (please describe) | Animal Issues | Animal Care & Control\n368 | Rodent control | Animal Issues | Animal Care & Control\n38257 | Off Leash Exercise Area | Animal Issues | Animal Care & Control\n375 | City Facility | City Facilities and Infrastructure | DPW - Facilities\n378 | Fence | City Facilities and Infrastructure | DPW - Construction Division\n822 | City Steps, Need Cleared | City Facilities and Infrastructure | DPW - Street Maintenance\n827 | Water/Drinking Fountains | City Facilities and Infrastructure | DPW - Facilities\n426 | Court, Basketball or Tennis | Parks Issues | DPW - Park Maintenance\n27441 | Lights | Parks Issues | DPW - Park Maintenance\n428 | Litter | Parks Issues | DPW - Park Maintenance\n480 | Overgrowth | Parks Issues | DPW - Park Maintenance\n44921 | Parks Trails | Parks Issues | DPW - Park Maintenance\n432 | Playground | Parks Issues | DPW - Park Maintenance\n537 | Program | Parks Issues | Parks & Recs-Programs\n40181 | Shelters | Parks Issues | DPW - Park Maintenance\n518 | Dead tree (Public property) | Tree Issues | DPW - Forestry Division\n519 | Planting | Tree Issues | DPW - Forestry Division\n520 | Pruning (city tree) | Tree Issues | DPW - Forestry Division\n35243 | Stump Grind/Removal | Tree Issues | DPW - Forestry Division\n341 | Tree Fallen Across Road | Tree Issues | DPW - Street Maintenance\n342 | Tree Fallen Across Sidewalk | Tree Issues | DPW - Street Maintenance\n345 | Tree Removal | Tree Issues | DPW - Forestry Division"
+}
+}

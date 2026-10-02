@@ -1,0 +1,13 @@
+Appendix Information: Please include the following, either in an Appendix in your report or as separate file uploads to Canvas:
+Original Dataset: the original dataset you chose to use for your organizational scenario / task.
+Accepted format: JSON or JSONL
+Development Dataset: the dataset you used to assess and experiment with the baseline LLMBOX API design.
+Accepted format: JSON or JSONL
+Evaluation Dataset: the dataset you used to evaluate the LLM API designed for your organizational scenario / task.
+Accepted format: JSON or JSONL
+Chatlogs LLM Evaluation Dataset: the dataset of chatlogs you used to evaluate the finetuned LLM on your organizational task.
+Accepted format: JSON or JSONL
+Evaluation Metrics Dataset: the dataset produced when you executed your evaluation jobs. The dataset contains the LLM evaluation metrics. You should have one of these datasets for EACH experiment and evaluation.
+Accepted format: JSON or JSONL
+LLM API Code files: the Python codes files for your modified or custom LLM API functionality or features.
+Accepted format: ZIP

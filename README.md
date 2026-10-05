@@ -31,7 +31,7 @@ The ticket has the fields the brief suggests: domain, category, issue, departmen
 
 We run the API on Phi-4-mini locally and compare five designs on the same 50 held-out evaluation inputs: prompt only (T0), plus retrieved knowledge (T1), plus codebook tools (T2), plus a guardrail (T3), and a LoRA-finetuned model (T4).
 
-On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints to the right category and department (95% CI 70–92%), against 0% for the prompt-only baseline, and every ticket it returns is schema-valid. Full results are in [experiments/05_team/README.md](experiments/05_team/README.md#results-50-eval-inputs-phi-4-mini-greedy-no-repetition-penalty).
+On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints to the right category and department (95% CI 70–92%), against 0% for the prompt-only baseline, and every ticket it returns is schema-valid. Our LoRA-finetuned model (T4) routes 50% correctly with the same short prompt as the baseline and no retrieval, and it is the fastest design. It is strong on parks and buildings but weak on waste, which had few training rows, and on free-text streets complaints. Full results are in [experiments/05_team/README.md](experiments/05_team/README.md#results-50-eval-inputs-phi-4-mini-greedy-no-repetition-penalty).
 
 ## Layout
 
@@ -61,16 +61,15 @@ All four Assignment 2 packages are in.
 | Team API (`api/team311`, `route_complaint`) | Done |
 | DEV/EVAL split with codebook gold labels and leakage check | Done (534 / 50, no overlap) |
 | T0–T3 on 50 EVAL inputs | Done; T2 and T3 route 82% correctly |
-| T4 LoRA finetune | First run (149 rows, 1 epoch) is committed. It is under-trained: right issue 56% of the time, right department never, and no clarification questions. The retrain is set up but not run yet |
+| T4 LoRA finetune | Done (269 rows, 2 epochs); routes 50% correctly (CI 36–64%) against 0% for the same prompt without the adapter, and asks a clarification question 86% of the time |
 | Member memo summaries | Done ([memo/member_summaries.md](memo/member_summaries.md)) |
-| Canvas appendix (datasets, metrics, chatlogs, API ZIP) | Done for the first T4 run; rebuild after the retrain |
+| Canvas appendix (datasets, metrics, chatlogs, API ZIP) | Done, including 50 T4 evaluation chat logs |
 | Final memo | Not started |
 
 What we still need to do:
 
-1. Run the T4 retrain. `finetune_lora.py` now defaults to 80 DEV rows per subtopic (269 rows, since waste has only 29) and 2 epochs. Training answers now include the gold issue's knowledge-card clarification question and the first two required details. It needs about 12 GB of GPU memory, so close other large apps first; with them open it stalls at step 0. After training, rerun T4, `build_chatlogs.py`, and `appendix/build_appendix.py` (about 40 minutes in total).
-2. Write the final memo. It should report T0–T4 with their confidence intervals, the guardrail probe results, and the historical resolution baselines, within the evaluation boundary below.
-3. Look at where T2 fails. On waste items it routes 12 of 12 correctly, but those inputs are codebook rows ("Resident reports: <issue>."), and the row names the issue. On Afaq's free-text resident complaints it routes 8 of 13 correctly (62%), and streets issue accuracy is only 31%. Real complaints are the case that matters, so the memo should report this split. In 28% of items T2 also fell back to the retrieval vote's issue.
+1. Write the final memo. It should report T0–T4 with their confidence intervals, the guardrail probe results, and the historical resolution baselines, within the evaluation boundary below.
+2. Look at where T2 fails. On waste items it routes 12 of 12 correctly, but those inputs are codebook rows ("Resident reports: <issue>."), and the row names the issue. On Afaq's free-text resident complaints it routes 8 of 13 correctly (62%), and streets issue accuracy is only 31%. Real complaints are the case that matters, so the memo should report this split. In 28% of items T2 also fell back to the retrieval vote's issue.
 
 ## Commands
 

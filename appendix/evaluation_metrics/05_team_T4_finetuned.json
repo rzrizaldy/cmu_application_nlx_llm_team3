@@ -3,83 +3,83 @@
   "mode": "T0_generate",
   "split": "eval",
   "n": 50,
-  "issue_accuracy": 0.56,
+  "issue_accuracy": 0.6,
   "issue_accuracy_ci95": [
-    0.42,
-    0.7
+    0.46,
+    0.74
   ],
-  "department_accuracy": 0.0,
+  "department_accuracy": 0.58,
   "department_accuracy_ci95": [
-    0.0,
-    0.0
+    0.44,
+    0.72
   ],
-  "routed_correctly_accuracy": 0.0,
+  "routed_correctly_accuracy": 0.5,
   "routed_correctly_accuracy_ci95": [
-    0.0,
-    0.0
+    0.36,
+    0.64
   ],
-  "domain_accuracy": 0.72,
+  "domain_accuracy": 0.82,
   "domain_accuracy_ci95": [
-    0.6,
-    0.84
+    0.7,
+    0.92
   ],
-  "category_accuracy": 0.54,
+  "category_accuracy": 0.8,
   "category_accuracy_ci95": [
-    0.4,
-    0.66
+    0.68,
+    0.9
   ],
-  "schema_valid_rate": 0.96,
-  "completeness_rate": 0.96,
-  "clarification_rate": 0.0,
+  "schema_valid_rate": 1.0,
+  "completeness_rate": 1.0,
+  "clarification_rate": 0.86,
   "abstention_rate": 0.0,
-  "mean_latency_s": 9.332,
+  "mean_latency_s": 9.352,
   "mean_prompt_tokens": 291.96,
-  "mean_output_tokens": 79.36,
+  "mean_output_tokens": 95.74,
   "by_domain": {
     "buildings_construction": {
       "n": 11,
       "issue": 1.0,
-      "department": 0.0,
-      "routed_correctly": 0.0,
-      "category": 0.2727
+      "department": 0.8182,
+      "routed_correctly": 0.7273,
+      "category": 0.8182
     },
     "parks_public_spaces": {
       "n": 14,
-      "issue": 0.2143,
-      "department": 0.0,
-      "routed_correctly": 0.0,
-      "category": 0.7143
+      "issue": 0.2857,
+      "department": 0.8571,
+      "routed_correctly": 0.8571,
+      "category": 0.9286
     },
     "streets_mobility": {
       "n": 13,
       "issue": 0.3846,
-      "department": 0.0,
-      "routed_correctly": 0.0,
-      "category": 0.6923
+      "department": 0.1538,
+      "routed_correctly": 0.1538,
+      "category": 1.0
     },
     "waste_neighborhood": {
       "n": 12,
-      "issue": 0.75,
-      "department": 0.0,
-      "routed_correctly": 0.0,
+      "issue": 0.8333,
+      "department": 0.5,
+      "routed_correctly": 0.25,
       "category": 0.4167
     }
   },
   "by_input_origin": {
     "codebook_row": {
       "n": 12,
-      "routed_correctly": 0.0
+      "routed_correctly": 0.25
     },
     "complaint": {
       "n": 13,
-      "routed_correctly": 0.0
+      "routed_correctly": 0.1538
     },
     "intake": {
       "n": 25,
-      "routed_correctly": 0.0
+      "routed_correctly": 0.8
     }
   },
-  "raw_json_rate": 0.96,
+  "raw_json_rate": 1.0,
   "vote_fallback_rate": 0.0,
   "gold_from_codebook": 36,
   "model_path": "/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct",

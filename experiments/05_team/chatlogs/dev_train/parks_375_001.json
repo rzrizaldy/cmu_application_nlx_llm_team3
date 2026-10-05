@@ -1,7 +1,7 @@
 {
   "session": {
     "session_id": "parks_375_001",
-    "started_at": "2026-10-05T18:51:57.219200+00:00",
+    "started_at": "2026-10-05T22:25:44.947883+00:00",
     "model": {
       "name": "phi-4-mini-instruct",
       "adapter": null
@@ -16,11 +16,11 @@
       "user": {
         "username": "resident",
         "content": "Allowed domains and categories:\n- streets_mobility: Road/Street Issues; Traffic and Street Sign Issues; Street Light; Pedestrian/Bicycle Concerns; Parking\n- waste_neighborhood: Garbage and Litter Issues; Neighborhood Issues; Graffiti Issues; Weeds/Debris\n- buildings_construction: Building Maintenance; Construction Issues; Permits; Accessibility\n- parks_public_spaces: Parks Issues; Tree Issues; Animal Issues; City Facilities and Infrastructure\n\nComplaint:\nA city facility has a maintenance issue that needs to be inspected and repaired.",
-        "timestamp": "2026-10-05T18:51:57.219200+00:00"
+        "timestamp": "2026-10-05T22:25:44.947883+00:00"
       },
       "assistant": {
-        "content": "{\"domain\": \"parks_public_spaces\", \"category\": \"City Facilities and Infrastructure\", \"issue\": \"City Facility\", \"department\": \"DPW - Facilities\", \"missing_information\": [], \"clarification_question\": null, \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
-        "timestamp": "2026-10-05T18:51:57.219200+00:00"
+        "content": "{\"domain\": \"parks_public_spaces\", \"category\": \"City Facilities and Infrastructure\", \"issue\": \"City Facility\", \"department\": \"DPW - Facilities\", \"missing_information\": [\"facility or steps location\", \"problem observed\"], \"clarification_question\": \"Which city facility or steps are affected, and what is the problem?\", \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
+        "timestamp": "2026-10-05T22:25:44.947883+00:00"
       }
     }
   ]

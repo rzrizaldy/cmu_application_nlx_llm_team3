@@ -11,9 +11,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import random
 import sys
+import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -80,8 +82,7 @@ def main() -> None:
 
     import torch
     from peft import LoraConfig, get_peft_model
-    from torch.utils.data import Dataset as TorchDataset
-    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainerCallback, TrainingArguments
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     torch.manual_seed(SEED)
     train_path = build_training_jsonl(args.per_subtopic)
@@ -89,7 +90,10 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(PHI, local_files_only=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(PHI, dtype=torch.bfloat16, local_files_only=True)
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    model = AutoModelForCausalLM.from_pretrained(
+        PHI, dtype=torch.bfloat16, local_files_only=True, device_map={"": device}, low_cpu_mem_usage=True,
+    )
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
     lora = LoraConfig(
@@ -99,45 +103,55 @@ def main() -> None:
     model = get_peft_model(model, lora)
     model.print_trainable_parameters()
 
-    class ChatDS(TorchDataset):
-        def __len__(self):
-            return len(records)
+    def encode(msgs: list[dict]) -> tuple:
+        prompt = tokenizer.apply_chat_template(msgs[:2], tokenize=False, add_generation_prompt=True)
+        full = tokenizer.apply_chat_template(msgs, tokenize=False)
+        p_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
+        ids = tokenizer(full, add_special_tokens=False, truncation=True, max_length=768)["input_ids"]
+        labels = [-100] * min(len(p_ids), len(ids)) + ids[len(p_ids):]
+        return torch.tensor([ids], device=device), torch.tensor([labels], device=device)
 
-        def __getitem__(self, idx):
-            msgs = records[idx]["messages"]
-            prompt = tokenizer.apply_chat_template(msgs[:2], tokenize=False, add_generation_prompt=True)
-            full = tokenizer.apply_chat_template(msgs, tokenize=False)
-            p_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
-            ids = tokenizer(full, add_special_tokens=False, truncation=True, max_length=768)["input_ids"]
-            labels = [-100] * min(len(p_ids), len(ids)) + ids[len(p_ids):]
-            return {
-                "input_ids": torch.tensor(ids),
-                "attention_mask": torch.ones(len(ids), dtype=torch.long),
-                "labels": torch.tensor(labels),
-            }
+    # A plain loop: on MPS, HF Trainer stalled before its first step on this machine.
+    batches = [encode(r["messages"]) for r in records]
+    accum, log_every, warmup, lr = 4, 5, 3, 2e-4
+    total_steps = math.ceil(len(batches) * args.epochs / accum)
+    params = [p for p in model.parameters() if p.requires_grad]
+    opt = torch.optim.AdamW(params, lr=lr, weight_decay=0.0)
+    sched = torch.optim.lr_scheduler.LambdaLR(
+        opt, lambda s: (s + 1) / warmup if s < warmup else max(0.0, (total_steps - s) / max(1, total_steps - warmup)),
+    )
+    rng = random.Random(SEED)
+    order = []
+    for _ in range(math.ceil(args.epochs)):
+        epoch = list(range(len(batches)))
+        rng.shuffle(epoch)
+        order.extend(epoch)
+    order = order[: int(len(batches) * args.epochs)]
+    model.train()
+    log_history, window, all_losses, step, t0 = [], [], [], 0, time.time()
+    for i, idx in enumerate(order, 1):
+        ids, labels = batches[idx]
+        loss = model(input_ids=ids, labels=labels).loss
+        (loss / accum).backward()
+        window.append(loss.item())
+        if i % accum == 0 or i == len(order):
+            torch.nn.utils.clip_grad_norm_(params, 1.0)
+            opt.step()
+            sched.step()
+            opt.zero_grad(set_to_none=True)
+            step += 1
+            if step % log_every == 0 or step == total_steps:
+                entry = {"loss": sum(window) / len(window), "learning_rate": sched.get_last_lr()[0],
+                         "epoch": i / len(batches), "step": step}
+                log_history.append(entry)
+                print(f"step {step}/{total_steps} loss {entry['loss']:.4f} {time.time() - t0:.0f}s", flush=True)
+                all_losses.extend(window)
+                window = []
+    all_losses.extend(window)
+    log_history.append({"train_runtime": time.time() - t0, "train_loss": sum(all_losses) / len(all_losses),
+                        "epoch": args.epochs, "step": step})
 
     adapter_dir = OUT / "adapter"
-    targs = TrainingArguments(
-        output_dir=str(OUT / "checkpoints"),
-        num_train_epochs=args.epochs,
-        per_device_train_batch_size=1,
-        gradient_accumulation_steps=4,
-        learning_rate=2e-4,
-        warmup_steps=3,
-        logging_steps=5,
-        save_strategy="no",
-        report_to=[],
-        remove_unused_columns=False,
-        seed=SEED,
-    )
-    class FreeMPSCache(TrainerCallback):
-        # Variable-length batches fragment the MPS cache; without this, 24 GB runs out mid-epoch.
-        def on_step_end(self, args, state, control, **kwargs):
-            if torch.backends.mps.is_available():
-                torch.mps.empty_cache()
-
-    trainer = Trainer(model=model, args=targs, train_dataset=ChatDS(), callbacks=[FreeMPSCache()])
-    result = trainer.train()
     model.save_pretrained(adapter_dir)
     tokenizer.save_pretrained(adapter_dir)
     (OUT / "train_metrics.json").write_text(json.dumps({
@@ -145,8 +159,10 @@ def main() -> None:
         "per_subtopic": args.per_subtopic,
         "epochs": args.epochs,
         "lora": {"r": 8, "alpha": 16, "dropout": 0.05, "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"]},
-        "train_loss": result.training_loss,
-        "log_history": trainer.state.log_history,
+        "optimizer": {"name": "AdamW", "lr": lr, "warmup_steps": warmup, "schedule": "linear",
+                      "gradient_accumulation": accum, "batch_size": 1, "grad_clip": 1.0},
+        "train_loss": log_history[-1]["train_loss"],
+        "log_history": log_history,
         "adapter": str(adapter_dir.relative_to(REPO)),
     }, indent=2) + "\n")
     print("saved", adapter_dir)

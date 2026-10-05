@@ -1,7 +1,7 @@
 {
   "session": {
     "session_id": "bca_0234",
-    "started_at": "2026-10-05T18:51:57.226594+00:00",
+    "started_at": "2026-10-05T22:25:44.964326+00:00",
     "model": {
       "name": "phi-4-mini-instruct",
       "adapter": null
@@ -16,11 +16,11 @@
       "user": {
         "username": "resident",
         "content": "Allowed domains and categories:\n- streets_mobility: Road/Street Issues; Traffic and Street Sign Issues; Street Light; Pedestrian/Bicycle Concerns; Parking\n- waste_neighborhood: Garbage and Litter Issues; Neighborhood Issues; Graffiti Issues; Weeds/Debris\n- buildings_construction: Building Maintenance; Construction Issues; Permits; Accessibility\n- parks_public_spaces: Parks Issues; Tree Issues; Animal Issues; City Facilities and Infrastructure\n\nComplaint:\nA resident submitted a 311 service request about \"Building Maintenance\" in the South Side Flats neighborhood of Pittsburgh. The request was submitted via Website on 2023-03-06T08:15:00.",
-        "timestamp": "2026-10-05T18:51:57.226594+00:00"
+        "timestamp": "2026-10-05T22:25:44.964326+00:00"
       },
       "assistant": {
-        "content": "{\"domain\": \"buildings_construction\", \"category\": \"Building Maintenance\", \"issue\": \"Building Maintenance\", \"department\": \"Permits, Licenses and Inspections\", \"missing_information\": [], \"clarification_question\": null, \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
-        "timestamp": "2026-10-05T18:51:57.226594+00:00"
+        "content": "{\"domain\": \"buildings_construction\", \"category\": \"Building Maintenance\", \"issue\": \"Building Maintenance\", \"department\": \"Permits, Licenses and Inspections\", \"missing_information\": [\"property location\", \"condition observed\"], \"clarification_question\": \"What is the property location, and is there an immediate safety hazard?\", \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
+        "timestamp": "2026-10-05T22:25:44.964326+00:00"
       }
     }
   ]

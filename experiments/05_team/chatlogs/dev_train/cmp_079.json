@@ -1,7 +1,7 @@
 {
   "session": {
     "session_id": "cmp_079",
-    "started_at": "2026-10-05T18:51:57.224197+00:00",
+    "started_at": "2026-10-05T22:25:44.958270+00:00",
     "model": {
       "name": "phi-4-mini-instruct",
       "adapter": null
@@ -16,11 +16,11 @@
       "user": {
         "username": "resident",
         "content": "Allowed domains and categories:\n- streets_mobility: Road/Street Issues; Traffic and Street Sign Issues; Street Light; Pedestrian/Bicycle Concerns; Parking\n- waste_neighborhood: Garbage and Litter Issues; Neighborhood Issues; Graffiti Issues; Weeds/Debris\n- buildings_construction: Building Maintenance; Construction Issues; Permits; Accessibility\n- parks_public_spaces: Parks Issues; Tree Issues; Animal Issues; City Facilities and Infrastructure\n\nComplaint:\nCaller reports insufficient street lighting on Manchester.",
-        "timestamp": "2026-10-05T18:51:57.224197+00:00"
+        "timestamp": "2026-10-05T22:25:44.958270+00:00"
       },
       "assistant": {
-        "content": "{\"domain\": \"streets_mobility\", \"category\": \"Street Light\", \"issue\": \"Street Light - Increased Wattage\", \"department\": \"DPW - Transportation & Engineering\", \"missing_information\": [], \"clarification_question\": null, \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
-        "timestamp": "2026-10-05T18:51:57.224197+00:00"
+        "content": "{\"domain\": \"streets_mobility\", \"category\": \"Street Light\", \"issue\": \"Street Light - Increased Wattage\", \"department\": \"DPW - Transportation & Engineering\", \"missing_information\": [\"nearest address or pole number\", \"out, flickering, or on during the day\"], \"clarification_question\": \"Where is the light (nearest address or pole number), and is it out, flickering, or on during the day?\", \"confidence\": 0.9, \"abstain\": false, \"historical_resolution_range\": null}",
+        "timestamp": "2026-10-05T22:25:44.958270+00:00"
       }
     }
   ]

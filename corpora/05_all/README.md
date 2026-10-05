@@ -15,6 +15,17 @@ python3 corpora/05_all/merge.py
 | `corpus_stats.json` | Record counts, modality, tabular share per subtopic |
 | `category_groups.py` | Shared category split and subtopic order from the brief |
 | `merge.py` | Validates 01–04 and writes the files above |
+| `operational_evidence.py` | Joins `311_data.csv` to the codebook with the brief's cleaning contract and writes the two files below |
+| `operational_evidence.jsonl` | 127 records, one per issue in the four subtopics: volume, closed count, median, 75th and 90th percentile resolution days, definition |
+| `operational_evidence_summary.json` | Coverage: 815,417 requests, 612,222 in the four subtopics, 142,060 unmapped (blank category), 61,135 in other categories |
+
+`operational_evidence.py` needs the gitignored `corpora/04_parks_public_spaces_mingchin/311_data.csv` ([WPRDC](https://data.wprdc.org/dataset/311-data)):
+
+```bash
+python3 corpora/05_all/operational_evidence.py
+```
+
+The team311 knowledge index loads `operational_evidence.jsonl` alongside `corpus.jsonl`, and `resolution_range()` fills the ticket's `historical_resolution_range` from it.
 
 The merge also refreshes [appendix/original_dataset.jsonl](../../appendix/original_dataset.jsonl).
 

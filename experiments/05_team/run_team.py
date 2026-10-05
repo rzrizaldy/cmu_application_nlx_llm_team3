@@ -15,7 +15,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "api"))
 from team311.guardrail import check_input, redact_output  # noqa: E402
-from team311.knowledge import load_knowledge, retrieve, resolution_range_for_category  # noqa: E402
+from team311.knowledge import load_knowledge, retrieve, resolution_range  # noqa: E402
 from team311.tools import lookup_codebook_json  # noqa: E402
 
 sys.path.insert(0, str(REPO / "corpora" / "05_all"))
@@ -254,8 +254,8 @@ def main() -> int:
             if mode in STRUCTURED_MODES:
                 pred = snap_category(pred, CATEGORY_GROUPS[item["subtopic_key"]])
             if pred.get("category") and not pred.get("historical_resolution_range"):
-                pred["historical_resolution_range"] = resolution_range_for_category(
-                    pred.get("category", ""), kb
+                pred["historical_resolution_range"] = resolution_range(
+                    kb, issue=pred.get("issue"), category=pred.get("category")
                 )
             rec["pred"] = pred
             rec["raw"] = text[:2000]

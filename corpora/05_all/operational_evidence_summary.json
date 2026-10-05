@@ -1,0 +1,45 @@
+{
+  "requests_total": 815417,
+  "requests_in_four_subtopics": 612222,
+  "requests_unmapped_blank_category": 142060,
+  "requests_mapped_other_categories": 61135,
+  "codebook_rows_with_category": 183,
+  "issues_with_evidence": 127,
+  "by_subtopic": {
+    "streets_mobility": {
+      "issues": 45,
+      "requests": 244708
+    },
+    "waste_neighborhood": {
+      "issues": 28,
+      "requests": 225001
+    },
+    "buildings_construction": {
+      "issues": 26,
+      "requests": 74628
+    },
+    "parks_public_spaces": {
+      "issues": 28,
+      "requests": 67885
+    }
+  },
+  "by_category": {
+    "Accessibility": 2600,
+    "Animal Issues": 23425,
+    "Building Maintenance": 43140,
+    "City Facilities and Infrastructure": 4742,
+    "Construction Issues": 22602,
+    "Garbage and Litter Issues": 113518,
+    "Graffiti Issues": 5466,
+    "Neighborhood Issues": 103227,
+    "Parking": 50694,
+    "Parks Issues": 16596,
+    "Pedestrian/Bicycle Concerns": 1052,
+    "Permits": 6286,
+    "Road/Street Issues": 167929,
+    "Street Light": 19041,
+    "Traffic and Street Sign Issues": 5992,
+    "Tree Issues": 23122,
+    "Weeds/Debris": 2790
+  }
+}

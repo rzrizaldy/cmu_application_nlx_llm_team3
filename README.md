@@ -46,12 +46,12 @@ We run the API on Phi-4-mini locally and compare five designs on the same 50 hel
 
 | Member | Assignment 2 package |
 |---|---|
-| Afaq | Partial: we still need his results, report, tool-calling config, and AI-use appendix |
+| Afaq | Complete |
 | Rutomo | Complete |
 | Mahika | Complete |
 | Mingchin | Complete |
 
-The team experiment runs are on hold until we have Afaq's results.
+All four Assignment 2 packages are in.
 
 ## Commands
 

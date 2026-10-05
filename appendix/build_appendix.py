@@ -81,7 +81,13 @@ def metrics_exports() -> None:
     for pattern in ("*metrics*.json", "*summary*.json", "partD_report.json", "partE_costbenefit.json"):
         for p in sorted(mahika_out.glob(pattern)):
             shutil.copy2(p, out / f"03_buildings_construction_mahika_{p.name}")
-    if not any(out.glob("01_*.json")):
+    afaq_metrics = EXP / "01_streets_mobility_afaq" / "results" / "all_metrics.json"
+    if afaq_metrics.exists():
+        for name, m in json.loads(afaq_metrics.read_text()).items():
+            (out / f"01_streets_mobility_afaq_{name}_metrics.json").write_text(json.dumps(m, indent=2) + "\n")
+    if any(out.glob("01_*.json")):
+        (out / "01_streets_mobility_afaq_PENDING.md").unlink(missing_ok=True)
+    else:
         (out / "01_streets_mobility_afaq_PENDING.md").write_text(
             "Afaq's package has code and data but no metrics JSON; request his results/ folder.\n"
         )

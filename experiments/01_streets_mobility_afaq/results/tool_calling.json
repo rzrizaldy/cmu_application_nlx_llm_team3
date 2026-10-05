@@ -1,0 +1,1297 @@
+{
+  "experiment": "tool_calling",
+  "count": 50,
+  "results": [
+    {
+      "id": "cmp_099",
+      "input": "Caller reports a damaged sidewalk on Brownsville Rd in Greenfield; trip hazard noted.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Brownsville Rd\", \"Greenfield\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Brownsville Rd",
+          "Greenfield"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 26,
+        "latency_seconds": 5.4
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Brownsville Rd",
+        "Greenfield"
+      ]
+    },
+    {
+      "id": "cmp_088",
+      "input": "Resident reports an issue related to sidewalk/curb/hc ramp maintenance on Beechwood Blvd in Mount Washington.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Beechwood Blvd\", \"Mount Washington\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Beechwood Blvd",
+          "Mount Washington"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 118,
+        "output_tokens": 27,
+        "latency_seconds": 2.66
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Beechwood Blvd",
+        "Mount Washington"
+      ]
+    },
+    {
+      "id": "cmp_071",
+      "input": "please help, theres an issue with sidewalk along Shady Ave in Greenfield",
+      "raw_output": "{\n  \"category\": \"Pedestrian/Bicycle Concerns\",\n  \"entities\": [\"Shady Ave\", \"Greenfield\"]\n}",
+      "parsed": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "entities": [
+          "Shady Ave",
+          "Greenfield"
+        ],
+        "department": "DOMI - Permits"
+      },
+      "tool_result": {
+        "department": "DOMI - Permits"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 28,
+        "latency_seconds": 2.72
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "311",
+      "ground_truth_entities": [
+        "Shady Ave",
+        "Greenfield"
+      ]
+    },
+    {
+      "id": "cmp_037",
+      "input": "please help, parking meter on Braddock Ave in Central Lawrenceville is broken, took my money and still says expired please fix",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"Braddock Ave\", \"Central Lawrenceville\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Braddock Ave",
+          "Central Lawrenceville"
+        ],
+        "department": "Parking Authority"
+      },
+      "tool_result": {
+        "department": "Parking Authority"
+      },
+      "stats": {
+        "input_tokens": 121,
+        "output_tokens": 25,
+        "latency_seconds": 2.47
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "Braddock Ave",
+        "Central Lawrenceville"
+      ]
+    },
+    {
+      "id": "cmp_024",
+      "input": "Resident requests a new traffic signal at the intersection at Wharton St in Shadyside.",
+      "raw_output": "```json\n{\n  \"category\": \"Traffic and Street Sign Issues\",\n  \"entities\": [\"Wharton St\", \"Shadyside\"]\n}\n```",
+      "parsed": {
+        "category": "Traffic and Street Sign Issues",
+        "entities": [
+          "Wharton St",
+          "Shadyside"
+        ],
+        "department": "DOMI - Traffic"
+      },
+      "tool_result": {
+        "department": "DOMI - Traffic"
+      },
+      "stats": {
+        "input_tokens": 113,
+        "output_tokens": 32,
+        "latency_seconds": 3.07
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Traffic",
+      "ground_truth_entities": [
+        "Wharton St",
+        "Shadyside"
+      ]
+    },
+    {
+      "id": "cmp_056",
+      "input": "hello 311, the new paving job near Forbes Ave in Summer Hill is already cracking, they did it wrong please fix",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Forbes Ave\", \"Summer Hill\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Forbes Ave",
+          "Summer Hill"
+        ],
+        "department": "DOMI - Asphalt"
+      },
+      "tool_result": {
+        "department": "DOMI - Asphalt"
+      },
+      "stats": {
+        "input_tokens": 119,
+        "output_tokens": 26,
+        "latency_seconds": 2.56
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Asphalt",
+      "ground_truth_entities": [
+        "Forbes Ave",
+        "Summer Hill"
+      ]
+    },
+    {
+      "id": "cmp_057",
+      "input": "hi, theres an issue with city steps, need cleared at West Oakland thanks",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"West Oakland\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "West Oakland"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 19,
+        "latency_seconds": 1.99
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DPW - Street Maintenance",
+      "ground_truth_entities": [
+        "West Oakland"
+      ]
+    },
+    {
+      "id": "cmp_040",
+      "input": "please help, vehicle with no plates rotting on Spring Hill-City View, hasnt moved",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Spring Hill-City View\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Spring Hill-City View"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 114,
+        "output_tokens": 24,
+        "latency_seconds": 2.38
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Police - AVU",
+      "ground_truth_entities": [
+        "Spring Hill-City View"
+      ]
+    },
+    {
+      "id": "cmp_041",
+      "input": "please help, theres an abandoned junk car on South Side Slopes that hasnt moved in ages",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"South Side Slopes\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "South Side Slopes"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 114,
+        "output_tokens": 23,
+        "latency_seconds": 2.29
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Police - AVU",
+      "ground_truth_entities": [
+        "South Side Slopes"
+      ]
+    },
+    {
+      "id": "cmp_105",
+      "input": "please help, theres an issue with ppa parking lot at Murray Ave in Squirrel Hill North",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"PPA\", \"Murray Ave\", \"Squirrel Hill North\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "PPA",
+          "Murray Ave",
+          "Squirrel Hill North"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 114,
+        "output_tokens": 29,
+        "latency_seconds": 2.8
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "Murray Ave",
+        "Squirrel Hill North"
+      ]
+    },
+    {
+      "id": "cmp_019",
+      "input": "Resident reports a malfunctioning parking meter on Wharton St in Carrick.",
+      "raw_output": "```json\n{\n  \"category\": \"Parking\",\n  \"entities\": [\"Wharton St\", \"Carrick\"]\n}\n```",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Wharton St",
+          "Carrick"
+        ],
+        "department": "Parking Authority"
+      },
+      "tool_result": {
+        "department": "Parking Authority"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 27,
+        "latency_seconds": 2.59
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "Wharton St",
+        "Carrick"
+      ]
+    },
+    {
+      "id": "cmp_093",
+      "input": "Caller reports an issue related to lights on Highland Park.",
+      "raw_output": "```json\n{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Highland Park\"]\n}\n```",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Highland Park"
+        ],
+        "department": "DPW - Park Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Park Maintenance"
+      },
+      "stats": {
+        "input_tokens": 106,
+        "output_tokens": 24,
+        "latency_seconds": 2.35
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DPW - Park Maintenance",
+      "ground_truth_entities": [
+        "Highland Park"
+      ]
+    },
+    {
+      "id": "cmp_067",
+      "input": "cant even read the sign near Mount Washington, totally faded",
+      "raw_output": "```json\n{\"category\": \"Traffic and Street Sign Issues\", \"entities\": [\"Mount Washington\"]}\n```",
+      "parsed": {
+        "category": "Traffic and Street Sign Issues",
+        "entities": [
+          "Mount Washington"
+        ],
+        "department": "Permits, Licenses and Inspections"
+      },
+      "tool_result": {
+        "department": "Permits, Licenses and Inspections"
+      },
+      "stats": {
+        "input_tokens": 106,
+        "output_tokens": 22,
+        "latency_seconds": 2.17
+      },
+      "ground_truth_category": "Traffic and Street Sign Issues",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Mount Washington"
+      ]
+    },
+    {
+      "id": "cmp_091",
+      "input": "theres an issue with sidewalk along Brereton St in Central Northside",
+      "raw_output": "{\n  \"category\": \"Street/Street Issues\",\n  \"entities\": [\"Brereton St\", \"Central Northside\"]\n}",
+      "parsed": {
+        "category": "Street/Street Issues",
+        "entities": [
+          "Brereton St",
+          "Central Northside"
+        ],
+        "department": "311"
+      },
+      "tool_result": {
+        "department": "311"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 28,
+        "latency_seconds": 2.68
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "311",
+      "ground_truth_entities": [
+        "Brereton St",
+        "Central Northside"
+      ]
+    },
+    {
+      "id": "cmp_016",
+      "input": "need a no parking variance for a move along South Side Flats, how do i do that",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"South Side Flats\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "South Side Flats"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 113,
+        "output_tokens": 19,
+        "latency_seconds": 1.94
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "South Side Flats"
+      ]
+    },
+    {
+      "id": "cmp_059",
+      "input": "Constituent reports an issue related to curb cuts on Fifth Ave in South Oakland.",
+      "raw_output": "```json\n{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Fifth Ave\", \"South Oakland\"]\n}\n```",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Fifth Ave",
+          "South Oakland"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 30,
+        "latency_seconds": 2.87
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Fifth Ave",
+        "South Oakland"
+      ]
+    },
+    {
+      "id": "cmp_006",
+      "input": "reporting that guide rail along East Hills is smashed from an accident and never got fixed",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"East Hills\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "East Hills"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 21,
+        "latency_seconds": 2.1
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DPW - Construction Division",
+      "ground_truth_entities": [
+        "East Hills"
+      ]
+    },
+    {
+      "id": "cmp_034",
+      "input": "Caller reports a damaged ADA curb ramp at Allegheny West.",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Allegheny West\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Allegheny West"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 108,
+        "output_tokens": 21,
+        "latency_seconds": 2.09
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Streets",
+      "ground_truth_entities": [
+        "Allegheny West"
+      ]
+    },
+    {
+      "id": "cmp_045",
+      "input": "reporting that parking meter on North Shore is broken, took my money and still says expired",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"North Shore\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "North Shore"
+        ],
+        "department": "Parking Authority"
+      },
+      "tool_result": {
+        "department": "Parking Authority"
+      },
+      "stats": {
+        "input_tokens": 113,
+        "output_tokens": 18,
+        "latency_seconds": 1.85
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "North Shore"
+      ]
+    },
+    {
+      "id": "cmp_046",
+      "input": "a boat trailer has been parked near Carrick taking up spots for weeks been like this too long",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"Carrick\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Carrick"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 114,
+        "output_tokens": 18,
+        "latency_seconds": 1.86
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Police - Zones 1-6",
+      "ground_truth_entities": [
+        "Carrick"
+      ]
+    },
+    {
+      "id": "cmp_013",
+      "input": "Constituent reports an obstructed sidewalk on East Allegheny.",
+      "raw_output": "{\n  \"category\": \"Pedestrian/Bicycle Concerns\",\n  \"entities\": [\"East Allegheny\"]\n}",
+      "parsed": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "entities": [
+          "East Allegheny"
+        ],
+        "department": "DOMI - Permits"
+      },
+      "tool_result": {
+        "department": "DOMI - Permits"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 25,
+        "latency_seconds": 2.43
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "East Allegheny"
+      ]
+    },
+    {
+      "id": "cmp_049",
+      "input": "Resident reports an issue related to city steps, need repaired on South Side Slopes.",
+      "raw_output": "```json\n{\n  \"category\": \"Street Light\",\n  \"entities\": [\"South Side Slopes\"]\n}\n```",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "South Side Slopes"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 25,
+        "latency_seconds": 2.45
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Streets",
+      "ground_truth_entities": [
+        "South Side Slopes"
+      ]
+    },
+    {
+      "id": "cmp_097",
+      "input": "sidewalk near Mount Washington is blocked, had to walk in the street",
+      "raw_output": "```json\n{\n  \"category\": \"Pedestrian/Bicycle Concerns\",\n  \"entities\": [\"Mount Washington\"]\n}\n```",
+      "parsed": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "entities": [
+          "Mount Washington"
+        ],
+        "department": "DOMI - Permits"
+      },
+      "tool_result": {
+        "department": "DOMI - Permits"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 27,
+        "latency_seconds": 2.6
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Mount Washington"
+      ]
+    },
+    {
+      "id": "cmp_106",
+      "input": "theres an issue with city steps, need cleared at Fineview thanks",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Fineview\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Fineview"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 21,
+        "latency_seconds": 2.08
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DPW - Street Maintenance",
+      "ground_truth_entities": [
+        "Fineview"
+      ]
+    },
+    {
+      "id": "cmp_079",
+      "input": "Caller reports insufficient street lighting on Manchester.",
+      "raw_output": "```json\n{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Manchester\"]\n}\n```",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Manchester"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 103,
+        "output_tokens": 22,
+        "latency_seconds": 2.16
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Manchester"
+      ]
+    },
+    {
+      "id": "cmp_096",
+      "input": "guide rail on Overbrook is smashed from an accident and never got fixed",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Overbrook\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Overbrook"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 21,
+        "latency_seconds": 2.08
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DPW - Construction Division",
+      "ground_truth_entities": [
+        "Overbrook"
+      ]
+    },
+    {
+      "id": "cmp_020",
+      "input": "can we get a pedestrian crossing signal at Ellsworth Ave in Central Lawrenceville",
+      "raw_output": "```json\n{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Ellsworth Ave\", \"Central Lawrenceville\"]\n}\n```",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Ellsworth Ave",
+          "Central Lawrenceville"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 29,
+        "latency_seconds": 2.78
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Traffic",
+      "ground_truth_entities": [
+        "Ellsworth Ave",
+        "Central Lawrenceville"
+      ]
+    },
+    {
+      "id": "cmp_083",
+      "input": "Resident requests repaving of the roadway surface on Perrysville Ave in Highland Park.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Perrysville Ave\", \"Highland Park\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Perrysville Ave",
+          "Highland Park"
+        ],
+        "department": "DOMI - Asphalt"
+      },
+      "tool_result": {
+        "department": "DOMI - Asphalt"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 29,
+        "latency_seconds": 2.8
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Asphalt",
+      "ground_truth_entities": [
+        "Perrysville Ave",
+        "Highland Park"
+      ]
+    },
+    {
+      "id": "cmp_044",
+      "input": "Resident inquires about street sweeping schedule and debris on Fifth Ave in Beechview.",
+      "raw_output": "```json\n{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Fifth Ave\", \"Beechview\"]\n}\n```",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Fifth Ave",
+          "Beechview"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 31,
+        "latency_seconds": 2.95
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DPW - Street Maintenance",
+      "ground_truth_entities": [
+        "Fifth Ave",
+        "Beechview"
+      ]
+    },
+    {
+      "id": "cmp_100",
+      "input": "sign along Frankstown Ave in Sheraden is bent sideways smh",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Frankstown Ave\", \"Sheraden\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Frankstown Ave",
+          "Sheraden"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 108,
+        "output_tokens": 24,
+        "latency_seconds": 2.34
+      },
+      "ground_truth_category": "Traffic and Street Sign Issues",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Frankstown Ave",
+        "Sheraden"
+      ]
+    },
+    {
+      "id": "cmp_021",
+      "input": "can we get a pedestrian crossing signal at Fifth Ave in Mount Washington thanks",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Fifth Ave\", \"Mount Washington\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Fifth Ave",
+          "Mount Washington"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 24,
+        "latency_seconds": 2.34
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Traffic",
+      "ground_truth_entities": [
+        "Fifth Ave",
+        "Mount Washington"
+      ]
+    },
+    {
+      "id": "cmp_001",
+      "input": "theres an issue with lights on South Side Flats please send someone to take a look",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"South Side Flats\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "South Side Flats"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 20,
+        "latency_seconds": 2.02
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DPW - Park Maintenance",
+      "ground_truth_entities": [
+        "South Side Flats"
+      ]
+    },
+    {
+      "id": "cmp_111",
+      "input": "fyi theres an issue with loading zone, request along Beechwood Blvd in Allegheny Center smh",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"Beechwood Blvd\", \"Allegheny Center\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Beechwood Blvd",
+          "Allegheny Center"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 117,
+        "output_tokens": 26,
+        "latency_seconds": 2.53
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "311",
+      "ground_truth_entities": [
+        "Beechwood Blvd",
+        "Allegheny Center"
+      ]
+    },
+    {
+      "id": "cmp_101",
+      "input": "hello 311, whole block of Fifth Ave in Brighton Heights is dark, streetlight dead again thanks",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Fifth Ave\", \"Brighton Heights\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Fifth Ave",
+          "Brighton Heights"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 115,
+        "output_tokens": 25,
+        "latency_seconds": 2.46
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "Allegheny City Electric",
+      "ground_truth_entities": [
+        "Fifth Ave",
+        "Brighton Heights"
+      ]
+    },
+    {
+      "id": "cmp_058",
+      "input": "Reporting party states a faded or damaged sign at Brownsville Rd in Polish Hill.",
+      "raw_output": "```json\n{\n  \"category\": \"Traffic and Street Sign Issues\",\n  \"entities\": [\"Brownsville Rd\", \"Polish Hill\"]\n}\n```",
+      "parsed": {
+        "category": "Traffic and Street Sign Issues",
+        "entities": [
+          "Brownsville Rd",
+          "Polish Hill"
+        ],
+        "department": "Permits, Licenses and Inspections"
+      },
+      "tool_result": {
+        "department": "Permits, Licenses and Inspections"
+      },
+      "stats": {
+        "input_tokens": 111,
+        "output_tokens": 32,
+        "latency_seconds": 3.02
+      },
+      "ground_truth_category": "Traffic and Street Sign Issues",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Brownsville Rd",
+        "Polish Hill"
+      ]
+    },
+    {
+      "id": "cmp_109",
+      "input": "Reporting party states insufficient street lighting on Allegheny Center.",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Allegheny Center\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Allegheny Center"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 107,
+        "output_tokens": 21,
+        "latency_seconds": 2.08
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Allegheny Center"
+      ]
+    },
+    {
+      "id": "cmp_054",
+      "input": "Caller reports an issue related to catch basin, clogged on Brighton Heights.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Brighton Heights\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Brighton Heights"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 22,
+        "latency_seconds": 2.17
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "Pittsburgh Water and Sewer Authority",
+      "ground_truth_entities": [
+        "Brighton Heights"
+      ]
+    },
+    {
+      "id": "cmp_103",
+      "input": "Caller reports an issue related to parking authority on Bloomfield.",
+      "raw_output": "```json\n{\n  \"category\": \"Parking\",\n  \"entities\": [\"Bloomfield\"]\n}\n```",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Bloomfield"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 107,
+        "output_tokens": 22,
+        "latency_seconds": 2.17
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "Bloomfield"
+      ]
+    },
+    {
+      "id": "cmp_084",
+      "input": "Resident requests installation of a new streetlight on Squirrel Hill North.",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Squirrel Hill North\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Squirrel Hill North"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 21,
+        "latency_seconds": 2.08
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Squirrel Hill North"
+      ]
+    },
+    {
+      "id": "cmp_026",
+      "input": "fyi can the city add a streetlight at Carrick, big dark gap between poles smh",
+      "raw_output": "```json\n{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Carrick\"]\n}\n```",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Carrick"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 115,
+        "output_tokens": 23,
+        "latency_seconds": 2.28
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Carrick"
+      ]
+    },
+    {
+      "id": "cmp_072",
+      "input": "theres an issue with parking authority on Mount Washington",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"Mount Washington\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Mount Washington"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 105,
+        "output_tokens": 18,
+        "latency_seconds": 1.92
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "Parking Authority",
+      "ground_truth_entities": [
+        "Mount Washington"
+      ]
+    },
+    {
+      "id": "cmp_098",
+      "input": "Resident requests installation of a new streetlight on Carrick.",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Carrick\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Carrick"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 107,
+        "output_tokens": 19,
+        "latency_seconds": 1.93
+      },
+      "ground_truth_category": "Street Light",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Carrick"
+      ]
+    },
+    {
+      "id": "cmp_078",
+      "input": "Caller reports a slope failure above Spring Hill-City View with debris entering the roadway.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Spring Hill-City View\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Spring Hill-City View"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 24,
+        "latency_seconds": 2.36
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Construction",
+      "ground_truth_entities": [
+        "Spring Hill-City View"
+      ]
+    },
+    {
+      "id": "cmp_065",
+      "input": "theres an issue with loading zone, request on Craig St in Central Business District thanks",
+      "raw_output": "{\n  \"category\": \"Parking\",\n  \"entities\": [\"Craig St\", \"Central Business District\"]\n}",
+      "parsed": {
+        "category": "Parking",
+        "entities": [
+          "Craig St",
+          "Central Business District"
+        ],
+        "department": "Police - Zones 1-6"
+      },
+      "tool_result": {
+        "department": "Police - Zones 1-6"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 23,
+        "latency_seconds": 2.27
+      },
+      "ground_truth_category": "Parking",
+      "ground_truth_department": "311",
+      "ground_truth_entities": [
+        "Craig St",
+        "Central Business District"
+      ]
+    },
+    {
+      "id": "cmp_030",
+      "input": "the sign at Perrysville Ave in South Side Flats is all faded and bent, cant read it been like this too long",
+      "raw_output": "{\n  \"category\": \"Street Light\",\n  \"entities\": [\"Perrysville Ave\", \"South Side Flats\"]\n}",
+      "parsed": {
+        "category": "Street Light",
+        "entities": [
+          "Perrysville Ave",
+          "South Side Flats"
+        ],
+        "department": "Allegheny City Electric"
+      },
+      "tool_result": {
+        "department": "Allegheny City Electric"
+      },
+      "stats": {
+        "input_tokens": 120,
+        "output_tokens": 27,
+        "latency_seconds": 2.62
+      },
+      "ground_truth_category": "Traffic and Street Sign Issues",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Perrysville Ave",
+        "South Side Flats"
+      ]
+    },
+    {
+      "id": "cmp_028",
+      "input": "Reporting party states a faded or damaged sign at Brighton Heights.",
+      "raw_output": "```json\n{\n  \"category\": \"Traffic and Street Sign Issues\",\n  \"entities\": [\"Brighton Heights\"]\n}\n```",
+      "parsed": {
+        "category": "Traffic and Street Sign Issues",
+        "entities": [
+          "Brighton Heights"
+        ],
+        "department": "Permits, Licenses and Inspections"
+      },
+      "tool_result": {
+        "department": "Permits, Licenses and Inspections"
+      },
+      "stats": {
+        "input_tokens": 107,
+        "output_tokens": 27,
+        "latency_seconds": 2.59
+      },
+      "ground_truth_category": "Traffic and Street Sign Issues",
+      "ground_truth_department": "Permits, Licenses and Inspections",
+      "ground_truth_entities": [
+        "Brighton Heights"
+      ]
+    },
+    {
+      "id": "cmp_102",
+      "input": "hi, sidewalk on Central Oakland is blocked, had to walk in the street",
+      "raw_output": "{\n  \"category\": \"Pedestrian/Bicycle Concerns\",\n  \"entities\": [\"Central Oakland\"]\n}",
+      "parsed": {
+        "category": "Pedestrian/Bicycle Concerns",
+        "entities": [
+          "Central Oakland"
+        ],
+        "department": "DOMI - Permits"
+      },
+      "tool_result": {
+        "department": "DOMI - Permits"
+      },
+      "stats": {
+        "input_tokens": 110,
+        "output_tokens": 23,
+        "latency_seconds": 2.26
+      },
+      "ground_truth_category": "Pedestrian/Bicycle Concerns",
+      "ground_truth_department": "DOMI - Permits",
+      "ground_truth_entities": [
+        "Central Oakland"
+      ]
+    },
+    {
+      "id": "cmp_113",
+      "input": "Resident reports a clogged storm drain on Beechview with localized flooding.",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Beechview\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Beechview"
+        ],
+        "department": "Pittsburgh Water and Sewer Authority"
+      },
+      "tool_result": {
+        "department": "Pittsburgh Water and Sewer Authority"
+      },
+      "stats": {
+        "input_tokens": 109,
+        "output_tokens": 22,
+        "latency_seconds": 2.17
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DPW - Street Maintenance",
+      "ground_truth_entities": [
+        "Beechview"
+      ]
+    },
+    {
+      "id": "cmp_005",
+      "input": "please help, theres an issue with line striping at Brookline",
+      "raw_output": "{\n  \"category\": \"Road/Street Issues\",\n  \"entities\": [\"Brookline\"]\n}",
+      "parsed": {
+        "category": "Road/Street Issues",
+        "entities": [
+          "Brookline"
+        ],
+        "department": "DPW - Street Maintenance"
+      },
+      "tool_result": {
+        "department": "DPW - Street Maintenance"
+      },
+      "stats": {
+        "input_tokens": 108,
+        "output_tokens": 21,
+        "latency_seconds": 2.09
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - TrafficShop",
+      "ground_truth_entities": [
+        "Brookline"
+      ]
+    },
+    {
+      "id": "cmp_055",
+      "input": "hello 311, we really need a speed limit sign at Bluff, cars fly through",
+      "raw_output": "{\n  \"category\": \"Traffic and Street Sign Issues\",\n  \"entities\": [\"Bluff\"]\n}",
+      "parsed": {
+        "category": "Traffic and Street Sign Issues",
+        "entities": [
+          "Bluff"
+        ],
+        "department": "Permits, Licenses and Inspections"
+      },
+      "tool_result": {
+        "department": "Permits, Licenses and Inspections"
+      },
+      "stats": {
+        "input_tokens": 112,
+        "output_tokens": 22,
+        "latency_seconds": 2.2
+      },
+      "ground_truth_category": "Road/Street Issues",
+      "ground_truth_department": "DOMI - Traffic",
+      "ground_truth_entities": [
+        "Bluff"
+      ]
+    }
+  ]
+}

@@ -1,36 +1,87 @@
 #!/usr/bin/env python3
-"""Export T4 eval sessions as LLMBox-style chat log JSON for appendix."""
+"""Export chat logs in the LLMBox session format (see api/llmbox/src/modes.py run_chat).
+
+- chatlogs/dev_train/*.json: one session per DEV training conversation, readable by
+  LLMBox mode=finetune with data.type=chat_log.
+- chatlogs/finetuned_eval_sessions.jsonl: one session per EVAL item answered by the
+  LoRA-finetuned model (T4), with the gold label kept beside the turn for scoring.
+"""
+from __future__ import annotations
+
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from uuid import uuid4
 
-RUN = Path(__file__).resolve().parent / "runs" / "T4_finetuned"
-OUT = Path(__file__).resolve().parent / "chatlogs"
+HERE = Path(__file__).resolve().parent
+RUN = HERE / "runs" / "T4_finetuned"
+TRAIN = HERE / "finetune" / "train_conversations.jsonl"
+OUT = HERE / "chatlogs"
+MODEL = "phi-4-mini-instruct"
+
+
+def session(session_id: str, system_prompt: str, user: str, assistant: str, adapter: str | None) -> dict:
+    now = datetime.now(timezone.utc).isoformat()
+    return {
+        "session": {
+            "session_id": session_id,
+            "started_at": now,
+            "model": {"name": MODEL, "adapter": adapter},
+            "settings": {"system_prompt": system_prompt},
+        },
+        "turns": [{
+            "turn": 1,
+            "user": {"username": "resident", "content": user, "timestamp": now},
+            "assistant": {"content": assistant, "timestamp": now},
+        }],
+    }
+
+
+def export_train() -> int:
+    if not TRAIN.exists():
+        return 0
+    out_dir = OUT / "dev_train"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for line in TRAIN.read_text().splitlines():
+        if not line.strip():
+            continue
+        r = json.loads(line)
+        sys_msg, user, asst = (m["content"] for m in r["messages"])
+        rec = session(r["doc_id"], sys_msg, user, asst, adapter=None)
+        (out_dir / f"{r['doc_id']}.json").write_text(json.dumps(rec, indent=2, ensure_ascii=False) + "\n")
+        n += 1
+    return n
+
+
+def export_eval() -> int:
+    resp = RUN / "responses.jsonl"
+    if not resp.exists():
+        return 0
+    from run_team import SYSTEM, build_prompt
+
+    rows = [json.loads(l) for l in resp.read_text().splitlines() if l.strip()]
+    OUT.mkdir(parents=True, exist_ok=True)
+    with (OUT / "finetuned_eval_sessions.jsonl").open("w") as f:
+        for r in rows:
+            rec = session(
+                r["doc_id"], SYSTEM, build_prompt(r, "T0_generate", []),
+                r.get("raw") or json.dumps(r.get("pred", {}), ensure_ascii=False),
+                adapter="experiments/05_team/finetune/adapter",
+            )
+            rec["doc_id"] = r["doc_id"]
+            rec["subtopic_key"] = r["subtopic_key"]
+            rec["gold"] = r["gold"]
+            rec["pred"] = r.get("pred")
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    return len(rows)
 
 
 def main() -> None:
-    resp = RUN / "responses.jsonl"
-    if not resp.exists():
-        print("Missing", resp)
-        return
-    OUT.mkdir(parents=True, exist_ok=True)
-    rows = [json.loads(l) for l in resp.read_text().splitlines() if l.strip()]
-    export = []
-    for r in rows:
-        session_id = uuid4().hex[:8]
-        export.append({
-            "session_id": session_id,
-            "doc_id": r["doc_id"],
-            "turns": [
-                {"role": "user", "content": r["input"]},
-                {"role": "assistant", "content": json.dumps(r.get("pred", {}), ensure_ascii=False)},
-            ],
-            "evaluated_at": datetime.now(timezone.utc).isoformat(),
-        })
-    out_path = OUT / "finetuned_eval_sessions.jsonl"
-    out_path.write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in export))
-    print("wrote", out_path, len(export))
+    import sys
+
+    sys.path.insert(0, str(HERE))
+    print("dev_train sessions:", export_train())
+    print("eval sessions:", export_eval())
 
 
 if __name__ == "__main__":

@@ -42,10 +42,9 @@ def dev_eval_datasets() -> None:
         shutil.copy2(rutomo_eval, eval_dir / "02_waste_neighborhood_rutomo_eval.jsonl")
     afaq_data = EXP / "01_streets_mobility_afaq" / "data" / "pgh311_complaints.json"
     if afaq_data.exists():
-        data = json.loads(afaq_data.read_text())
-        complaints = data.get("complaints") or []
-        dev = data.get("dev") or complaints[:50]
-        ev = data.get("eval") or complaints[50:100]
+        complaints = json.loads(afaq_data.read_text()).get("complaints") or []
+        dev = [c for c in complaints if c.get("split") == "dev"]
+        ev = [c for c in complaints if c.get("split") == "eval"]
         (dev_dir / "01_streets_mobility_afaq_dev.jsonl").write_text(
             "".join(json.dumps(x, ensure_ascii=False) + "\n" for x in dev)
         )
@@ -69,20 +68,26 @@ def metrics_exports() -> None:
             m = run_dir / "metrics.json"
             if m.exists():
                 shutil.copy2(m, out / f"05_team_{run_dir.name}.json")
-    rutomo_runs = EXP / "02_waste_neighborhood_rutomo" / "runs"
-    if rutomo_runs.exists():
-        for run_dir in sorted(rutomo_runs.iterdir())[:8]:
-            m = run_dir / "metrics.json"
-            if m.exists():
-                shutil.copy2(m, out / f"02_rutomo_{run_dir.name}.json")
+    train = EXP / "05_team" / "finetune" / "train_metrics.json"
+    if train.exists():
+        shutil.copy2(train, out / "05_team_T4_lora_training.json")
+    rutomo = EXP / "02_waste_neighborhood_rutomo"
+    for m in sorted((rutomo / "runs").glob("*/metrics.json")):
+        shutil.copy2(m, out / f"02_waste_neighborhood_rutomo_{m.parent.name}.json")
+    if (rutomo / "results" / "partd_metrics.json").exists():
+        shutil.copy2(rutomo / "results" / "partd_metrics.json", out / "02_waste_neighborhood_rutomo_partD.json")
     mahika_out = EXP / "03_buildings_construction_mahika" / "out"
-    if mahika_out.exists():
-        for p in mahika_out.glob("*metrics*.json"):
-            shutil.copy2(p, out / f"03_mahika_{p.name}")
-    if not (out / "01_afaq_PENDING.md").exists() and not any(out.glob("01_*")):
-        (out / "01_afaq_PENDING.md").write_text("Awaiting Afaq experiment metrics JSON from teammate.\n")
-    if not any(out.glob("04_*")):
-        (out / "04_mingchin_PENDING.md").write_text("Awaiting Mingchin evaluation metrics from teammate.\n")
+    for pattern in ("*metrics*.json", "*summary*.json", "partD_report.json", "partE_costbenefit.json"):
+        for p in sorted(mahika_out.glob(pattern)):
+            shutil.copy2(p, out / f"03_buildings_construction_mahika_{p.name}")
+    if not any(out.glob("01_*.json")):
+        (out / "01_streets_mobility_afaq_PENDING.md").write_text(
+            "Afaq's package has code and data but no metrics JSON; request his results/ folder.\n"
+        )
+    if not any(out.glob("04_*.json")):
+        (out / "04_parks_public_spaces_mingchin_PENDING.md").write_text(
+            "Mingchin's package has code but no metrics JSON; request his evaluation outputs.\n"
+        )
 
 
 def chatlogs_export() -> None:
@@ -108,7 +113,7 @@ def api_zip() -> None:
             for path in base.rglob("*"):
                 if path.is_dir():
                     continue
-                if any(p in path.parts for p in (".venv", "__pycache__", "adapter", "runs")):
+                if any(p in path.parts for p in (".venv", "__pycache__", "finetune", "runs", "chatlogs", "outputs", "models")):
                     continue
                 if path.suffix in {".pyc"}:
                     continue
@@ -116,6 +121,8 @@ def api_zip() -> None:
 
 
 def main() -> None:
+    for stale in APP.glob("*/*PENDING.md"):
+        stale.unlink()
     copy_corpus_original()
     dev_eval_datasets()
     metrics_exports()

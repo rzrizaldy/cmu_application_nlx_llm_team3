@@ -102,7 +102,8 @@ def build_prompt(item: dict, mode: str, kb: list[dict]) -> str | None:
     parts = [
         f"domain: {item['subtopic_key']}",
         "category must be exactly one of: " + "; ".join(allowed),
-        "department: copy the city department name exactly as written in the text when it is stated.",
+        "department: the City of Pittsburgh department that should handle this request. "
+        "If the text names one, copy it exactly; otherwise give your best guess from the evidence below. Do not leave it null.",
     ]
     if mode in {"T1_structured_rag", "T2_tools", "T3_guarded"}:
         docs = retrieve(item["input"], kb, subtopic_key=item["subtopic_key"], k=3)
@@ -112,6 +113,36 @@ def build_prompt(item: dict, mode: str, kb: list[dict]) -> str | None:
         parts.append("Codebook lookup:\n" + lookup_codebook_json(item["input"], allowed))
     parts.append("Complaint:\n" + item["input"][:2000])
     return "\n\n".join(parts)
+
+
+STRUCTURED_MODES = {"T1_structured_rag", "T2_tools", "T3_guarded"}
+
+
+def snap_category(pred: dict, allowed: list[str]) -> dict:
+    """Schema enforcement for structured modes: map a near-miss category onto the allowed list."""
+    import difflib
+
+    cat = pred.get("category")
+    if not isinstance(cat, str) or cat in allowed:
+        return pred
+    lowered = {a.lower(): a for a in allowed}
+    key = re.sub(r"[_\s]+", " ", cat).strip().lower()
+    match = lowered.get(key) or next(iter(difflib.get_close_matches(key, list(lowered), n=1, cutoff=0.6)), None)
+    if match:
+        pred = {**pred, "category": lowered[match] if match in lowered else match, "category_raw": cat}
+    return pred
+
+
+def load_split(split: str, limit: int) -> list[dict]:
+    rows = [json.loads(l) for l in (DATA / f"{split}.jsonl").read_text().splitlines() if l.strip()]
+    if split == "dev":
+        rng = random.Random(952)
+        by_sub: dict[str, list[dict]] = {}
+        for r in rows:
+            by_sub.setdefault(r["subtopic_key"], []).append(r)
+        per = max(1, limit // len(by_sub))
+        rows = [r for sk in sorted(by_sub) for r in rng.sample(by_sub[sk], min(per, len(by_sub[sk])))]
+    return rows[:limit]
 
 
 def score_run(rows: list[dict]) -> dict:
@@ -197,6 +228,7 @@ def main() -> int:
     ap.add_argument("--run", required=True, choices=["T0_generate", "T1_structured_rag", "T2_tools", "T3_guarded", "T4_finetuned"])
     ap.add_argument("--adapter", type=Path, default=None)
     ap.add_argument("--limit", type=int, default=50)
+    ap.add_argument("--split", choices=["eval", "dev"], default="eval")
     args = ap.parse_args()
 
     mode = args.run if args.run != "T4_finetuned" else "T0_generate"
@@ -204,8 +236,8 @@ def main() -> int:
     kb = load_knowledge()
     runner = PhiRunner(model_path, args.adapter)
 
-    eval_rows = [json.loads(l) for l in (DATA / "eval.jsonl").read_text().splitlines() if l.strip()][: args.limit]
-    out_dir = RUNS / args.run
+    eval_rows = load_split(args.split, args.limit)
+    out_dir = (RUNS if args.split == "eval" else RUNS.parent / "runs_dev") / args.run
     out_dir.mkdir(parents=True, exist_ok=True)
     results = []
     for item in eval_rows:
@@ -219,6 +251,8 @@ def main() -> int:
             if args.run == "T3_guarded":
                 text = redact_output(text)
             pred = parse_json(text) or {}
+            if mode in STRUCTURED_MODES:
+                pred = snap_category(pred, CATEGORY_GROUPS[item["subtopic_key"]])
             if pred.get("category") and not pred.get("historical_resolution_range"):
                 pred["historical_resolution_range"] = resolution_range_for_category(
                     pred.get("category", ""), kb
@@ -231,8 +265,10 @@ def main() -> int:
 
     metrics = score_run(results)
     metrics["run"] = args.run
+    metrics["split"] = args.split
     metrics["model_path"] = str(model_path)
-    if args.run == "T3_guarded":
+    metrics["adapter"] = str(args.adapter) if args.adapter else None
+    if args.run == "T3_guarded" and args.split == "eval":
         metrics["guardrail_probes"] = score_probes(out_dir)
     (out_dir / "responses.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in results))
     (out_dir / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")

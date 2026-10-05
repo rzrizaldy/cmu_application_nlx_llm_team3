@@ -55,6 +55,22 @@ On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints 
 
 All four Assignment 2 packages are in.
 
+| Final project piece | State |
+|---|---|
+| Merged knowledge base, operational evidence, knowledge cards | Done (854 corpus records, 127 issues with resolution times) |
+| Team API (`api/team311`, `route_complaint`) | Done |
+| DEV/EVAL split with codebook gold labels and leakage check | Done (534 / 50, no overlap) |
+| T0–T3 on 50 EVAL inputs | Done; T2 and T3 route 82% correctly |
+| T4 LoRA finetune | Run, but under-trained: right issue 56% of the time, right department never, no clarification questions |
+| Canvas appendix (datasets, metrics, chatlogs, API ZIP) | Done; rebuild after any rerun |
+| Final memo | Not started |
+
+What we still need to do:
+
+1. Retrain T4 on more DEV rows (about 300, 2 epochs). Its training answers should include the knowledge card's clarification question. Then rerun T4 and rebuild the appendix (about 40 minutes).
+2. Write the final memo. It should report T0–T4 with their confidence intervals, the guardrail probe results, and the historical resolution baselines, within the evaluation boundary below.
+3. Look at where T2 fails. On waste items it routes 12 of 12 correctly, but those inputs are codebook rows ("Resident reports: <issue>."), and the row names the issue. On Afaq's free-text resident complaints it routes 8 of 13 correctly (62%), and streets issue accuracy is only 31%. Real complaints are the case that matters, so the memo should report this split. In 28% of items T2 also fell back to the retrieval vote's issue.
+
 ## Commands
 
 ```bash

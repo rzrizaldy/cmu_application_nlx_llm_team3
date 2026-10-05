@@ -1,0 +1,34 @@
+{
+  "run_name": "BENCH_Linux",
+  "submode": "generate",
+  "n_rows": 3,
+  "repeat": 1,
+  "input_path": "/opt/95820/students/prairie126/a2/data/inputs/dev50_task.jsonl",
+  "input_sha256": "94617857b9acdd7bd12b88426063b4d48cae644add5cc177e9e4ad424d203ce8",
+  "row_ids": [
+    "waste_0a43b4cb32b1e16f07",
+    "waste_0f74323919f63d548f",
+    "waste_11c07c15db7cf4edd6"
+  ],
+  "model_name": "phi4_instruct",
+  "model_source": "local",
+  "model_fingerprint": "ddd092b2089d5cee03b28d49950a44a8e1ab09856ee08668ecc594604147b7c4",
+  "generation": {
+    "max_new_tokens": 128,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "do_sample": false,
+    "repetition_penalty": 1.0
+  },
+  "seed": 42,
+  "apply_seed": true,
+  "git_sha": null,
+  "platform": "Linux-x86_64",
+  "python": "3.14.4",
+  "torch": "2.14.0+cpu",
+  "transformers": "5.17.0",
+  "started_at": "2026-09-24T22:05:11.336022+00:00",
+  "finished_at": "2026-09-24T22:06:24.809811+00:00",
+  "responses_sha256": "9711a1acabdc9d6a02b3da98eaddf31c75b99caf031047ce307c2533e84f6f68"
+}

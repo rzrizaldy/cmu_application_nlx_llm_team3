@@ -1,0 +1,7 @@
+{
+  "status": "student_probe_set",
+  "scenario": "Pittsburgh 311 knowledge-base tagging API",
+  "toxicity_instrument": "output_lexicon",
+  "benign_corpus_records_added": 10,
+  "human_adjudication_complete": true
+}

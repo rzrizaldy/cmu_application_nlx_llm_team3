@@ -1,0 +1,1473 @@
+{
+  "metadata": {
+    "description": "Pittsburgh 311 Streets & Mobility complaints from AS01 corpus, split for AS02 experiments",
+    "source": "Assignment_1_afaqk/corpus.jsonl (authored complaints only)",
+    "splits": {
+      "dev": "inputs 0-49 for Part B baseline experiments",
+      "eval": "inputs 50-99 for Part C custom experiments",
+      "spare": "remaining 15 held back"
+    },
+    "categories": [
+      "Road/Street Issues",
+      "Traffic and Street Sign Issues",
+      "Street Light",
+      "Pedestrian/Bicycle Concerns",
+      "Parking"
+    ],
+    "departments": [
+      "311",
+      "Allegheny City Electric",
+      "City Planning - Bicycles/Pedestrian traffic",
+      "DOMI - Asphalt",
+      "DOMI - Construction",
+      "DOMI - Permits",
+      "DOMI - Streets",
+      "DOMI - Traffic",
+      "DOMI - TrafficShop",
+      "DPW - Construction Division",
+      "DPW - Park Maintenance",
+      "DPW - Street Maintenance",
+      "Parking Authority",
+      "Permits, Licenses and Inspections",
+      "Pittsburgh Water and Sewer Authority",
+      "Police - AVU",
+      "Police - Zones 1-6"
+    ]
+  },
+  "complaints": [
+    {
+      "id": "cmp_068",
+      "text": "Resident requests installation of a new streetlight on Ellsworth Ave in Carrick.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Ellsworth Ave",
+        "Carrick"
+      ],
+      "style": "operator_note",
+      "derived_from": 183902,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_110",
+      "text": "reporting that parking meter along Greenfield Ave in Allentown is broken, took my money and still says expired please fix",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Greenfield Ave",
+        "Allentown"
+      ],
+      "style": "web_form",
+      "derived_from": 164218,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_115",
+      "text": "theres an issue with ada ramp, installation at Brookline",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Brookline"
+      ],
+      "style": "web_form",
+      "derived_from": 448032,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_050",
+      "text": "theres an issue with salt box along Brereton St in Homewood North",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Brereton St",
+        "Homewood North"
+      ],
+      "style": "web_form",
+      "derived_from": 202743,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_066",
+      "text": "the sign at Murray Ave in South Side Flats is all faded and bent, cant read it",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Murray Ave",
+        "South Side Flats"
+      ],
+      "style": "web_form",
+      "derived_from": 46318,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_017",
+      "text": "hello 311, can the city add a streetlight at Lincoln-Lemington-Belmar, big dark gap between poles smh",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Lincoln-Lemington-Belmar"
+      ],
+      "style": "web_form",
+      "derived_from": 202492,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_064",
+      "text": "Constituent reports an issue related to ada ramp, installation on Brookline.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Brookline"
+      ],
+      "style": "operator_note",
+      "derived_from": 440087,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_075",
+      "text": "please help, stop sign at Perry South got knocked down and is laying in the grass smh",
+      "category": "Road/Street Issues",
+      "department": "DOMI - TrafficShop",
+      "entities": [
+        "Perry South"
+      ],
+      "style": "web_form",
+      "derived_from": 52430,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_077",
+      "text": "can the city add a streetlight on Lincoln-Lemington-Belmar, big dark gap between poles",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Lincoln-Lemington-Belmar"
+      ],
+      "style": "web_form",
+      "derived_from": 200660,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_062",
+      "text": "theres an issue with sidewalk obstruction on Mount Washington",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 183268,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_031",
+      "text": "fyi cant even read the sign at Fifth Ave in Mount Washington, totally faded",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Fifth Ave",
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 37302,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_073",
+      "text": "Constituent reports an issue related to lights on Allentown.",
+      "category": "Street Light",
+      "department": "DPW - Park Maintenance",
+      "entities": [
+        "Allentown"
+      ],
+      "style": "operator_note",
+      "derived_from": 185400,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_010",
+      "text": "please help, can the city add a streetlight along Homewood North, big dark gap between poles please fix",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Homewood North"
+      ],
+      "style": "web_form",
+      "derived_from": 183174,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_092",
+      "text": "hello 311, theres an issue with sidewalk along Greenfield please fix",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "311",
+      "entities": [
+        "Greenfield"
+      ],
+      "style": "web_form",
+      "derived_from": 210758,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_047",
+      "text": "hi, theres an issue with loading zone, request near Greenfield Ave in Bluff",
+      "category": "Parking",
+      "department": "311",
+      "entities": [
+        "Greenfield Ave",
+        "Bluff"
+      ],
+      "style": "web_form",
+      "derived_from": 12720,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_089",
+      "text": "Constituent reports a junk vehicle on Lincoln Place, apparently inoperable.",
+      "category": "Parking",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Lincoln Place"
+      ],
+      "style": "operator_note",
+      "derived_from": 203598,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_086",
+      "text": "hi, whole block of Lincoln-Lemington-Belmar is dark, streetlight dead again thanks",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Lincoln-Lemington-Belmar"
+      ],
+      "style": "web_form",
+      "derived_from": 203397,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_090",
+      "text": "can we get a parking meter installed near Bloomfield smh",
+      "category": "Parking",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Bloomfield"
+      ],
+      "style": "web_form",
+      "derived_from": 54215,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_027",
+      "text": "the curb ramp at Fairywood is broken, cant get a wheelchair up please fix",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Fairywood"
+      ],
+      "style": "web_form",
+      "derived_from": 211497,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_038",
+      "text": "Caller reports an issue related to manhole cover on Walnut St in Central Business District.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Walnut St",
+        "Central Business District"
+      ],
+      "style": "operator_note",
+      "derived_from": 189977,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_002",
+      "text": "fyi parking meter along Brookline is broken, took my money and still says expired please fix",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Brookline"
+      ],
+      "style": "web_form",
+      "derived_from": 197821,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_033",
+      "text": "Reporting party states an issue related to street light repair on East Liberty.",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "East Liberty"
+      ],
+      "style": "operator_note",
+      "derived_from": 323144,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_022",
+      "text": "theres an issue with city steps, need cleared at Liberty Ave in Terrace Village smh",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Liberty Ave",
+        "Terrace Village"
+      ],
+      "style": "web_form",
+      "derived_from": 202980,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_008",
+      "text": "Resident reports an issue related to lights on Forbes Ave in Allentown.",
+      "category": "Street Light",
+      "department": "DPW - Park Maintenance",
+      "entities": [
+        "Forbes Ave",
+        "Allentown"
+      ],
+      "style": "operator_note",
+      "derived_from": 187790,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_035",
+      "text": "please help, theres an issue with new crosswalk request at Morningside please fix",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Morningside"
+      ],
+      "style": "web_form",
+      "derived_from": 157405,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_060",
+      "text": "can the city add a streetlight near Negley Ave in Brighton Heights, big dark gap between poles please fix",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Negley Ave",
+        "Brighton Heights"
+      ],
+      "style": "web_form",
+      "derived_from": 111483,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_081",
+      "text": "reporting that theres an issue with sidewalk/curb/hc ramp maintenance at Troy Hill",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Troy Hill"
+      ],
+      "style": "web_form",
+      "derived_from": 112877,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_009",
+      "text": "Resident reports a damaged sidewalk on Greenfield; trip hazard noted.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Greenfield"
+      ],
+      "style": "operator_note",
+      "derived_from": 132201,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_053",
+      "text": "Constituent reports an issue related to bicycle parking on Greenfield Ave in Central Oakland.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "City Planning - Bicycles/Pedestrian traffic",
+      "entities": [
+        "Greenfield Ave",
+        "Central Oakland"
+      ],
+      "style": "operator_note",
+      "derived_from": 166379,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_069",
+      "text": "Constituent reports a malfunctioning pedestrian signal at Frankstown Ave in Shadyside.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - TrafficShop",
+      "entities": [
+        "Frankstown Ave",
+        "Shadyside"
+      ],
+      "style": "operator_note",
+      "derived_from": 26826,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_052",
+      "text": "Shady Ave in Spring Garden is a skating rink, nobody salted it been like this too long",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Shady Ave",
+        "Spring Garden"
+      ],
+      "style": "web_form",
+      "derived_from": 47064,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_094",
+      "text": "Caller reports a streetlight outage on Polish Hill; requests repair.",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Polish Hill"
+      ],
+      "style": "operator_note",
+      "derived_from": 36977,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_039",
+      "text": "Resident reports an issue related to street light repair on Liberty Ave in Knoxville.",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Liberty Ave",
+        "Knoxville"
+      ],
+      "style": "operator_note",
+      "derived_from": 165491,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_051",
+      "text": "light out at Beechwood Blvd in West Oakland, my kids walk here in the dark been like this too long",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Beechwood Blvd",
+        "West Oakland"
+      ],
+      "style": "web_form",
+      "derived_from": 203324,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_042",
+      "text": "hi, theres an issue with lights along East Carson St in Perry North been like this too long",
+      "category": "Street Light",
+      "department": "DPW - Park Maintenance",
+      "entities": [
+        "East Carson St",
+        "Perry North"
+      ],
+      "style": "web_form",
+      "derived_from": 193596,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_074",
+      "text": "Caller reports an apparently abandoned vehicle on Braddock Ave in East Hills, expired registration.",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Braddock Ave",
+        "East Hills"
+      ],
+      "style": "operator_note",
+      "derived_from": 75858,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_023",
+      "text": "Constituent reports an abandoned vehicle on Frankstown Ave in Hazelwood that has not moved.",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Frankstown Ave",
+        "Hazelwood"
+      ],
+      "style": "operator_note",
+      "derived_from": 198333,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_085",
+      "text": "hello 311, the curb ramp at Central Business District is broken, cant get a wheelchair up",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Central Business District"
+      ],
+      "style": "web_form",
+      "derived_from": 82487,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_011",
+      "text": "hello 311, can we get a pedestrian crossing signal at Baum Blvd in Squirrel Hill South",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Baum Blvd",
+        "Squirrel Hill South"
+      ],
+      "style": "web_form",
+      "derived_from": 138209,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_080",
+      "text": "cant even read the sign at Lower Lawrenceville, totally faded",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Lower Lawrenceville"
+      ],
+      "style": "web_form",
+      "derived_from": 180620,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_104",
+      "text": "Resident requests installation of a new speed limit sign on Frankstown Ave in Fineview.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Frankstown Ave",
+        "Fineview"
+      ],
+      "style": "operator_note",
+      "derived_from": 167639,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_108",
+      "text": "Reporting party states an issue related to street light repair on Marshall-Shadeland.",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Marshall-Shadeland"
+      ],
+      "style": "operator_note",
+      "derived_from": 166541,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_025",
+      "text": "hello 311, the bike lane bollards at Brereton St in Allegheny Center got flattened, lane is unprotected now been like this too long",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DPW - Construction Division",
+      "entities": [
+        "Brereton St",
+        "Allegheny Center"
+      ],
+      "style": "web_form",
+      "derived_from": 198074,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_007",
+      "text": "hello 311, theres an issue with parking authority near Walnut St in Central Northside",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Walnut St",
+        "Central Northside"
+      ],
+      "style": "web_form",
+      "derived_from": 190178,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_048",
+      "text": "Constituent reports an abandoned vehicle on Stanton Heights that has not moved.",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Stanton Heights"
+      ],
+      "style": "operator_note",
+      "derived_from": 195983,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_063",
+      "text": "Resident reports a vehicle illegally parked and blocking a driveway on Penn Ave in Mount Washington.",
+      "category": "Parking",
+      "department": "Police - Zones 1-6",
+      "entities": [
+        "Penn Ave",
+        "Mount Washington"
+      ],
+      "style": "operator_note",
+      "derived_from": 203029,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_061",
+      "text": "please help, light out near Brighton Heights, my kids walk here in the dark thanks",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Brighton Heights"
+      ],
+      "style": "web_form",
+      "derived_from": 74759,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_114",
+      "text": "Resident reports a pothole on East Hills causing vehicle damage; requests repair.",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "East Hills"
+      ],
+      "style": "operator_note",
+      "derived_from": 167789,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_043",
+      "text": "Caller reports a damaged ADA curb ramp at Penn Ave in Beechview.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Penn Ave",
+        "Beechview"
+      ],
+      "style": "operator_note",
+      "derived_from": 220232,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_003",
+      "text": "Caller reports a clogged storm drain on Craig St in Brighton Heights with localized flooding.",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Craig St",
+        "Brighton Heights"
+      ],
+      "style": "operator_note",
+      "derived_from": 197353,
+      "split": "dev"
+    },
+    {
+      "id": "cmp_099",
+      "text": "Caller reports a damaged sidewalk on Brownsville Rd in Greenfield; trip hazard noted.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Brownsville Rd",
+        "Greenfield"
+      ],
+      "style": "operator_note",
+      "derived_from": 63632,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_088",
+      "text": "Resident reports an issue related to sidewalk/curb/hc ramp maintenance on Beechwood Blvd in Mount Washington.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Beechwood Blvd",
+        "Mount Washington"
+      ],
+      "style": "operator_note",
+      "derived_from": 200007,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_071",
+      "text": "please help, theres an issue with sidewalk along Shady Ave in Greenfield",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "311",
+      "entities": [
+        "Shady Ave",
+        "Greenfield"
+      ],
+      "style": "web_form",
+      "derived_from": 211951,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_037",
+      "text": "please help, parking meter on Braddock Ave in Central Lawrenceville is broken, took my money and still says expired please fix",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Braddock Ave",
+        "Central Lawrenceville"
+      ],
+      "style": "web_form",
+      "derived_from": 147537,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_024",
+      "text": "Resident requests a new traffic signal at the intersection at Wharton St in Shadyside.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Wharton St",
+        "Shadyside"
+      ],
+      "style": "operator_note",
+      "derived_from": 201436,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_056",
+      "text": "hello 311, the new paving job near Forbes Ave in Summer Hill is already cracking, they did it wrong please fix",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Asphalt",
+      "entities": [
+        "Forbes Ave",
+        "Summer Hill"
+      ],
+      "style": "web_form",
+      "derived_from": 105866,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_057",
+      "text": "hi, theres an issue with city steps, need cleared at West Oakland thanks",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "West Oakland"
+      ],
+      "style": "web_form",
+      "derived_from": 161337,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_040",
+      "text": "please help, vehicle with no plates rotting on Spring Hill-City View, hasnt moved",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Spring Hill-City View"
+      ],
+      "style": "web_form",
+      "derived_from": 133416,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_041",
+      "text": "please help, theres an abandoned junk car on South Side Slopes that hasnt moved in ages",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "South Side Slopes"
+      ],
+      "style": "web_form",
+      "derived_from": 174564,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_105",
+      "text": "please help, theres an issue with ppa parking lot at Murray Ave in Squirrel Hill North",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Murray Ave",
+        "Squirrel Hill North"
+      ],
+      "style": "web_form",
+      "derived_from": 141686,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_019",
+      "text": "Resident reports a malfunctioning parking meter on Wharton St in Carrick.",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Wharton St",
+        "Carrick"
+      ],
+      "style": "operator_note",
+      "derived_from": 139561,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_093",
+      "text": "Caller reports an issue related to lights on Highland Park.",
+      "category": "Street Light",
+      "department": "DPW - Park Maintenance",
+      "entities": [
+        "Highland Park"
+      ],
+      "style": "operator_note",
+      "derived_from": 132310,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_067",
+      "text": "cant even read the sign near Mount Washington, totally faded",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 37296,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_091",
+      "text": "theres an issue with sidewalk along Brereton St in Central Northside",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "311",
+      "entities": [
+        "Brereton St",
+        "Central Northside"
+      ],
+      "style": "web_form",
+      "derived_from": 209030,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_016",
+      "text": "need a no parking variance for a move along South Side Flats, how do i do that",
+      "category": "Parking",
+      "department": "DOMI - Permits",
+      "entities": [
+        "South Side Flats"
+      ],
+      "style": "web_form",
+      "derived_from": 201387,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_059",
+      "text": "Constituent reports an issue related to curb cuts on Fifth Ave in South Oakland.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Fifth Ave",
+        "South Oakland"
+      ],
+      "style": "operator_note",
+      "derived_from": 173766,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_006",
+      "text": "reporting that guide rail along East Hills is smashed from an accident and never got fixed",
+      "category": "Road/Street Issues",
+      "department": "DPW - Construction Division",
+      "entities": [
+        "East Hills"
+      ],
+      "style": "web_form",
+      "derived_from": 196521,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_034",
+      "text": "Caller reports a damaged ADA curb ramp at Allegheny West.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Allegheny West"
+      ],
+      "style": "operator_note",
+      "derived_from": 220475,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_045",
+      "text": "reporting that parking meter on North Shore is broken, took my money and still says expired",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "North Shore"
+      ],
+      "style": "web_form",
+      "derived_from": 138790,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_046",
+      "text": "a boat trailer has been parked near Carrick taking up spots for weeks been like this too long",
+      "category": "Parking",
+      "department": "Police - Zones 1-6",
+      "entities": [
+        "Carrick"
+      ],
+      "style": "web_form",
+      "derived_from": 196676,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_013",
+      "text": "Constituent reports an obstructed sidewalk on East Allegheny.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "East Allegheny"
+      ],
+      "style": "operator_note",
+      "derived_from": 200377,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_049",
+      "text": "Resident reports an issue related to city steps, need repaired on South Side Slopes.",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "South Side Slopes"
+      ],
+      "style": "operator_note",
+      "derived_from": 34367,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_097",
+      "text": "sidewalk near Mount Washington is blocked, had to walk in the street",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 182214,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_106",
+      "text": "theres an issue with city steps, need cleared at Fineview thanks",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Fineview"
+      ],
+      "style": "web_form",
+      "derived_from": 188202,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_079",
+      "text": "Caller reports insufficient street lighting on Manchester.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Manchester"
+      ],
+      "style": "operator_note",
+      "derived_from": 120553,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_096",
+      "text": "guide rail on Overbrook is smashed from an accident and never got fixed",
+      "category": "Road/Street Issues",
+      "department": "DPW - Construction Division",
+      "entities": [
+        "Overbrook"
+      ],
+      "style": "web_form",
+      "derived_from": 139373,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_020",
+      "text": "can we get a pedestrian crossing signal at Ellsworth Ave in Central Lawrenceville",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Ellsworth Ave",
+        "Central Lawrenceville"
+      ],
+      "style": "web_form",
+      "derived_from": 130212,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_083",
+      "text": "Resident requests repaving of the roadway surface on Perrysville Ave in Highland Park.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Asphalt",
+      "entities": [
+        "Perrysville Ave",
+        "Highland Park"
+      ],
+      "style": "operator_note",
+      "derived_from": 202693,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_044",
+      "text": "Resident inquires about street sweeping schedule and debris on Fifth Ave in Beechview.",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Fifth Ave",
+        "Beechview"
+      ],
+      "style": "operator_note",
+      "derived_from": 95072,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_100",
+      "text": "sign along Frankstown Ave in Sheraden is bent sideways smh",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Frankstown Ave",
+        "Sheraden"
+      ],
+      "style": "web_form",
+      "derived_from": 176623,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_021",
+      "text": "can we get a pedestrian crossing signal at Fifth Ave in Mount Washington thanks",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Fifth Ave",
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 147415,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_001",
+      "text": "theres an issue with lights on South Side Flats please send someone to take a look",
+      "category": "Street Light",
+      "department": "DPW - Park Maintenance",
+      "entities": [
+        "South Side Flats"
+      ],
+      "style": "web_form",
+      "derived_from": 176981,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_111",
+      "text": "fyi theres an issue with loading zone, request along Beechwood Blvd in Allegheny Center smh",
+      "category": "Parking",
+      "department": "311",
+      "entities": [
+        "Beechwood Blvd",
+        "Allegheny Center"
+      ],
+      "style": "web_form",
+      "derived_from": 199909,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_101",
+      "text": "hello 311, whole block of Fifth Ave in Brighton Heights is dark, streetlight dead again thanks",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Fifth Ave",
+        "Brighton Heights"
+      ],
+      "style": "web_form",
+      "derived_from": 110652,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_058",
+      "text": "Reporting party states a faded or damaged sign at Brownsville Rd in Polish Hill.",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Brownsville Rd",
+        "Polish Hill"
+      ],
+      "style": "operator_note",
+      "derived_from": 130537,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_109",
+      "text": "Reporting party states insufficient street lighting on Allegheny Center.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Allegheny Center"
+      ],
+      "style": "operator_note",
+      "derived_from": 130556,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_054",
+      "text": "Caller reports an issue related to catch basin, clogged on Brighton Heights.",
+      "category": "Road/Street Issues",
+      "department": "Pittsburgh Water and Sewer Authority",
+      "entities": [
+        "Brighton Heights"
+      ],
+      "style": "operator_note",
+      "derived_from": 127058,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_103",
+      "text": "Caller reports an issue related to parking authority on Bloomfield.",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Bloomfield"
+      ],
+      "style": "operator_note",
+      "derived_from": 190502,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_084",
+      "text": "Resident requests installation of a new streetlight on Squirrel Hill North.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Squirrel Hill North"
+      ],
+      "style": "operator_note",
+      "derived_from": 200763,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_026",
+      "text": "fyi can the city add a streetlight at Carrick, big dark gap between poles smh",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Carrick"
+      ],
+      "style": "web_form",
+      "derived_from": 50975,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_072",
+      "text": "theres an issue with parking authority on Mount Washington",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Mount Washington"
+      ],
+      "style": "web_form",
+      "derived_from": 145491,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_098",
+      "text": "Resident requests installation of a new streetlight on Carrick.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Carrick"
+      ],
+      "style": "operator_note",
+      "derived_from": 153070,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_078",
+      "text": "Caller reports a slope failure above Spring Hill-City View with debris entering the roadway.",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Construction",
+      "entities": [
+        "Spring Hill-City View"
+      ],
+      "style": "operator_note",
+      "derived_from": 50516,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_065",
+      "text": "theres an issue with loading zone, request on Craig St in Central Business District thanks",
+      "category": "Parking",
+      "department": "311",
+      "entities": [
+        "Craig St",
+        "Central Business District"
+      ],
+      "style": "web_form",
+      "derived_from": 217256,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_030",
+      "text": "the sign at Perrysville Ave in South Side Flats is all faded and bent, cant read it been like this too long",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Perrysville Ave",
+        "South Side Flats"
+      ],
+      "style": "web_form",
+      "derived_from": 160659,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_028",
+      "text": "Reporting party states a faded or damaged sign at Brighton Heights.",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Brighton Heights"
+      ],
+      "style": "operator_note",
+      "derived_from": 178621,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_102",
+      "text": "hi, sidewalk on Central Oakland is blocked, had to walk in the street",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Central Oakland"
+      ],
+      "style": "web_form",
+      "derived_from": 203272,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_113",
+      "text": "Resident reports a clogged storm drain on Beechview with localized flooding.",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Beechview"
+      ],
+      "style": "operator_note",
+      "derived_from": 203517,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_005",
+      "text": "please help, theres an issue with line striping at Brookline",
+      "category": "Road/Street Issues",
+      "department": "DOMI - TrafficShop",
+      "entities": [
+        "Brookline"
+      ],
+      "style": "web_form",
+      "derived_from": 396618,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_055",
+      "text": "hello 311, we really need a speed limit sign at Bluff, cars fly through",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Bluff"
+      ],
+      "style": "web_form",
+      "derived_from": 176413,
+      "split": "eval"
+    },
+    {
+      "id": "cmp_076",
+      "text": "hello 311, sign at Baum Blvd in Perry North is bent sideways",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Baum Blvd",
+        "Perry North"
+      ],
+      "style": "web_form",
+      "derived_from": 125427,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_012",
+      "text": "cant even read the sign near Friendship, totally faded smh",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Friendship"
+      ],
+      "style": "web_form",
+      "derived_from": 121533,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_070",
+      "text": "please help, theres an issue with city steps, need repaired on Carrick been like this too long",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Streets",
+      "entities": [
+        "Carrick"
+      ],
+      "style": "web_form",
+      "derived_from": 68890,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_107",
+      "text": "please help, theres an issue with bike rack request along Ellsworth Ave in East Allegheny please fix",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "City Planning - Bicycles/Pedestrian traffic",
+      "entities": [
+        "Ellsworth Ave",
+        "East Allegheny"
+      ],
+      "style": "web_form",
+      "derived_from": 287696,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_087",
+      "text": "a boat trailer has been parked along Liberty Ave in Carrick taking up spots for weeks smh",
+      "category": "Parking",
+      "department": "Police - Zones 1-6",
+      "entities": [
+        "Liberty Ave",
+        "Carrick"
+      ],
+      "style": "web_form",
+      "derived_from": 192641,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_014",
+      "text": "Caller reports a malfunctioning parking meter on Central Lawrenceville.",
+      "category": "Parking",
+      "department": "Parking Authority",
+      "entities": [
+        "Central Lawrenceville"
+      ],
+      "style": "operator_note",
+      "derived_from": 199576,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_112",
+      "text": "sidewalk on Central Northside is blocked, had to walk in the street thanks",
+      "category": "Pedestrian/Bicycle Concerns",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Central Northside"
+      ],
+      "style": "web_form",
+      "derived_from": 199011,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_018",
+      "text": "Resident reports an apparently abandoned vehicle on Baum Blvd in East Hills, expired registration.",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Baum Blvd",
+        "East Hills"
+      ],
+      "style": "operator_note",
+      "derived_from": 68796,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_029",
+      "text": "Resident requests installation of a new streetlight on Bloomfield.",
+      "category": "Street Light",
+      "department": "DOMI - Permits",
+      "entities": [
+        "Bloomfield"
+      ],
+      "style": "operator_note",
+      "derived_from": 189954,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_032",
+      "text": "hi, the sign at Penn Ave in Squirrel Hill North is all faded and bent, cant read it smh",
+      "category": "Traffic and Street Sign Issues",
+      "department": "Permits, Licenses and Inspections",
+      "entities": [
+        "Penn Ave",
+        "Squirrel Hill North"
+      ],
+      "style": "web_form",
+      "derived_from": 183997,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_036",
+      "text": "please help, theres an issue with street light repair along Brownsville Rd in Central Business District",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Brownsville Rd",
+        "Central Business District"
+      ],
+      "style": "web_form",
+      "derived_from": 177738,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_095",
+      "text": "please help, barricades been sitting in the road near Forbes Ave in Beechview for weeks with no work happening smh",
+      "category": "Road/Street Issues",
+      "department": "DPW - Street Maintenance",
+      "entities": [
+        "Forbes Ave",
+        "Beechview"
+      ],
+      "style": "web_form",
+      "derived_from": 80808,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_004",
+      "text": "Resident reports an abandoned vehicle on Butler St in Stanton Heights that has not moved.",
+      "category": "Parking",
+      "department": "Police - AVU",
+      "entities": [
+        "Butler St",
+        "Stanton Heights"
+      ],
+      "style": "operator_note",
+      "derived_from": 195779,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_015",
+      "text": "please help, light out at Point Breeze, my kids walk here in the dark please fix",
+      "category": "Street Light",
+      "department": "Allegheny City Electric",
+      "entities": [
+        "Point Breeze"
+      ],
+      "style": "web_form",
+      "derived_from": 197831,
+      "split": "spare"
+    },
+    {
+      "id": "cmp_082",
+      "text": "please help, can we get a pedestrian crossing signal at Ellsworth Ave in Perry North please fix",
+      "category": "Road/Street Issues",
+      "department": "DOMI - Traffic",
+      "entities": [
+        "Ellsworth Ave",
+        "Perry North"
+      ],
+      "style": "web_form",
+      "derived_from": 188021,
+      "split": "spare"
+    }
+  ]
+}

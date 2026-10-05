@@ -1,0 +1,28 @@
+{"input_hash": "f7340478db3cf98b", "decision": "block", "stage": "input", "category": "toxic", "rule": "toxic_lexicon", "guard_latency_s": 0.0041, "ts": 1790966422.2606626}
+{"input_hash": "195b259d65ef3ad0", "decision": "block", "stage": "input", "category": "toxic", "rule": "toxic_lexicon", "guard_latency_s": 0.0, "ts": 1790966424.9811368}
+{"input_hash": "2a91f2e7e5611dea", "decision": "block", "stage": "input", "category": "toxic", "rule": "toxic_lexicon", "guard_latency_s": 0.0, "ts": 1790966438.7660086}
+{"input_hash": "8d41ca6b343046d3", "decision": "block", "stage": "input", "category": "toxic", "rule": "toxic_lexicon", "guard_latency_s": 0.0, "ts": 1790966450.542701}
+{"input_hash": "1820c7cd0f2373c7", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 2.629, "guard_latency_s": 0.0, "ts": 1790966456.0119889}
+{"input_hash": "e626d91ada7b463f", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 2.681, "guard_latency_s": 0.001, "ts": 1790966461.4928553}
+{"input_hash": "42e8d4a5a2a8312d", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 2.81, "guard_latency_s": 0.0, "ts": 1790966467.3488827}
+{"input_hash": "d063dd6fbd355c21", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 7.075, "guard_latency_s": 0.0, "ts": 1790966481.7225406}
+{"input_hash": "44c9705ee6605534", "decision": "block", "stage": "input", "category": "injection", "rule": "system\\s+prompt", "guard_latency_s": 0.0, "ts": 1790966511.8426113}
+{"input_hash": "b1edcfba665cf51a", "decision": "block", "stage": "input", "category": "leakage", "rule": "<\\s*pii\\s*>", "guard_latency_s": 0.0, "ts": 1790966513.22415}
+{"input_hash": "cd1652c5eb6d53da", "decision": "block", "stage": "input", "category": "leakage", "rule": "(show|list|reveal|print).{0,20}(restricted|hidden|internal) field", "guard_latency_s": 0.0, "ts": 1790966519.1243663}
+{"input_hash": "25db14f665a071ca", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 5.795, "guard_latency_s": 0.0, "ts": 1790966530.5990138}
+{"input_hash": "be6c14803fdba519", "decision": "block", "stage": "input", "category": "injection", "rule": "ignore\\s+(?:\\w+\\s+){0,4}instructions", "guard_latency_s": 0.0, "ts": 1790966530.989593}
+{"input_hash": "7fcdb4ea15dfb584", "decision": "block", "stage": "input", "category": "injection", "rule": "disregard\\s+(?:the|all|previous|your|above)", "guard_latency_s": 0.0, "ts": 1790966531.355988}
+{"input_hash": "f3c8e5e5e8d893f1", "decision": "block", "stage": "input", "category": "injection", "rule": "forget\\s+(?:the|your|all|previous|everything|your rules)", "guard_latency_s": 0.0, "ts": 1790966531.735866}
+{"input_hash": "e380c255cb8cfc8e", "decision": "block", "stage": "input", "category": "injection", "rule": "\\bact as\\b", "guard_latency_s": 0.0, "ts": 1790966532.109921}
+{"input_hash": "06818e543593d660", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 1.813, "guard_latency_s": 0.0, "ts": 1790966535.6041765}
+{"input_hash": "f326e6e774b103d5", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.206, "guard_latency_s": 0.0, "ts": 1790966536.0441787}
+{"input_hash": "828db2229c857a26", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 1.86, "guard_latency_s": 0.0, "ts": 1790966539.9391525}
+{"input_hash": "75cb312dfa322dde", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.24, "guard_latency_s": 0.0, "ts": 1790966540.4245744}
+{"input_hash": "4d4129e9dd3d131b", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.236, "guard_latency_s": 0.0, "ts": 1790966540.9211626}
+{"input_hash": "90896af87a7b2019", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 2.1, "guard_latency_s": 0.002, "ts": 1790966545.0639405}
+{"input_hash": "3b4f3e890c1372cb", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.641, "guard_latency_s": 0.0, "ts": 1790966546.506803}
+{"input_hash": "329a6af939cf743d", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.23, "guard_latency_s": 0.0, "ts": 1790966546.9444335}
+{"input_hash": "af5cae943b6dcbb7", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.153, "guard_latency_s": 0.0, "ts": 1790966547.2460217}
+{"input_hash": "2337cc147b6f1a93", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.17, "guard_latency_s": 0.0, "ts": 1790966547.5642471}
+{"input_hash": "de07123bf3177f2e", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.188, "guard_latency_s": 0.0, "ts": 1790966547.904001}
+{"input_hash": "cf5bcd3928cbd374", "decision": "allow", "stage": "none", "category": "ok", "rule": "", "latency_s": 0.25, "guard_latency_s": 0.0, "ts": 1790966548.3742654}

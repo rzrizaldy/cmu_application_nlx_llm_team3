@@ -1,0 +1,7 @@
+{
+  "records_scanned": 180,
+  "records_with_masks": 0,
+  "masks_by_category": {},
+  "per_record": {},
+  "note": "Regex masking of PII/FIN spans before any text reaches the model. PHI/CONF have no regex rule; the corpus excluded them at collection time."
+}

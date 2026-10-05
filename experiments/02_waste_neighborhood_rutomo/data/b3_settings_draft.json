@@ -1,0 +1,15 @@
+{
+  "status": "student_tuning_choice",
+  "based_on": "B1_generate_defaults/metrics.json",
+  "b1_valid_output_rate": 0.54,
+  "b1_exact_match": 0.2,
+  "b1_completion_p99_tokens": 116,
+  "b1_truncation_rate": 0.0,
+  "settings": {
+    "generation.do_sample": true,
+    "generation.temperature": 0.2,
+    "generation.top_p": 0.9,
+    "generation.max_new_tokens": 256
+  },
+  "choice_notes": "Lower sampling variability to test whether format and field errors fall; retain sampling so temperature and top_p are operative. A 256-token cap exceeds the observed B1 completion p99 while reducing the 512-token allowance."
+}

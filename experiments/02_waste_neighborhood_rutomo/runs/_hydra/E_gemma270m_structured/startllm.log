@@ -1,0 +1,219 @@
+[2026-09-25 00:54:17,972][__main__][INFO] - Resolved configuration:
+model:
+  name: gemma3_270m_it
+  source: local
+  model_id: google/gemma-3-270m-it
+  local_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/../llmbox/models/llms/google/gemma-3-270m-it
+  architecture: gemma3_text
+  dtype: bfloat16
+  device: auto
+  trust_remote_code: false
+  supports_tool_calling: false
+  supports_structured_output: true
+  tool_calling_format: generic
+  chat_template_kwargs: {}
+  assistant_mask_strategy: verified_prefix
+  add_prefix: null
+  add_suffix: null
+  add_specialtokens: []
+mode:
+  name: batch
+data:
+  type: chat_log
+  path: ../chat_log
+  min_turns: 1
+  eval_split: 0.1
+  raw_path: null
+  original_path: null
+  text_columns: []
+  target_columns: []
+  label_maps: {}
+  instruction: ''
+  output_dir: null
+  train_fraction: null
+  split: null
+optimizer:
+  name: adamw
+  learning_rate: 2.0e-05
+  weight_decay: 0.0
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  momentum: 0.0
+generation:
+  max_new_tokens: 256
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 64
+  do_sample: false
+  repetition_penalty: 1.0
+tool_calling:
+  enabled: false
+  tool_choice: auto
+  tools: []
+  tools_file: null
+  max_rounds: 3
+  codebook_path: null
+  issue_summary_path: null
+  review_queue_path: null
+structured_output:
+  enabled: false
+  schema_path: null
+  strict: true
+  pydantic_model: src.pydantic_models.waste_tags:WasteTags
+  max_retries: 2
+training:
+  enabled: false
+  method: lora
+  epochs: 3.0
+  batch_size: 2
+  grad_accum_steps: 8
+  warmup_ratio: 0.03
+  max_length: 1024
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  prefix_length: 30
+  adapters_dim: 64
+  bitfit_bias_params: []
+  freeze_modules: []
+  logging_steps: 10
+  save_steps: 100
+  eval_steps: 100
+  output_dir: ./finetuned
+  merge_adapter: false
+  token_budget: 1000000
+  report_metrics: true
+batch:
+  input_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/eval50_task.jsonl
+  submode: structured
+  run_name: E_gemma270m_structured
+  runs_dir: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+  limit: 0
+  repeat: 1
+  apply_seed: true
+guardrail:
+  inner_submode: structured
+  prompt_submode: generate
+  injection_patterns:
+  - ignore (all |any )?(the )?(previous|prior|above|earlier) (instructions|rules|directions)
+  - disregard (all |any )?(the )?(previous|prior|above|earlier|your) (instructions|rules)
+  - (reveal|print|show|repeat|output) (me )?(your|the) (system )?(prompt|instructions)
+  - you are now\b
+  - 'new instructions?:'
+  - \bsystem prompt\b
+  - \bdeveloper mode\b
+  - do not (tag|classify|follow)
+  input_judge: none
+  scope_judge_prompt: 'You screen requests sent to the City of Pittsburgh 311 knowledge-base
+    tagging API. The API only tags 311 service records (service focus, information
+    type, responsible department) and looks up 311 issue codes and historical closure
+    times.
+
+    Request:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: IN_SCOPE if the request is that kind of work, OUT_OF_SCOPE
+    if it asks for anything else, HARMFUL if it asks for abusive, demeaning, unsafe
+    or privacy-violating content.'
+  toxicity: none
+  lexicon_path: null
+  toxicity_judge_prompt: 'Does the following text contain abusive, demeaning, threatening
+    or unsafe content about any person or group?
+
+    Text:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: SAFE or UNSAFE.'
+  judge_max_new_tokens: 6
+  secret_markers: []
+  block_rules:
+  - injection_pattern
+  - scope_judge
+  - secret_leak
+  - pii_in_output
+  - toxicity_lexicon
+  - toxicity_judge
+  review_rules:
+  - ungrounded_department
+  - schema_invalid
+  - masked
+  refusal_message: This request cannot be completed by the 311 tagging API. It has
+    been logged, and a staff member can review it.
+  log_path: null
+retrieval:
+  pool_path: null
+  k: 3
+  inner_submode: structured
+prompt: null
+prompt_file: null
+username: null
+system_prompt: You are a helpful assistant.
+seed: 42
+output_dir: outputs
+metrics: null
+
+[2026-09-25 00:54:17,973][src.batch][INFO] - batch E_gemma270m_structured: 50 rows x 1 repeats, 0 already done, 50 to run
+[2026-09-25 00:54:20,973][src.generation][INFO] - Loading 'gemma3_270m_it' (source=local, /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/../llmbox/models/llms/google/gemma-3-270m-it) onto mps as bfloat16...
+[2026-09-25 00:54:27,436][src.batch][INFO] - [1/50] waste_0230c94a9d80a75b1e  5.05s  2802+192 tok
+[2026-09-25 00:54:28,253][src.batch][INFO] - [2/50] waste_0bc080382f030938c8  0.82s  701+43 tok
+[2026-09-25 00:54:29,031][src.batch][INFO] - [3/50] waste_0d16dff904254ef8ee  0.78s  672+41 tok
+[2026-09-25 00:54:29,750][src.batch][INFO] - [4/50] waste_11348a9ef3be0d37ec  0.72s  665+43 tok
+[2026-09-25 00:54:35,710][src.batch][INFO] - [5/50] waste_143a17c7c2c2b85600  5.96s  3150+377 tok
+[2026-09-25 00:54:36,461][src.batch][INFO] - [6/50] waste_153df0b39006cdaab3  0.75s  713+45 tok
+[2026-09-25 00:54:37,145][src.batch][INFO] - [7/50] waste_2634c44da17edfa6dc  0.68s  654+41 tok
+[2026-09-25 00:54:41,394][src.batch][INFO] - [8/50] waste_28400302e46abf44d5  4.25s  2922+267 tok
+[2026-09-25 00:54:42,511][src.batch][INFO] - [9/50] waste_32718fd94618307245  1.12s  698+70 tok
+[2026-09-25 00:54:45,668][src.batch][INFO] - [10/50] waste_3dadf12d49c3266595  3.15s  2814+192 tok
+[2026-09-25 00:54:46,343][src.batch][INFO] - [11/50] waste_4245235d7065026500  0.67s  761+40 tok
+[2026-09-25 00:54:48,942][src.batch][INFO] - [12/50] waste_442b9ebcc6bc400dda  2.60s  2544+153 tok
+[2026-09-25 00:54:51,993][src.batch][INFO] - [13/50] waste_4736ea18c6887fa1fc  3.05s  2505+159 tok
+[2026-09-25 00:54:52,746][src.batch][INFO] - [14/50] waste_4a9dfdb427790e9476  0.75s  657+46 tok
+[2026-09-25 00:54:53,526][src.batch][INFO] - [15/50] waste_4ffcbbfac37ffdd501  0.78s  688+42 tok
+[2026-09-25 00:54:54,288][src.batch][INFO] - [16/50] waste_518268f4c0e22614e3  0.76s  774+43 tok
+[2026-09-25 00:54:55,013][src.batch][INFO] - [17/50] waste_5df9d3d5b00c9cb06e  0.72s  713+43 tok
+[2026-09-25 00:54:55,685][src.batch][INFO] - [18/50] waste_5ef17bbfecd9abbc9d  0.67s  681+40 tok
+[2026-09-25 00:54:56,435][src.batch][INFO] - [19/50] waste_67ce011ffe00c8be77  0.75s  714+45 tok
+[2026-09-25 00:54:57,265][src.batch][INFO] - [20/50] waste_6a66d281be60177e38  0.83s  784+50 tok
+[2026-09-25 00:54:58,091][src.batch][INFO] - [21/50] waste_6b85caaea109ae70fd  0.82s  772+50 tok
+[2026-09-25 00:55:00,963][src.batch][INFO] - [22/50] waste_70cac653d09fe4eb0d  2.87s  2592+171 tok
+[2026-09-25 00:55:03,569][src.batch][INFO] - [23/50] waste_789b59d55c51c8d733  2.60s  2580+156 tok
+[2026-09-25 00:55:04,245][src.batch][INFO] - [24/50] waste_7c4f9274e0b45b1a4c  0.68s  683+40 tok
+[2026-09-25 00:55:07,079][src.batch][INFO] - [25/50] waste_7cc1f1e480688c7ac8  2.83s  2655+171 tok
+[2026-09-25 00:55:07,797][src.batch][INFO] - [26/50] waste_7de987bfb6e8417e2f  0.72s  700+43 tok
+[2026-09-25 00:55:08,547][src.batch][INFO] - [27/50] waste_92898c896d212ab168  0.75s  707+45 tok
+[2026-09-25 00:55:11,504][src.batch][INFO] - [28/50] waste_a4bbb84106c347749e  2.96s  2706+180 tok
+[2026-09-25 00:55:12,214][src.batch][INFO] - [29/50] waste_aabeea175b7568d6cf  0.71s  713+42 tok
+[2026-09-25 00:55:12,900][src.batch][INFO] - [30/50] waste_ad09d3b9564ca2e9b9  0.68s  659+41 tok
+[2026-09-25 00:55:15,567][src.batch][INFO] - [31/50] waste_b2fe5dd8a7c708b97d  2.67s  2514+162 tok
+[2026-09-25 00:55:16,251][src.batch][INFO] - [32/50] waste_c2bf3c4a08db907717  0.68s  663+41 tok
+[2026-09-25 00:55:19,442][src.batch][INFO] - [33/50] waste_c6c8b57a935eec90ea  3.19s  2604+198 tok
+[2026-09-25 00:55:20,121][src.batch][INFO] - [34/50] waste_c763450ec042afff85  0.68s  649+40 tok
+[2026-09-25 00:55:20,883][src.batch][INFO] - [35/50] waste_c7ed8333b4df9f7a50  0.76s  711+45 tok
+[2026-09-25 00:55:21,621][src.batch][INFO] - [36/50] waste_cd615e0c3832449eb1  0.74s  717+43 tok
+[2026-09-25 00:55:25,570][src.batch][INFO] - [37/50] waste_d0f7bad4d3195750c7  3.95s  2819+250 tok
+[2026-09-25 00:55:36,787][src.batch][INFO] - [38/50] waste_d16f1e4242bb6fc4b2  11.22s  3162+768 tok
+[2026-09-25 00:55:37,470][src.batch][INFO] - [39/50] waste_d2675c1087310fa333  0.68s  696+41 tok
+[2026-09-25 00:55:38,210][src.batch][INFO] - [40/50] waste_d4571248572fb7fd07  0.74s  714+45 tok
+[2026-09-25 00:55:38,906][src.batch][INFO] - [41/50] waste_e05a22cea5d12599df  0.70s  741+41 tok
+[2026-09-25 00:55:41,415][src.batch][INFO] - [42/50] waste_e3f4b8e1fc3d023b49  2.51s  2487+150 tok
+[2026-09-25 00:55:42,089][src.batch][INFO] - [43/50] waste_e642e25e222548da67  0.67s  670+40 tok
+[2026-09-25 00:55:42,777][src.batch][INFO] - [44/50] waste_e74f47dc8c6e116eb7  0.69s  706+41 tok
+[2026-09-25 00:55:43,598][src.batch][INFO] - [45/50] waste_f188a362bf68c5db46  0.82s  786+50 tok
+[2026-09-25 00:55:46,925][src.batch][INFO] - [46/50] waste_f19c9ae736b99ceff5  3.32s  2685+207 tok
+[2026-09-25 00:55:47,618][src.batch][INFO] - [47/50] waste_f22a08f2cb07585f47  0.69s  727+41 tok
+[2026-09-25 00:55:48,303][src.batch][INFO] - [48/50] waste_f893dac288f58a1920  0.68s  688+41 tok
+[2026-09-25 00:55:49,019][src.batch][INFO] - [49/50] waste_f8be5b47c933c7dac3  0.71s  669+41 tok
+[2026-09-25 00:55:50,167][src.batch][INFO] - [50/50] waste_ff04348130ce1da6e5  1.15s  799+73 tok
+[2026-09-25 00:55:50,215][__main__][INFO] - Using a local model only. (model source: local, model_id: google/gemma-3-270m-it)

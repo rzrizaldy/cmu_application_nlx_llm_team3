@@ -1,0 +1,11 @@
+{
+  "seed": 952,
+  "eval_n": 50,
+  "dev_n": 534,
+  "by_subtopic_eval": {
+    "streets_mobility": 13,
+    "waste_neighborhood": 12,
+    "buildings_construction": 12,
+    "parks_public_spaces": 13
+  }
+}

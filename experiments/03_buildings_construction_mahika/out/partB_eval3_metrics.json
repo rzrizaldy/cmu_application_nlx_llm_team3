@@ -1,0 +1,21 @@
+{
+  "n": 50,
+  "category_accuracy": 0.68,
+  "department_accuracy": 0.8,
+  "both_correct": 0.6,
+  "schema_valid_rate": 0.86,
+  "category_accuracy_by_gold": {
+    "building_maintenance": 0.917,
+    "construction": 1.0,
+    "permits": 0.917,
+    "accessibility": 0.0
+  },
+  "generation": {
+    "temperature": 0.9,
+    "top_p": 0.95,
+    "max_new_tokens": 128
+  },
+  "mean_latency_s": 59.31,
+  "mean_completion_tokens": 25.9,
+  "mean_prompt_tokens": 162.2
+}

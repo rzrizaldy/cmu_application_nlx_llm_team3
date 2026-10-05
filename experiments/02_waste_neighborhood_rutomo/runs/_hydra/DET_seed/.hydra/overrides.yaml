@@ -1,0 +1,10 @@
+- model=phi4_instruct
+- mode=batch
+- model.local_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+- batch.input_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/dev50_task.jsonl
+- batch.run_name=DET_seed
+- batch.runs_dir=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+- batch.submode=generate
+- batch.limit=10
+- batch.repeat=2
+- batch.apply_seed=true

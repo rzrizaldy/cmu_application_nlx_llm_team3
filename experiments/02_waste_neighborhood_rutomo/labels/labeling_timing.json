@@ -1,0 +1,6 @@
+{
+  "method": "Student-measured wall-clock time for blind labeling of 100 reference records (311 NLX Lab)",
+  "total_minutes": 30,
+  "timed_rows": 100,
+  "seconds_per_record": 18.0
+}

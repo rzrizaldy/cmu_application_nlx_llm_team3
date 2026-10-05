@@ -1,12 +1,14 @@
-# Original submission ZIPs
+# Submission archives
 
-Each archive is the member's Assignment 1 package as received. The unpacked contents are in [corpora/](../corpora/) under the same name.
+| ZIP | Assignment |
+|---|---|
+| `01_streets_mobility_afaq.zip` | A1 |
+| `02_waste_neighborhood_rutomo.zip` | A1 |
+| `03_buildings_construction_mahika.zip` | A1 |
+| `04_parks_public_spaces_mingchin.zip` | A1 |
+| `01_streets_mobility_afaq_as02.zip` | A2 — Afaq (partial) |
+| `02_waste_neighborhood_rutomo_as02.zip` | A2 — Rutomo (data + runs) |
+| `03_buildings_construction_mahika_as02.zip` | A2 — Mahika |
+| `04_parks_public_spaces_mingchin_as02.zip` | A2 — Mingchin (code only) |
 
-| File | Member | Subtopic |
-|---|---|---|
-| [01_streets_mobility_afaq.zip](01_streets_mobility_afaq.zip) | Afaq | Streets and Mobility |
-| [02_waste_neighborhood_rutomo.zip](02_waste_neighborhood_rutomo.zip) | Rutomo | Waste and Neighborhood Cleanliness |
-| [03_buildings_construction_mahika.zip](03_buildings_construction_mahika.zip) | Mahika | Buildings, Construction, and Accessibility |
-| [04_parks_public_spaces_mingchin.zip](04_parks_public_spaces_mingchin.zip) | Mingchin | Parks, Trees, Animals, and Public Facilities |
-
-The parks ZIP includes the full WPRDC `311_data.csv` (237 MB unpacked). That file is gitignored in `corpora/04_parks_public_spaces_mingchin/`; unzip it only to rebuild that corpus.
+Large local drops (`Assignment 2_mingchin*.zip`, etc.) stay gitignored; use the repacked `*_as02.zip` files above.

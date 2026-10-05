@@ -1,0 +1,7 @@
+# Transparent, deliberately narrow output lexicon for Part D guardrail checks.
+# One case-insensitive substring per line.
+idiot
+stupid
+lazy
+filthy
+worthless

@@ -1,0 +1,41 @@
+{
+  "run_name": "DET_noseed",
+  "submode": "generate",
+  "n_rows": 10,
+  "repeat": 2,
+  "input_path": "~/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/dev50_task.jsonl",
+  "input_sha256": "94617857b9acdd7bd12b88426063b4d48cae644add5cc177e9e4ad424d203ce8",
+  "row_ids": [
+    "waste_0a43b4cb32b1e16f07",
+    "waste_0f74323919f63d548f",
+    "waste_11c07c15db7cf4edd6",
+    "waste_3047ea31b1cd3bfe6c",
+    "waste_34a43f7f697ca0d2ac",
+    "waste_3866bc414d8081d138",
+    "waste_3e6d097320329e079f",
+    "waste_42b5f3326020ffa58b",
+    "waste_4bc08e8bb21dbea7a2",
+    "waste_5438ffa915bd4260fa"
+  ],
+  "model_name": "phi4_instruct",
+  "model_source": "local",
+  "model_fingerprint": "ddd092b2089d5cee03b28d49950a44a8e1ab09856ee08668ecc594604147b7c4",
+  "generation": {
+    "max_new_tokens": 512,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "do_sample": true,
+    "repetition_penalty": 1.0
+  },
+  "seed": 42,
+  "apply_seed": false,
+  "git_sha": "2d8e8339e384b510abdf886b489c8233dffdb806",
+  "platform": "Darwin-arm64",
+  "python": "3.12.13",
+  "torch": "2.14.0",
+  "transformers": "5.17.0",
+  "started_at": "2026-09-24T22:08:46.578397+00:00",
+  "finished_at": "2026-09-24T22:10:45.911343+00:00",
+  "responses_sha256": "a8056e98dd2c28b3af2007852db3636003c4aabdfa15fddab1545dd354463c8e"
+}

@@ -1,0 +1,8 @@
+{
+  "run": "C4_fewshot",
+  "rows": 50,
+  "examples_shown": 150,
+  "distinct_examples": 48,
+  "eval_ids_retrieved": [],
+  "leak_free": true
+}

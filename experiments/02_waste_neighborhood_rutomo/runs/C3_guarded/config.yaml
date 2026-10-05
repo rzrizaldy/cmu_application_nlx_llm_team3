@@ -1,0 +1,164 @@
+model:
+  name: phi4_instruct
+  source: local
+  model_id: microsoft/Phi-4-mini-instruct
+  local_path: ~/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+  architecture: phi3
+  dtype: bfloat16
+  device: auto
+  trust_remote_code: false
+  supports_tool_calling: true
+  supports_structured_output: true
+  tool_calling_format: functools_prompt
+  chat_template_kwargs: {}
+  assistant_mask_strategy: verified_prefix
+  add_prefix: null
+  add_suffix: null
+  add_specialtokens: []
+mode:
+  name: batch
+data:
+  type: chat_log
+  path: ../chat_log
+  min_turns: 1
+  eval_split: 0.1
+  raw_path: null
+  original_path: null
+  text_columns: []
+  target_columns: []
+  label_maps: {}
+  instruction: ''
+  output_dir: null
+  train_fraction: null
+  split: null
+optimizer:
+  name: adamw
+  learning_rate: 2.0e-05
+  weight_decay: 0.0
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  momentum: 0.0
+generation:
+  max_new_tokens: 256
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 64
+  do_sample: false
+  repetition_penalty: 1.0
+tool_calling:
+  enabled: false
+  tool_choice: auto
+  tools: []
+  tools_file: null
+  max_rounds: 3
+  codebook_path: null
+  issue_summary_path: null
+  review_queue_path: null
+structured_output:
+  enabled: false
+  schema_path: null
+  strict: true
+  pydantic_model: src.pydantic_models.waste_tags:WasteTags
+  max_retries: 2
+training:
+  enabled: false
+  method: lora
+  epochs: 3.0
+  batch_size: 2
+  grad_accum_steps: 8
+  warmup_ratio: 0.03
+  max_length: 1024
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  prefix_length: 30
+  adapters_dim: 64
+  bitfit_bias_params: []
+  freeze_modules: []
+  logging_steps: 10
+  save_steps: 100
+  eval_steps: 100
+  output_dir: ./finetuned
+  merge_adapter: false
+  token_budget: 1000000
+  report_metrics: true
+batch:
+  input_path: ~/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/eval50_task.jsonl
+  submode: guarded
+  run_name: C3_guarded
+  runs_dir: ~/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+  limit: 0
+  repeat: 1
+  apply_seed: true
+guardrail:
+  inner_submode: structured
+  prompt_submode: generate
+  injection_patterns:
+  - ignore (all |any )?(the )?(previous|prior|above|earlier) (instructions|rules|directions)
+  - disregard (all |any )?(the )?(previous|prior|above|earlier|your) (instructions|rules)
+  - (reveal|print|show|repeat|output) (me )?(your|the) (system )?(prompt|instructions)
+  - you are now\b
+  - 'new instructions?:'
+  - \bsystem prompt\b
+  - \bdeveloper mode\b
+  - do not (tag|classify|follow)
+  input_judge: none
+  scope_judge_prompt: 'You screen requests sent to the City of Pittsburgh 311 knowledge-base
+    tagging API. The API only tags 311 service records (service focus, information
+    type, responsible department) and looks up 311 issue codes and historical closure
+    times.
+
+    Request:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: IN_SCOPE if the request is that kind of work, OUT_OF_SCOPE
+    if it asks for anything else, HARMFUL if it asks for abusive, demeaning, unsafe
+    or privacy-violating content.'
+  toxicity: none
+  lexicon_path: null
+  toxicity_judge_prompt: 'Does the following text contain abusive, demeaning, threatening
+    or unsafe content about any person or group?
+
+    Text:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: SAFE or UNSAFE.'
+  judge_max_new_tokens: 6
+  secret_markers: []
+  block_rules:
+  - injection_pattern
+  - scope_judge
+  - secret_leak
+  - pii_in_output
+  - toxicity_lexicon
+  - toxicity_judge
+  review_rules:
+  - ungrounded_department
+  - schema_invalid
+  - masked
+  refusal_message: This request cannot be completed by the 311 tagging API. It has
+    been logged, and a staff member can review it.
+  log_path: ~/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs/C3_guarded/guard_log.jsonl
+retrieval:
+  pool_path: null
+  k: 3
+  inner_submode: structured
+prompt: null
+prompt_file: null
+username: null
+system_prompt: You are a helpful assistant.
+seed: 42
+output_dir: outputs
+metrics: null

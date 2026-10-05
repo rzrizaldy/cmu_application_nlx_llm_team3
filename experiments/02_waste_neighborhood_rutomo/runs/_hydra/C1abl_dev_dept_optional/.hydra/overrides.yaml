@@ -1,0 +1,10 @@
+- model=phi4_instruct
+- mode=batch
+- model.local_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+- batch.input_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/dev50_task.jsonl
+- batch.run_name=C1abl_dev_dept_optional
+- batch.runs_dir=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+- generation.do_sample=false
+- generation.max_new_tokens=256
+- batch.submode=structured
+- structured_output.pydantic_model=src.pydantic_models.waste_tags:WasteTags

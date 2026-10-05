@@ -1,0 +1,40 @@
+{
+  "$defs": {
+    "IssueCategory": {
+      "enum": [
+        "building_maintenance",
+        "construction",
+        "permits",
+        "accessibility"
+      ],
+      "title": "IssueCategory",
+      "type": "string"
+    }
+  },
+  "description": "Structured triage decision for one 311 request.",
+  "properties": {
+    "issue_category": {
+      "$ref": "#/$defs/IssueCategory",
+      "description": "Which of the four issue buckets this request falls into."
+    },
+    "responsible_department": {
+      "description": "The department to route the request to, or 'unknown' if the request does not clearly belong to one.",
+      "title": "Responsible Department",
+      "type": "string"
+    },
+    "confidence": {
+      "default": 0.5,
+      "description": "Model confidence in the routing decision, 0-1.",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    }
+  },
+  "required": [
+    "issue_category",
+    "responsible_department"
+  ],
+  "title": "TriageResult",
+  "type": "object"
+}

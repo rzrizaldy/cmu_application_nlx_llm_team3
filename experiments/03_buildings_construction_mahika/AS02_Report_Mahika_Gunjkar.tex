@@ -1,0 +1,320 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.25}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{\vspace{-1.5em}\textbf{Designing and Evaluating an LLM API for \\ Pittsburgh 311 Triage and Routing}\\[0.3em]
+\large Assignment 2 Submission Memo}
+\author{Mahika Gunjkar \\ 95820 Applications of NLX and LLM, Carnegie Mellon University}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{L{3cm} X}
+\toprule
+\textbf{Memo field} & \textbf{Details} \\
+\midrule
+To & 95820 Teaching Team \\
+From & Mahika Gunjkar \\
+Subject & Evaluation and governance of an LLMBox API for Pittsburgh 311 service-request triage \\
+Organizational scenario & City of Pittsburgh 311 service-request triage and routing \\
+Individual corpus slice & Buildings, Construction, and Accessibility (group Pittsburgh 311 corpus) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{Executive Summary}
+This memo evaluates an LLMBox-based API that supports Pittsburgh 311 intake by reading a resident's service request and predicting two fields: the issue category (building\_maintenance, construction, permits, or accessibility) and the responsible city department. The source corpus is the 260-record Buildings, Construction, and Accessibility slice I built in Assignment 1, and the model is Phi-4-mini-instruct run on local weights.
+
+The results were strong on routing and uneven on category until a prompt change fixed it. Baseline generate mode reached 0.72 category accuracy and 0.90 department accuracy, but it misclassified every accessibility request as building maintenance. The most important result was the recovery experiment: adding four one-line category definitions to the prompt raised category accuracy from 0.74 to 0.96 and rescued accessibility from 0.00 to 0.92, without harming any other category. Structured output guaranteed schema-valid results (50 of 50 Pydantic-valid) but did not improve correctness, which confirms that a schema constrains form, not truth. Safety testing exposed a clear weakness in the baseline: all four indirect prompt-injection probes planted inside corpus records made the unguarded model emit the canary. The guardrail then blocked 100 percent of injection and toxic probes at near-zero cost and with zero over-refusal, but blocked 0 percent of plausible out-of-scope requests, because a lexicon cannot read intent.
+
+Based on these measurements, the API is suitable as an assistive triage tool with a human in the loop, not as an autonomous dispatcher. The strongest evidence supports department routing through a deterministic tool and category classification with the definition prompt. Out-of-scope handling and the coarse routing table are the areas that need more work.
+
+\section{Part A: Governance Policy}
+
+\subsection*{A.1 Organizational scenario and workflow}
+The scenario is the City of Pittsburgh 311 Response Center, in municipal government. When a resident files a request, it must be classified into an issue category and routed to the responsible department. The City's 311 Data User Guide notes that 5 to 10 percent of web-filed requests are misclassified by the resident, and a misclassified request is misrouted, which delays service. The API reads one request and proposes the category and department so a clerk confirms rather than assigns from scratch. It is an assistance layer, not a substitute for a clerk's judgment. This is the same category-and-department routing task my group is building toward for the final-project intake assistant; teammates cover Waste, Streets, and Parks, and I cover Buildings, Construction, and Accessibility.
+
+Authorized callers are 311 intake clerks, 311 supervisors, and a back-end batch intake service. The outputs also affect people who never call the API: residents whose issues are resolved faster or slower, neighbors near an unaddressed hazard, the departments whose queues fill correctly or not, and field crews dispatched on the resulting work order. A wrong answer carries real costs: a permit violation misrouted to building maintenance sits unexamined, an accessibility request misread as general maintenance loses its ADA priority and leaves a resident without a safe path, and any wrong route costs a second clerk's time and delays every request behind it.
+
+\subsection*{A.2 Permitted and prohibited use by LLMBox mode}
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{L{2.2cm} L{2.1cm} X X L{0.9cm} L{1.6cm}}
+\toprule
+\textbf{Mode} & \textbf{Who may call} & \textbf{Permitted} & \textbf{Prohibited} & \textbf{Logged} & \textbf{Human review} \\
+\midrule
+chat & Supervisors & Explore classification; train clerks & Final routing of record; resident-facing text & Yes & Yes \\
+generate & Clerks, supervisors & Single-request classification and dept.\ suggestion & Auto-dispatch without confirmation; free text about residents & Yes & Yes for dispatch \\
+generate + structured\_output & Clerks, batch service & Classification as a schema-constrained record & Treating schema validity as proof of correctness & Yes & Yes if low-confidence or schema-forced \\
+generate + tool\_calling & Batch service & Classify, then call route\_request for a proposed routing & Any tool that finalizes/dispatches without a human; any external effect & Yes & Always \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The differences reflect each mode's capability and risk. Chat is multi-turn and the user shapes the framing across turns, so it is limited to supervised exploration. Generate is single-turn and reproducible at temperature 0, which a decision of record needs. Structured output constrains the answer to the schema, so a required field obliges the model to emit a value even when the text does not support one, which is why schema-forced values on ambiguous requests require review. Tool calling is the only mode that can act outside the conversation, so it carries the tightest controls and always requires human confirmation.
+
+\subsection*{A.3 Data boundary}
+The model may receive the request description (raw\_text) and non-identifying operational fields such as neighborhood. It may not receive the gold category label, which would turn the task into a lookup, nor raw resident-identifying fields. The Assignment 1 PII, PHI, FIN, and CONF masking must be applied before any resident free-text reaches the model on the future production path; the WPRDC data used here carries no resident free-text, so no live masking runs in this assignment. The preferred deployment is local weights, and prompts do not leave the machine. If a hosted model were introduced, masking would become mandatory on every request, a data-processing agreement would be required, and the leakage probes would have to be re-run against the hosted endpoint first.
+
+\subsection*{A.4 Human review line}
+Low-impact suggestions a clerk is already reading may be used directly. Any routing that will dispatch work, any structured or tool output that is low-confidence or in the permits or accessibility categories, and any batch pre-classification require human review before action. The clerk reviews routine confirmations; a supervisor reviews flagged, low-confidence, and all accessibility requests because of their ADA priority. The line is drawn where a wrong answer is both likely and costly, which the measurements confirm is the permits and accessibility categories.
+
+\subsection*{A.5 Evidence status and policy revision}
+I wrote the policy before measurement, marking every rule precautionary. After Parts B through D, the marks are:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X L{2.4cm} X}
+\toprule
+\textbf{Policy rule} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+Human review for permits and accessibility & Measured & Part B/C: accessibility 0.00 at baseline, 0.92 after recovery, still lowest \\
+tool\_calling always human-confirmed & Measured & Part D: injection 4/4 succeeded on raw model; guardrail caught 4/4 \\
+Guardrail does not block legitimate work & Measured & Part D: over-refusal 0/12 benign \\
+Guardrail cannot be the only safety control & Measured & Part D: out-of-scope catch 0/4 \\
+Schema validity is not correctness & Measured & Part C: 50/50 Pydantic-valid but category accuracy 0.64 \\
+Masking before the model & Precautionary & Would be evaluated with labeled PII/PHI/FIN/CONF samples \\
+Local-only processing & Precautionary & Would be evaluated by testing restricted data under a hosted config \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The Part D measurements contradicted one first-draft assumption: I had implicitly assumed the guardrail would screen out-of-scope requests, but it caught 0 of 4, so the revised policy requires human review for out-of-scope-looking inputs rather than relying on the guard. A risk I did not anticipate was the corpus itself as an injection surface, since a planted instruction inside a record defeated the raw model every time; corpus text is now treated as untrusted input.
+
+\section{Part B: Data and Baseline LLMBox Experiments}
+
+\subsection*{B.1 Data, split, input, and evaluation method}
+The Assignment 1 corpus contains 260 records. A fixed seed of 42 created a 50-record development set and a 50-record evaluation set, stratified by category with no overlap, frozen before experimentation. The model input is raw\_text, the natural-language request description; the gold label is never sent. The evaluation criterion is exact agreement with the gold issue\_category and responsible\_department, plus the rate of schema-valid output, latency, and tokens. These are mechanical measures: a schema-valid response is not automatically a correct classification.
+
+\subsection*{B.2 Baseline Evaluation 1 and Evaluation 3}
+Baseline 1 used greedy decoding. For Baseline 3 I raised the temperature, reasoning that a fixed-label classification task should be deterministic, so sampling should not help and might add noise.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c c}
+\toprule
+\textbf{Metric} & \textbf{Baseline 1 (greedy)} & \textbf{Baseline 3 (sampled)} \\
+\midrule
+Temperature & 0.0 & 0.9 \\
+Top p & 1.0 & 0.95 \\
+Max new tokens & 128 & 128 \\
+Category accuracy & 0.72 & 0.68 \\
+Department accuracy & 0.90 & 0.80 \\
+Schema-valid rate & 0.94 & 0.86 \\
+Mean latency (s) & 22.7 & 59.3 \\
+Mean completion tokens & 26.3 & 25.9 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Per-category accuracy, greedy: building\_maintenance 1.00, construction 1.00, permits 1.00, accessibility 0.00. Sampling lowered every accuracy measure and ran more than twice as slow, so greedy decoding is the right production setting and I use temperature 0 afterward. The important finding is that the model is perfect on three categories but gets accessibility wrong every time, labeling those requests building\_maintenance. Department routing at 0.90 is acceptable for an assistive tool; category at 0.72 is not, because the one failing category fails completely. This set up the recovery experiment.
+
+\section{Part C: Custom LLM API}
+
+\subsection*{C.1 Evaluation 1: Structured output with a Pydantic model}
+I created a Pydantic model, TriageResult, with issue\_category restricted to the four-value enum, a responsible\_department field, and a confidence field, and exported its JSON schema for structured\_output mode.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Metric} & \textbf{Result} \\
+\midrule
+Pydantic-valid & 50 of 50 (1.00) \\
+Schema-valid & 0.98 \\
+Category accuracy & 0.64 \\
+Department accuracy & 0.88 \\
+Mean latency (s) & 1.65 \\
+Mean completion tokens & 30.1 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Every reply was Pydantic-valid, so the schema did its job of guaranteeing shape. But category accuracy (0.64) was below the plain generate baseline (0.72). Constraining the output to a schema guarantees a well-formed answer, not a correct one.
+
+\subsection*{C.2 Evaluation 2: Tool calling with a routing tool}
+I created a route\_request tool following the LLMBox tool-registry pattern. The model decides the category, and the tool looks it up in a deterministic routing table and returns the department.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Metric} & \textbf{Result} \\
+\midrule
+Category accuracy (model) & 0.74 \\
+Department accuracy (tool) & 0.78 \\
+Both correct & 0.72 \\
+Schema-valid & 1.00 \\
+Mean latency (s) & 1.32 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Routing policy lives in code, where it is correct and auditable, rather than guessed by the model. One limitation: my table sends three of four categories to Permits, Licenses and Inspections, so the tool routed almost everything there. That is faithful to the table, but the table is coarse and is the thing to refine next with the group's shared department definitions.
+
+\subsection*{C.3 Evaluation 3: Custom functionality 1, the category-definition recovery prompt}
+This is the central result. To fix the accessibility collapse found in Part B, I added four one-line category definitions to the prompt (for example, ``accessibility: sidewalks, curb ramps, ADA ramps, broken sidewalks, blocked sidewalks, or city steps'').
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c c}
+\toprule
+\textbf{Category accuracy} & \textbf{Before (v1)} & \textbf{After (definitions)} \\
+\midrule
+Overall & 0.74 & 0.96 \\
+building\_maintenance & 1.00 & 1.00 \\
+construction & 0.92 & 0.92 \\
+permits & 1.00 & 1.00 \\
+accessibility & 0.00 & 0.92 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Four lines of definition took overall category accuracy from 0.74 to 0.96 and rescued accessibility from 0.00 to 0.92, without hurting any other category. This confirms the Assignment 1 diagnosis that the model's errors were semantic, not formatting errors, so a definition fixed them where a schema constraint alone did not.
+
+\subsection*{C.4 Evaluation 4: Custom functionality 2, the guardrail}
+The second custom functionality is a guardrail that wraps the API with input and output checks (measured fully in Part D). Here I confirmed it does not interfere with legitimate work: it passed 50 of 50 benign triage requests through (benign pass rate 1.00).
+
+\section{Part D: Safety and Security Risk Assessment}
+
+\subsection*{D.1 Domain-specific probe set}
+I wrote 28 scenario-specific probes: 4 each of harmful/toxic, out-of-scope, indirect prompt injection, and confidentiality/leakage, plus 12 benign triage controls. For indirect injection, malicious instructions were planted inside real corpus records, and the canary ZZCANARY7788 made successful instruction-following directly observable.
+
+\subsection*{D.2 Baseline without guardrail}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Category} & \textbf{Successful probes} \\
+\midrule
+Harmful or toxic & 1 of 4 \\
+Out of scope & 0 of 4 \\
+Indirect prompt injection & 4 of 4 \\
+Confidentiality or leakage & 1 of 4 \\
+Overall adversarial success & 6 of 16 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The largest baseline weakness was indirect injection: every planted instruction inside a corpus record made the model emit the canary. This proves the point on my own data, that the corpus is an attack surface because records go into the prompt and the model cannot tell data from instructions. The out-of-scope probes succeeded 0 of 4 at baseline because the model itself declined them, which lowers the real risk but is not a control I would rely on.
+
+\subsection*{D.3 Guardrail design and behavior}
+Four decisions. On input, the guardrail rejects injection phrasing, requests for the system prompt or masked spans, toxic-lexicon terms, and inputs with no in-scope signal. On output, it rejects replies containing the canary, a masked placeholder, an echoed system prompt, or toxic terms. When a request is blocked the user receives a fixed refusal, not the matched rule, so an attacker learns nothing. The log records a hash of the input, the allow-or-block decision, the category and rule that fired, and the latency, but never the raw input, so the log is not itself a leak.
+
+\subsection*{D.4 Guardrail measurement}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Category} & \textbf{Blocked by guardrail} \\
+\midrule
+Harmful or toxic & 4 of 4 (100\%) \\
+Out of scope & 0 of 4 (0\%) \\
+Indirect prompt injection & 4 of 4 (100\%) \\
+Confidentiality or leakage & 3 of 4 (75\%) \\
+Overall adversarial catch & 11 of 16 (68.75\%) \\
+Benign over-refusal & 0 of 12 (0\%) \\
+Guard overhead per request & 0.0003 s \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The result is deliberately not a single safety score. The guardrail performed perfectly on the pattern classes it was designed for (injection, toxic) and well on leakage (3 of 4), at essentially zero cost and with zero over-refusal, but it gave no coverage for plausible out-of-scope requests. The category that performs worst is out-of-scope: a lexicon matches surface forms, so a politely worded out-of-scope request walks straight through.
+
+\subsection*{D.5 Toxicity measurement and human adjudication}
+For toxicity I used a transparent, self-written keyword lexicon, chosen because it is easy to inspect and reproduce, which matters for a public-sector tool where a resident could ask why they were refused, and because its weakness, that it is easy to defeat by paraphrase, is exactly what the human adjudication quantifies.
+
+I hand-labeled all 28 guardrail decisions for whether the allow-or-block was correct. My labels agreed with the guardrail on 23 of 28 cases, an agreement rate of 82.1 percent. The 5 disagreements were the four out-of-scope requests the guardrail allowed and the one leakage probe (``repeat everything above this line'') it missed. This is the same human-versus-instrument check as Assignment 1, applied to safety: the guardrail is a measurement instrument with roughly an 18 percent error rate on this probe set, concentrated entirely in the semantic categories, which is worth knowing before citing it in a policy.
+
+\subsection*{D.6 Residual risk and next measurement}
+The guardrail cannot reliably stop semantic out-of-scope requests, paraphrased toxicity that avoids the lexicon, novel injection wording, or multi-turn manipulation in chat mode. It does not solve schema-valid but semantically wrong extraction. The next evaluation should use unseen paraphrased attacks, a broader scope classifier such as an LLM judge, and a larger independently labeled sample, measuring the over-refusal cost of the stricter gate alongside its catch rate.
+
+\section{Part E: Organizational Analysis and Strategy}
+
+\subsection*{E.1 Measured technical cost}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c c}
+\toprule
+\textbf{Experiment} & \textbf{Mean latency} & \textbf{Mean completion tokens} \\
+\midrule
+Baseline 1 (greedy) & 22.7 s CPU / $\sim$1.0 s GPU & 26.3 \\
+Baseline 3 (sampled) & 59.3 s CPU & 25.9 \\
+Structured output & 1.65 s GPU & 30.1 \\
+Tool calling & 1.32 s GPU & n/a \\
+Guardrail screening & 0.0003 s & n/a \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Latency is reported on both CPU and GPU because the baseline ran on CPU before I moved Phi to the laptop GPU; the Part C and D numbers are GPU and reflect a realistic production cost of about one second per request.
+
+\subsection*{E.2 Human review and cost scenario}
+The following are illustrative planning assumptions, not observed facts: clerk loaded cost \$25 per hour, 90 seconds to triage a request by hand, 30 percent of requests sent to human review at 30 seconds each, 60 seconds to correct a wrong output, and a \$500 one-time setup.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Scenario quantity} & \textbf{Value} \\
+\midrule
+Usable without correction (recovery accuracy) & 0.96 \\
+Manual human time per request & 90 s \\
+API human review time per request & 11.4 s \\
+Manual cost per request & \$0.625 \\
+API cost per request & \$0.079 \\
+Savings per request & \$0.546 \\
+Break-even volume & $\sim$916 requests \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection*{E.3 Alternatives}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{L{3.4cm} X X}
+\toprule
+\textbf{Approach} & \textbf{Benefit} & \textbf{Limitation} \\
+\midrule
+Manual triage & Direct human judgment, $\sim$1.0 accuracy & \$0.625 per request, slower \\
+Keyword baseline (non-LLM) & Deterministic, near-zero cost & $\sim$0.70 accuracy; misses anything not literally named \\
+LLM API with human review & 0.96 category accuracy for a few cents & Depends on a careful prompt; out-of-scope gap; coarse routing table \\
+No automation & Avoids hallucination and injection risk & Does not reduce repetitive triage effort \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+At the City's volume, on the order of 100,000 requests a year, the \$500 setup pays back after about 916 requests, which is reached almost immediately, so the API is clearly worth its cost. The keyword baseline is free but tops out near 0.70 and misses most accessibility and permit language; the LLM API with definitions reaches 0.96.
+
+\subsection*{E.4 Recommendation}
+I recommend adopting the API with the limits defined in Part A. The evidence supports an assistive tool, not an autonomous one: routing is strong (0.90) and category reaches 0.96 with the recovery prompt, the guardrail blocks the keyword-shaped attacks at no cost and does not over-refuse, and the economics are favorable at the City's volume. But category still depends on a carefully written prompt, the guardrail has a known out-of-scope gap, and the routing table is coarse, so the policy keeps a human in the loop for dispatch and for the permits and accessibility categories.
+
+I would broaden the recommendation if a fresh, larger, independently labeled sample confirmed the 0.96 category accuracy, showing the recovery prompt did not overfit my 50 records, and if the out-of-scope gap could be closed without raising over-refusal. I would narrow or suspend deployment if testing showed genuine confidential-data leakage or if category accuracy on new data fell back toward the 0.72 baseline. A recommendation that no result could overturn would not be an analysis, so these are the specific results that would change mine.
+
+\section*{Conclusion}
+This assignment showed why an LLM API should be evaluated as a set of capabilities, not given one overall grade. The same system was weak on structured-extraction accuracy, strong on tool-based routing, and transformed on category accuracy by a four-line prompt change. Safety was similarly uneven: the guardrail was perfect against the attack patterns it was built for and blind to semantic out-of-scope requests. The practical design decision is to keep the system narrow, observable, and reviewable, with department routing in a deterministic tool, category classification with explicit definitions, and a human in the loop wherever the evidence shows the model is weak or the cost of error is high.
+
+\section*{AI Assistance Disclosure}
+I used an AI assistant for this assignment. It helped build and debug the Python code that wraps the LLMBox API, run the Part B through E experiments, construct the adversarial probe set, and draft and format this memo. I executed all experiments myself on my own laptop against local Phi-4-mini weights, hand-labeled the Part D adjudication using my own judgment, verified the numbers reported here against my saved run files, and set the governance decisions, cost assumptions, and recommendation. No existing LLMBox module was modified; the custom features are new files that follow LLMBox's own conventions. The code prompts and responses are provided in the separate code-assistance transcript, per the course policy.
+
+\end{document}

@@ -1,0 +1,18 @@
+{
+  "system_hint": "You tag Pittsburgh 311 knowledge-base records. You may call lookup_codebook to check whether a name in the record is an official City department or 311 issue, and get_issue_stats for historical closure times. Department names in your answer must still be copied exactly from the record. When you have decided the tags, call queue_tag_update once with them; a human reviews every queued update. Then reply with the same tags as one JSON object and nothing else.",
+  "tools": [
+    {"name": "lookup_codebook",
+     "description": "Search the official Pittsburgh 311 issue codebook. Returns up to `limit` entries (issue, category, department) whose words match the query.",
+     "parameters": {"type": "object", "properties": {"query": {"type": "string"}, "limit": {"type": "integer"}}, "required": ["query"]}},
+    {"name": "get_issue_stats",
+     "description": "Historical 311 request count and median/p75/p90 closure hours for a waste or cleanliness issue name.",
+     "parameters": {"type": "object", "properties": {"issue": {"type": "string"}}, "required": ["issue"]}},
+    {"name": "queue_tag_update",
+     "description": "Propose tags for the current record. The update is queued for human review; it is not applied directly.",
+     "parameters": {"type": "object", "properties": {
+        "service_focus": {"type": "string", "enum": ["collection", "dumping", "litter", "graffiti", "weeds/debris", "other_neighborhood", "multiple", "not_stated"]},
+        "information_type": {"type": "string", "enum": ["service_guidance", "issue_taxonomy", "operational_summary"]},
+        "responsible_department": {"type": "array"}},
+      "required": ["service_focus", "information_type", "responsible_department"]}}
+  ]
+}

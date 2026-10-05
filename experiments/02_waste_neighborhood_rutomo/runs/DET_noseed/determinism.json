@@ -1,0 +1,6 @@
+{
+  "run": "DET_noseed",
+  "rows": 10,
+  "identical_across_repeats": 0,
+  "identical_rate": 0.0
+}

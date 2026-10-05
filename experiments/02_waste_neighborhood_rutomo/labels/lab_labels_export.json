@@ -1,0 +1,858 @@
+{
+  "schema": "a2-labels/1",
+  "exported_at": "2026-09-29T17:24:41.535Z",
+  "source": "311 NLX Lab label studio",
+  "complete": true,
+  "labels": [
+    {
+      "doc_id": "waste_a725ce3062ce3c1b6a",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_a5aaae1febcfcd052b",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_cf92533deb52e93fbf",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_a69ea9b61d492efd61",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_4a9dfdb427790e9476",
+      "service_focus": "dumping",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_a4bbb84106c347749e",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_67ce011ffe00c8be77",
+      "service_focus": "dumping",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f893dac288f58a1920",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_ad09d3b9564ca2e9b9",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_4ffcbbfac37ffdd501",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_b2c504b2cc23334b47",
+      "service_focus": "not_stated",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "311 Response Center"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c7ed8333b4df9f7a50",
+      "service_focus": "weeds/debris",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_4736ea18c6887fa1fc",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_442b9ebcc6bc400dda",
+      "service_focus": "other_neighborhood",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "3-1-1 Response Center"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_518268f4c0e22614e3",
+      "service_focus": "collection",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_baf80af0f8a7f7f280",
+      "service_focus": "other_neighborhood",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_b6cab5f076fcddd1f6",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_84c6bdad291e808a42",
+      "service_focus": "not_stated",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_7cc1f1e480688c7ac8",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d51d73f5c3cb870ce1",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f8be5b47c933c7dac3",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_cd615e0c3832449eb1",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e9dad55e8abd8878fd",
+      "service_focus": "graffiti",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_bc6256f003835dd89e",
+      "service_focus": "dumping",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e74f47dc8c6e116eb7",
+      "service_focus": "other_neighborhood",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "311"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_ff04348130ce1da6e5",
+      "service_focus": "collection",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DOMI - Traffic",
+        "DPW - Refuse",
+        "DPW - Street Maintenance",
+        "Innovation & Performance",
+        "OMI",
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_76647816a7ec106828",
+      "service_focus": "dumping",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "311",
+        "DPW - Refuse",
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_a0933e3a9dce2bc2c4",
+      "service_focus": "other_neighborhood",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_4bc08e8bb21dbea7a2",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_a245aac4cbfcdd6b9a",
+      "service_focus": "other_neighborhood",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DOMI - Streets",
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_34a43f7f697ca0d2ac",
+      "service_focus": "not_stated",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Forestry Division",
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_aabeea175b7568d6cf",
+      "service_focus": "dumping",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Permits"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_6b85caaea109ae70fd",
+      "service_focus": "collection",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Refuse",
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_11348a9ef3be0d37ec",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d4571248572fb7fd07",
+      "service_focus": "other_neighborhood",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_85c6cba41cf8fce545",
+      "service_focus": "dumping",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5438ffa915bd4260fa",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d0caa25f7369576fe6",
+      "service_focus": "other_neighborhood",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Mayor’s Office of Equal Protection"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c6c8b57a935eec90ea",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d16f1e4242bb6fc4b2",
+      "service_focus": "graffiti",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_913c19de5919e8554f",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_0a43b4cb32b1e16f07",
+      "service_focus": "litter",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Department of Public Works"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_9404e59225f8682238",
+      "service_focus": "not_stated",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c2bf3c4a08db907717",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_ead87507fbd8216b0d",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_b97c6a371586795f9b",
+      "service_focus": "weeds/debris",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f19c9ae736b99ceff5",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Department of Environmental Protection"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_ec998ffb5eaa1e077f",
+      "service_focus": "dumping",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Park Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_b39beaee9179244762",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5a6ab79fe6bb056b73",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_0230c94a9d80a75b1e",
+      "service_focus": "other_neighborhood",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_2634c44da17edfa6dc",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_143a17c7c2c2b85600",
+      "service_focus": "weeds/debris",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "311",
+        "ACHD - Housing",
+        "Animal Care & Control",
+        "City Planning",
+        "DPW - Park Maintenance",
+        "DPW - Refuse",
+        "DPW - Street Maintenance",
+        "Finance",
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_4245235d7065026500",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5ef17bbfecd9abbc9d",
+      "service_focus": "not_stated",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e05a22cea5d12599df",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_70d8504c59141b4a0c",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_8fb2ef6ac452c96fd5",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c95170dc7501009e9d",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_42b5f3326020ffa58b",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e3f4b8e1fc3d023b49",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_6a66d281be60177e38",
+      "service_focus": "collection",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Refuse",
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f22a08f2cb07585f47",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_9a28f4be3e2ceb8d17",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_789b59d55c51c8d733",
+      "service_focus": "litter",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Department of Public Works"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d0f7bad4d3195750c7",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e7aadfd1d934e61ac5",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_32718fd94618307245",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_86388fc7c80b2fdf7d",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e9b3a5347de886f038",
+      "service_focus": "dumping",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "ACHD - Housing",
+        "DOMI - Permits",
+        "DOMI - Traffic",
+        "DPW - Environmental Enforcement",
+        "DPW - Forestry Division",
+        "DPW - Park Maintenance",
+        "DPW - Refuse",
+        "DPW - Street Maintenance",
+        "Finance",
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5efd064b3b2d84a081",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_7de987bfb6e8417e2f",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_3e6d097320329e079f",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_11c07c15db7cf4edd6",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_9326ee214cb9f98fe2",
+      "service_focus": "other_neighborhood",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f2b7ffa0793cab0672",
+      "service_focus": "litter",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_af1415b72c7d41594f",
+      "service_focus": "not_stated",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "311"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_28400302e46abf44d5",
+      "service_focus": "other_neighborhood",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "ACHD - Housing",
+        "DOMI - Streets",
+        "DOMI - Structures",
+        "DPW - Street Maintenance",
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_3047ea31b1cd3bfe6c",
+      "service_focus": "litter",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d40c6e0394f5538663",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_b2fe5dd8a7c708b97d",
+      "service_focus": "other_neighborhood",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Disruptive Properties Appeals Board",
+        "Department of Public Safety"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c4208f718fa87431a3",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "DPW"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5c91e96b0a26435f36",
+      "service_focus": "graffiti",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_70cac653d09fe4eb0d",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f188a362bf68c5db46",
+      "service_focus": "collection",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "DPW - Refuse",
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_5df9d3d5b00c9cb06e",
+      "service_focus": "not_stated",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Street Maintenance"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_3866bc414d8081d138",
+      "service_focus": "graffiti",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_c763450ec042afff85",
+      "service_focus": "not_stated",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Enforcement"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_d2675c1087310fa333",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_0bc080382f030938c8",
+      "service_focus": "collection",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - Refuse"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_0d16dff904254ef8ee",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_92898c896d212ab168",
+      "service_focus": "dumping",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_e642e25e222548da67",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_0f74323919f63d548f",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_fb0d64979fe443a021",
+      "service_focus": "collection",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Services"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_f2b94c127458d8c4de",
+      "service_focus": "graffiti",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_7c4f9274e0b45b1a4c",
+      "service_focus": "multiple",
+      "information_type": "service_guidance",
+      "responsible_department": [
+        "Environmental Enforcement"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_7dbc9150ee3a5060d1",
+      "service_focus": "graffiti",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "Police - Zones 1-6"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_3dadf12d49c3266595",
+      "service_focus": "other_neighborhood",
+      "information_type": "operational_summary",
+      "responsible_department": [
+        "Permits, Licenses and Inspections"
+      ],
+      "notes": ""
+    },
+    {
+      "doc_id": "waste_153df0b39006cdaab3",
+      "service_focus": "graffiti",
+      "information_type": "issue_taxonomy",
+      "responsible_department": [
+        "DPW - 2nd Division"
+      ],
+      "notes": ""
+    }
+  ]
+}

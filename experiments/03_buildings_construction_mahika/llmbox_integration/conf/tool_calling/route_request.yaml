@@ -1,0 +1,14 @@
+enabled: true
+tool_choice: auto
+tools:
+  - name: route_request
+    description: Route a classified Pittsburgh 311 request to the responsible city department.
+    parameters:
+      type: object
+      properties:
+        issue_category:
+          type: string
+          enum: [building_maintenance, construction, permits, accessibility]
+        neighborhood:
+          type: string
+      required: [issue_category]

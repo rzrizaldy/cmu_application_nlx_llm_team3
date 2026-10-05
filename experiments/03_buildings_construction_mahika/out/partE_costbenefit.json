@@ -1,0 +1,41 @@
+{
+  "inputs_used": {
+    "usable_without_correction_rate": 0.96,
+    "api_latency_s_per_request": 1.04,
+    "assumptions": {
+      "clerk_hourly_usd": 25.0,
+      "manual_seconds_per_request": 90,
+      "review_seconds_per_flagged": 30,
+      "share_requiring_review": 0.3,
+      "correction_seconds": 60,
+      "keyword_baseline_accuracy": 0.7
+    }
+  },
+  "per_request_seconds": {
+    "manual": 90,
+    "api_human_review": 11.4,
+    "api_wall_clock_model": 1.04
+  },
+  "per_request_cost_usd": {
+    "manual": 0.625,
+    "api": 0.0792,
+    "saved": 0.5458
+  },
+  "alternatives": {
+    "manual_only": {
+      "accuracy": "~1.0 (human)",
+      "cost_per_req_usd": 0.625
+    },
+    "keyword_baseline": {
+      "accuracy": 0.7,
+      "cost_per_req_usd": 0.0,
+      "note": "near-zero compute; misses anything not literally named"
+    },
+    "llm_api": {
+      "accuracy": 0.96,
+      "cost_per_req_usd": 0.0792
+    }
+  },
+  "break_even_requests": 916,
+  "break_even_note": "At $0.5458 saved per request, the ~$500 setup pays back after ~916 requests."
+}

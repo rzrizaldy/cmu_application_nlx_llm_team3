@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From corpus to API · A1 → A2 learning lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header id="top">
+    <p class="eyebrow">95820 · independent practice space</p>
+    <h1>From corpus <span>to API</span></h1>
+    <p class="intro">Revisit Assignment 1, inspect what Assignment 2 added, then run a fresh local LLMBox request. Write your own interpretation as you go.</p>
+    <div class="header-actions"><a href="/a1" target="_blank" rel="noopener">Open the full A1 lab ↗</a><a href="#practice">Go to live model ↘</a></div>
+  </header>
+  <main>
+    <nav aria-label="Lab sections">
+      <a href="#a1">01 · Corpus</a><a href="#bridge">02 · Bridge</a><a href="#runs">03 · Evidence</a><a href="#practice">04 · Try again</a><a href="#cost">05 · Cost</a><a href="#reflect">06 · Reflect</a>
+    </nav>
+    <section id="a1" class="section">
+      <div class="section-head"><span class="index">01 / Assignment 1</span><h2>What entered the model?</h2><p>Reopen the earlier lab for the complete corpus and pipeline exercises. Use these checkpoints to trace the same Pittsburgh service tagging task into A2.</p></div>
+      <div class="step-grid">
+        <article class="step"><span>01</span><h3>Source → corpus</h3><p>Inspect the official guidance and historical table records, their provenance, and the privacy boundary.</p><a href="/a1" target="_blank" rel="noopener">Inspect in A1 lab ↗</a></article>
+        <article class="step"><span>02</span><h3>Corpus → label</h3><p>Open the A1 labeling exercise. Which fields require a judgment, and which require a verbatim span?</p><a href="/a1" target="_blank" rel="noopener">Inspect in A1 lab ↗</a></article>
+        <article class="step"><span>03</span><h3>Prediction → comparison</h3><p>Revisit the A1 parse, schema check, and human comparison. Record what each metric can and cannot establish.</p><a href="/a1" target="_blank" rel="noopener">Inspect in A1 lab ↗</a></article>
+      </div>
+    </section>
+    <section id="bridge" class="section">
+      <div class="section-head"><span class="index">02 / Assignment 2</span><h2>Follow one request.</h2><p>Select a stage to see the actual code path. The model-visible record is raw text plus table JSON; provenance metadata stays outside the prompt.</p></div>
+      <div class="trace-layout"><div id="trace-tabs" class="trace-tabs" role="tablist" aria-label="Request stages"></div><article class="trace-card"><p class="eyebrow" id="trace-file"></p><h3 id="trace-title"></h3><p id="trace-question"></p><pre id="trace-code"></pre></article></div>
+      <div class="comparison"><div><span>A1</span><p>Corpus construction, blind human reference, one baseline prediction, and comparison.</p></div><div><span>A2</span><p>API mode selection, measured batches, structured validation, tool loop, guardrail, retrieval, and organizational cost.</p></div></div>
+    </section>
+    <section id="runs" class="section">
+      <div class="section-head"><span class="index">03 / Measured evidence</span><h2>Runs are not scores.</h2><p>These counts come from local response files. Scored values appear only after the independent reference labels are imported.</p></div>
+      <div id="status" class="status" aria-live="polite">Reading local run state…</div>
+      <div id="run-grid" class="run-grid"></div>
+      <div id="safety-results"></div>
+      <div class="question"><strong>Before looking at scores:</strong> write your prediction for schema validity, exact match, and the hardest field. Then compare it with the measured table when available.</div>
+    </section>
+    <section id="practice" class="section">
+      <div class="section-head"><span class="index">04 / Live LLMBox</span><h2>Try it. Change one thing. Try again.</h2><p>This sends only your entered practice record to locally installed model weights. It does not change graded runs, labels, or the evaluation pool.</p></div>
+      <div class="practice-layout">
+        <form id="run-form" class="panel">
+          <label>Practice record<textarea id="record" maxlength="3000" required placeholder="Paste or write a practice Pittsburgh service document or table. Avoid graded evaluation records and private information."></textarea></label>
+          <div class="controls"><label>Model<select id="model"><option value="phi">Phi-4-mini</option><option value="gemma">Gemma-3-270M</option></select></label><label>Mode<select id="mode"><option value="generate">Generate</option><option value="structured">Structured</option><option value="tools">Tools (Phi only)</option><option value="guarded">Guarded structured</option></select></label></div>
+          <div class="controls"><label>Maximum new tokens<input id="tokens" type="number" min="16" max="256" value="128"></label><label>Sampling<select id="sampling"><option value="false">Greedy</option><option value="true">Sample</option></select></label></div>
+          <div class="controls"><label>Temperature<input id="temperature" type="number" min="0.01" max="2" step="0.01" value="1"></label><label>Top-p<input id="top-p" type="number" min="0.01" max="1" step="0.01" value="0.95"></label></div>
+          <button class="primary" type="submit" id="run-button">Run local model</button><p class="hint">First request loads the weights. Only one model run executes at a time. Keep a copy of any practice input you want to reuse; this lab does not save it.</p>
+        </form>
+        <div class="panel output-panel"><div class="output-heading"><h3>Response</h3><span id="run-state">Waiting for a request</span></div><pre id="output" aria-live="polite">The result will appear here.</pre><div id="measurements" class="measurements"></div><details id="trace-details" hidden><summary>Inspect tool calls or guard decision</summary><pre id="run-trace"></pre></details><div id="compare" class="compare"></div></div>
+      </div>
+    </section>
+    <section id="cost" class="section">
+      <div class="section-head"><span class="index">05 / Hypothetical cost sandbox</span><h2>At what volume might it pay off?</h2><p>Enter your own assumptions and real timing measurements when available. This calculator stays in the browser and does not write Part E evidence.</p></div>
+      <div class="practice-layout"><form id="cost-form" class="panel"><div class="controls"><label>Manual seconds per record<input id="manual-seconds" type="number" min="0.1" step="0.1" required></label><label>Review seconds per output<input id="review-seconds" type="number" min="0" step="0.1" required></label></div><div class="controls"><label>Usable without correction (%)<input id="usable-percent" type="number" min="0" max="100" step="1" required></label><label>Model seconds per record<input id="model-seconds" type="number" min="0" step="0.01" required></label></div><div class="controls"><label>Staff cost per hour ($)<input id="staff-cost" type="number" min="0" step="0.01" required></label><label>Compute cost per hour ($)<input id="compute-cost" type="number" min="0" step="0.01" required></label></div><div class="controls"><label>Setup hours<input id="setup-hours" type="number" min="0" step="0.1" required></label><label>Annual records<input id="annual-records" type="number" min="1" step="1" required></label></div><button class="primary" type="submit">Calculate hypothetical break-even</button></form><div class="panel"><h3>Calculation</h3><pre id="cost-output">Enter values to see the per-record saving and break-even volume.</pre><p class="hint">The real Part E model uses sourced assumptions and measured student timing. A positive number here is only a scenario, not an adoption recommendation.</p></div></div>
+    </section>
+    <section id="reflect" class="section">
+      <div class="section-head"><span class="index">06 / Your interpretation</span><h2>Check your understanding.</h2><p>Use your own words. These questions do not supply report text or an answer key.</p></div>
+      <div class="reflection-grid"><label>What changed between your two live runs?<textarea placeholder="My observation…"></textarea></label><label>Which output would need a human review before use, and why?<textarea placeholder="My rule and evidence…"></textarea></label><label>Which A1 data boundary matters most when A2 adds tools or retrieval?<textarea placeholder="My reasoning…"></textarea></label><label>What measurement would change your adoption decision?<textarea placeholder="My threshold and why…"></textarea></label></div>
+      <p class="hint">Reflection text remains in this browser tab only. Copy it into your own learning log if you want to keep it.</p>
+    </section>
+    <section id="review" class="section">
+      <div class="section-head"><span class="index">07 / Hypothetical exercise</span><h2>Practice the human review line.</h2><p>This is an invented training scenario, not a record of a past model run or AI assistance. Decide what a staff reviewer should do, then inspect the scenario log.</p></div>
+      <div class="practice-layout"><div class="panel"><p class="eyebrow">Scenario fixture</p><h3>A service tag is proposed</h3><p>A model output names a responsible department that does not appear in the service record. The structured fields otherwise parse successfully. The queued update has not been applied.</p><label>Your action<select id="review-action"><option value="">Choose an action</option><option value="approve">Approve without change</option><option value="correct">Correct against source and record the reason</option><option value="escalate">Escalate for another reviewer</option></select></label><button id="review-submit" type="button" class="primary">Record practice decision</button></div><div class="panel"><h3>Hypothetical interaction log</h3><pre id="review-log">No practice decision yet.</pre><p class="hint">The fixture is shown here only; it is not added to the assignment's AI-use appendix or graded evidence.</p></div></div>
+    </section>
+  </main>
+  <footer><span>Assignment 1 → Assignment 2 · local practice</span><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>

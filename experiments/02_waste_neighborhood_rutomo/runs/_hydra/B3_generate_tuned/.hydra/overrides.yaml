@@ -1,0 +1,11 @@
+- model=phi4_instruct
+- mode=batch
+- model.local_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+- batch.input_path=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/dev50_task.jsonl
+- batch.run_name=B3_generate_tuned
+- batch.runs_dir=/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+- batch.submode=generate
+- generation.do_sample=true
+- generation.temperature=0.2
+- generation.top_p=0.9
+- generation.max_new_tokens=256

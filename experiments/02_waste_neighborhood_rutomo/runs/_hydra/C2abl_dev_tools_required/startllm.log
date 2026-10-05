@@ -1,0 +1,219 @@
+[2026-09-25 00:34:59,875][__main__][INFO] - Resolved configuration:
+model:
+  name: phi4_instruct
+  source: local
+  model_id: microsoft/Phi-4-mini-instruct
+  local_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+  architecture: phi3
+  dtype: bfloat16
+  device: auto
+  trust_remote_code: false
+  supports_tool_calling: true
+  supports_structured_output: true
+  tool_calling_format: functools_prompt
+  chat_template_kwargs: {}
+  assistant_mask_strategy: verified_prefix
+  add_prefix: null
+  add_suffix: null
+  add_specialtokens: []
+mode:
+  name: batch
+data:
+  type: chat_log
+  path: ../chat_log
+  min_turns: 1
+  eval_split: 0.1
+  raw_path: null
+  original_path: null
+  text_columns: []
+  target_columns: []
+  label_maps: {}
+  instruction: ''
+  output_dir: null
+  train_fraction: null
+  split: null
+optimizer:
+  name: adamw
+  learning_rate: 2.0e-05
+  weight_decay: 0.0
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  momentum: 0.0
+generation:
+  max_new_tokens: 256
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 64
+  do_sample: false
+  repetition_penalty: 1.0
+tool_calling:
+  enabled: false
+  tool_choice: required
+  tools: []
+  tools_file: conf/tools/waste311_tools.json
+  max_rounds: 3
+  codebook_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment01/assignment1/support/data/311_issue_category_codebook.csv
+  issue_summary_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment01/assignment1/support/data/waste_issue_summary.csv
+  review_queue_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs/C2abl_dev_tools_required/review_queue.jsonl
+structured_output:
+  enabled: false
+  schema_path: null
+  strict: true
+  pydantic_model: null
+  max_retries: 2
+training:
+  enabled: false
+  method: lora
+  epochs: 3.0
+  batch_size: 2
+  grad_accum_steps: 8
+  warmup_ratio: 0.03
+  max_length: 1024
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  prefix_length: 30
+  adapters_dim: 64
+  bitfit_bias_params: []
+  freeze_modules: []
+  logging_steps: 10
+  save_steps: 100
+  eval_steps: 100
+  output_dir: ./finetuned
+  merge_adapter: false
+  token_budget: 1000000
+  report_metrics: true
+batch:
+  input_path: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/data/inputs/dev50_task.jsonl
+  submode: tools
+  run_name: C2abl_dev_tools_required
+  runs_dir: /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/assignment02/a2/runs
+  limit: 0
+  repeat: 1
+  apply_seed: true
+guardrail:
+  inner_submode: structured
+  prompt_submode: generate
+  injection_patterns:
+  - ignore (all |any )?(the )?(previous|prior|above|earlier) (instructions|rules|directions)
+  - disregard (all |any )?(the )?(previous|prior|above|earlier|your) (instructions|rules)
+  - (reveal|print|show|repeat|output) (me )?(your|the) (system )?(prompt|instructions)
+  - you are now\b
+  - 'new instructions?:'
+  - \bsystem prompt\b
+  - \bdeveloper mode\b
+  - do not (tag|classify|follow)
+  input_judge: none
+  scope_judge_prompt: 'You screen requests sent to the City of Pittsburgh 311 knowledge-base
+    tagging API. The API only tags 311 service records (service focus, information
+    type, responsible department) and looks up 311 issue codes and historical closure
+    times.
+
+    Request:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: IN_SCOPE if the request is that kind of work, OUT_OF_SCOPE
+    if it asks for anything else, HARMFUL if it asks for abusive, demeaning, unsafe
+    or privacy-violating content.'
+  toxicity: none
+  lexicon_path: null
+  toxicity_judge_prompt: 'Does the following text contain abusive, demeaning, threatening
+    or unsafe content about any person or group?
+
+    Text:
+
+    <<<
+
+    {text}
+
+    >>>
+
+    Answer with exactly one word: SAFE or UNSAFE.'
+  judge_max_new_tokens: 6
+  secret_markers: []
+  block_rules:
+  - injection_pattern
+  - scope_judge
+  - secret_leak
+  - pii_in_output
+  - toxicity_lexicon
+  - toxicity_judge
+  review_rules:
+  - ungrounded_department
+  - schema_invalid
+  - masked
+  refusal_message: This request cannot be completed by the 311 tagging API. It has
+    been logged, and a staff member can review it.
+  log_path: null
+retrieval:
+  pool_path: null
+  k: 3
+  inner_submode: structured
+prompt: null
+prompt_file: null
+username: null
+system_prompt: You are a helpful assistant.
+seed: 42
+output_dir: outputs
+metrics: null
+
+[2026-09-25 00:34:59,877][src.batch][INFO] - batch C2abl_dev_tools_required: 50 rows x 1 repeats, 0 already done, 50 to run
+[2026-09-25 00:35:02,785][src.generation][INFO] - Loading 'phi4_instruct' (source=local, /Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct) onto mps as bfloat16...
+[2026-09-25 00:35:30,098][src.batch][INFO] - [1/50] waste_0a43b4cb32b1e16f07  19.20s  1738+144 tok
+[2026-09-25 00:36:09,992][src.batch][INFO] - [2/50] waste_0f74323919f63d548f  39.89s  1798+356 tok
+[2026-09-25 00:36:32,196][src.batch][INFO] - [3/50] waste_11c07c15db7cf4edd6  22.20s  1706+184 tok
+[2026-09-25 00:36:46,050][src.batch][INFO] - [4/50] waste_3047ea31b1cd3bfe6c  13.80s  1754+96 tok
+[2026-09-25 00:36:59,467][src.batch][INFO] - [5/50] waste_34a43f7f697ca0d2ac  13.42s  1822+97 tok
+[2026-09-25 00:37:11,382][src.batch][INFO] - [6/50] waste_3866bc414d8081d138  11.91s  1793+83 tok
+[2026-09-25 00:37:27,641][src.batch][INFO] - [7/50] waste_3e6d097320329e079f  16.26s  1703+134 tok
+[2026-09-25 00:37:48,245][src.batch][INFO] - [8/50] waste_42b5f3326020ffa58b  20.60s  1720+180 tok
+[2026-09-25 00:38:10,093][src.batch][INFO] - [9/50] waste_4bc08e8bb21dbea7a2  21.85s  1708+192 tok
+[2026-09-25 00:38:21,170][src.batch][INFO] - [10/50] waste_5438ffa915bd4260fa  11.07s  1728+77 tok
+[2026-09-25 00:38:33,254][src.batch][INFO] - [11/50] waste_5a6ab79fe6bb056b73  12.08s  1729+89 tok
+[2026-09-25 00:38:44,851][src.batch][INFO] - [12/50] waste_5c91e96b0a26435f36  11.60s  1789+82 tok
+[2026-09-25 00:39:05,060][src.batch][INFO] - [13/50] waste_5efd064b3b2d84a081  20.21s  1813+168 tok
+[2026-09-25 00:39:16,242][src.batch][INFO] - [14/50] waste_70d8504c59141b4a0c  11.18s  1734+77 tok
+[2026-09-25 00:39:30,427][src.batch][INFO] - [15/50] waste_76647816a7ec106828  14.18s  1820+105 tok
+[2026-09-25 00:39:46,726][src.batch][INFO] - [16/50] waste_7dbc9150ee3a5060d1  16.30s  1731+82 tok
+[2026-09-25 00:40:13,467][src.batch][INFO] - [17/50] waste_84c6bdad291e808a42  26.74s  1754+184 tok
+[2026-09-25 00:40:31,201][src.batch][INFO] - [18/50] waste_85c6cba41cf8fce545  17.73s  1893+119 tok
+[2026-09-25 00:40:56,795][src.batch][INFO] - [19/50] waste_86388fc7c80b2fdf7d  25.59s  1866+176 tok
+[2026-09-25 00:41:09,557][src.batch][INFO] - [20/50] waste_8fb2ef6ac452c96fd5  12.76s  1732+77 tok
+[2026-09-25 00:41:31,749][src.batch][INFO] - [21/50] waste_913c19de5919e8554f  22.19s  1703+178 tok
+[2026-09-25 00:41:44,579][src.batch][INFO] - [22/50] waste_9326ee214cb9f98fe2  12.83s  1740+85 tok
+[2026-09-25 00:42:06,162][src.batch][INFO] - [23/50] waste_9404e59225f8682238  21.58s  1708+172 tok
+[2026-09-25 00:42:25,516][src.batch][INFO] - [24/50] waste_9a28f4be3e2ceb8d17  19.35s  1681+138 tok
+[2026-09-25 00:42:38,926][src.batch][INFO] - [25/50] waste_a0933e3a9dce2bc2c4  13.41s  1745+83 tok
+[2026-09-25 00:42:54,026][src.batch][INFO] - [26/50] waste_a245aac4cbfcdd6b9a  15.10s  1816+97 tok
+[2026-09-25 00:43:09,944][src.batch][INFO] - [27/50] waste_a5aaae1febcfcd052b  15.91s  1917+113 tok
+[2026-09-25 00:43:29,069][src.batch][INFO] - [28/50] waste_a69ea9b61d492efd61  19.12s  1718+152 tok
+[2026-09-25 00:43:40,822][src.batch][INFO] - [29/50] waste_a725ce3062ce3c1b6a  11.75s  1730+77 tok
+[2026-09-25 00:43:51,883][src.batch][INFO] - [30/50] waste_af1415b72c7d41594f  11.06s  1776+69 tok
+[2026-09-25 00:44:12,905][src.batch][INFO] - [31/50] waste_b2c504b2cc23334b47  21.02s  1700+172 tok
+[2026-09-25 00:44:29,864][src.batch][INFO] - [32/50] waste_b39beaee9179244762  16.96s  1805+128 tok
+[2026-09-25 00:44:40,803][src.batch][INFO] - [33/50] waste_b6cab5f076fcddd1f6  10.94s  1701+70 tok
+[2026-09-25 00:44:53,084][src.batch][INFO] - [34/50] waste_b97c6a371586795f9b  12.28s  1731+83 tok
+[2026-09-25 00:45:05,748][src.batch][INFO] - [35/50] waste_baf80af0f8a7f7f280  12.66s  1727+87 tok
+[2026-09-25 00:45:19,555][src.batch][INFO] - [36/50] waste_bc6256f003835dd89e  13.80s  1816+96 tok
+[2026-09-25 00:45:36,555][src.batch][INFO] - [37/50] waste_c4208f718fa87431a3  17.00s  1923+121 tok
+[2026-09-25 00:45:50,018][src.batch][INFO] - [38/50] waste_c95170dc7501009e9d  13.46s  1778+92 tok
+[2026-09-25 00:46:07,547][src.batch][INFO] - [39/50] waste_cf92533deb52e93fbf  17.53s  1670+136 tok
+[2026-09-25 00:46:22,830][src.batch][INFO] - [40/50] waste_d0caa25f7369576fe6  15.28s  1814+110 tok
+[2026-09-25 00:46:35,677][src.batch][INFO] - [41/50] waste_d40c6e0394f5538663  12.84s  1718+89 tok
+[2026-09-25 00:46:51,496][src.batch][INFO] - [42/50] waste_d51d73f5c3cb870ce1  15.82s  1805+117 tok
+[2026-09-25 00:47:06,481][src.batch][INFO] - [43/50] waste_e7aadfd1d934e61ac5  14.98s  1779+109 tok
+[2026-09-25 00:47:31,172][src.batch][INFO] - [44/50] waste_e9b3a5347de886f038  24.69s  1977+199 tok
+[2026-09-25 00:47:43,485][src.batch][INFO] - [45/50] waste_e9dad55e8abd8878fd  12.31s  1799+82 tok
+[2026-09-25 00:47:54,290][src.batch][INFO] - [46/50] waste_ead87507fbd8216b0d  10.80s  1746+64 tok
+[2026-09-25 00:48:06,498][src.batch][INFO] - [47/50] waste_ec998ffb5eaa1e077f  12.21s  1795+79 tok
+[2026-09-25 00:48:18,243][src.batch][INFO] - [48/50] waste_f2b7ffa0793cab0672  11.74s  1722+77 tok
+[2026-09-25 00:48:30,467][src.batch][INFO] - [49/50] waste_f2b94c127458d8c4de  12.22s  1733+82 tok
+[2026-09-25 00:48:46,099][src.batch][INFO] - [50/50] waste_fb0d64979fe443a021  15.63s  1796+114 tok
+[2026-09-25 00:48:46,127][__main__][INFO] - Using a local model only. (model source: local, model_id: microsoft/Phi-4-mini-instruct)

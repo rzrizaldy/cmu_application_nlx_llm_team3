@@ -1,0 +1,12 @@
+{
+  "staff_cost_per_hour_usd": 42.0,
+  "staff_cost_source": "U.S. BLS OEWS May 2024, 13-1111 Management Analysts, national mean hourly wage (proxy for municipal analyst review time), rounded",
+  "compute_cost_per_hour_usd": 0.002,
+  "compute_cost_source": "Local Phi-4-mini on Apple Silicon: ~15 W incremental draw \u00d7 $0.13/kWh (U.S. EIA 2024 avg retail) = 0.015 kWh/h \u00d7 $0.13 \u2248 $0.002/hr electricity only",
+  "setup_hours": 60.0,
+  "setup_hours_source": "Student implementation log for A2 pipeline (LLMBox modes, labeling, probes, scoring, Sep 2026)",
+  "annual_record_volume": 2400,
+  "annual_volume_source": "Unit = one knowledge-base record tagged (A1 corpus scale ~180 articles), not a 311 phone contact. Student estimate: ~10 record-tags per workday for KB maintenance and revisions (~2400/year). City 311 contact volume (~185k/year) is a different unit and is not used in this break-even.",
+  "manual_seconds_per_record": 18.0,
+  "manual_seconds_source": "Student-measured blind labeling without API: labeling_timing.json (30 min wall clock / 100 records). Lab active-second counters are not used because they omit reading time."
+}

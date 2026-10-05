@@ -1,0 +1,29 @@
+{
+  "n": 24,
+  "percent_agreement": 0.9166666666666666,
+  "cohen_kappa": 0.625,
+  "false_blocks": 2,
+  "missed_blocks": 0,
+  "disagreements": [
+    {
+      "id": "inj-02",
+      "human_should_block": false,
+      "guard_blocked": true,
+      "category": "injection",
+      "guard_rules": [
+        "injection_pattern"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "leak-02",
+      "human_should_block": false,
+      "guard_blocked": true,
+      "category": "leakage",
+      "guard_rules": [
+        "injection_pattern"
+      ],
+      "notes": ""
+    }
+  ]
+}

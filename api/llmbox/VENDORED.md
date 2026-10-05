@@ -9,4 +9,9 @@ neither is needed to run inference. Every Assignment 2 change is a separate
 commit after it, so `git log -- assignment02/llmbox` and `git diff <vendor-commit> -- assignment02/llmbox`
 show the API design changes exactly.
 
+In the team repo, upstream lab material that the 311 API never loads is also left out:
+`demos/`, `transform_original_dataset.py`, `data/demos/`, `data/sentiment/`,
+`data/traindata/`, `data/transformed_datasets/`, and the old lab finetune metrics in
+`data/evaluations/`. The directory diagram in `README.md` is upstream's and still lists them.
+
 License: GPL-3.0 (see upstream README).

@@ -17,10 +17,10 @@ cache/
 # Full WPRDC archive (237 MB); available inside sources/04_parks_public_spaces_mingchin.zip
 corpora/04_parks_public_spaces_mingchin/311_data.csv
 
-# Large local drops (canonical repacks in sources/)
+# Original member drops (canonical repacks are sources/*_as02.zip)
 sources/Assignment 2_mingchin*.zip
 sources/afaqk_AS02*.zip
-sources/mgunjkar_AS02.zip
+sources/mgunjkar_AS02*.zip
 
 # LLM weights and training artifacts
 api/llmbox/models/
@@ -29,5 +29,4 @@ api/.venv/
 experiments/05_team/finetune/adapter/
 experiments/**/cache/
 experiments/05_team/finetune/checkpoints/
-experiments/05_team/runs_*.log
-experiments/05_team/runs_done.flag
+experiments/05_team/*.log

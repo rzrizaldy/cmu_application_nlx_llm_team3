@@ -237,7 +237,7 @@ def main() -> int:
     runner = PhiRunner(model_path, args.adapter)
 
     eval_rows = load_split(args.split, args.limit)
-    out_dir = (RUNS if args.split == "eval" else RUNS.parent / "runs_dev") / args.run
+    out_dir = (RUNS if args.split == "eval" else RUNS / "dev") / args.run
     out_dir.mkdir(parents=True, exist_ok=True)
     results = []
     for item in eval_rows:

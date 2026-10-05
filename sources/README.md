@@ -11,4 +11,4 @@
 | `03_buildings_construction_mahika_as02.zip` | A2 — Mahika |
 | `04_parks_public_spaces_mingchin_as02.zip` | A2 — Mingchin (code only) |
 
-Large local drops (`Assignment 2_mingchin*.zip`, etc.) stay gitignored; use the repacked `*_as02.zip` files above.
+The `*_as02.zip` files are repacks of the members' original drops with `.venv`, `__pycache__`, and `__MACOSX` removed; every remaining file matches the original by CRC. Original drops are not kept in the repo.

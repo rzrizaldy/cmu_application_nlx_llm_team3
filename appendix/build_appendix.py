@@ -91,7 +91,7 @@ def metrics_exports() -> None:
         (out / "04_parks_public_spaces_mingchin_PENDING.md").unlink(missing_ok=True)
     else:
         (out / "04_parks_public_spaces_mingchin_PENDING.md").write_text(
-            "Mingchin's package has code but no metrics JSON; request his evaluation outputs.\n"
+            "Mingchin's package has code but no metrics JSON; request her evaluation outputs.\n"
         )
 
 

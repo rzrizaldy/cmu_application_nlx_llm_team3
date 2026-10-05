@@ -1,0 +1,170 @@
+{
+  "Rodent control": {
+    "request_type_id": "368",
+    "issue": "Rodent control",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Tree Fallen Across Sidewalk": {
+    "request_type_id": "342",
+    "issue": "Tree Fallen Across Sidewalk",
+    "category": "Tree Issues",
+    "department": "DPW - Street Maintenance"
+  },
+  "Dead Animal": {
+    "request_type_id": "364",
+    "issue": "Dead Animal",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Pruning (city tree)": {
+    "request_type_id": "520",
+    "issue": "Pruning (city tree)",
+    "category": "Tree Issues",
+    "department": "DPW - Forestry Division"
+  },
+  "Stump Grind/Removal": {
+    "request_type_id": "35243",
+    "issue": "Stump Grind/Removal",
+    "category": "Tree Issues",
+    "department": "DPW - Forestry Division"
+  },
+  "Off Leash Exercise Area": {
+    "request_type_id": "38257",
+    "issue": "Off Leash Exercise Area",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Court, Basketball or Tennis": {
+    "request_type_id": "426",
+    "issue": "Court, Basketball or Tennis",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Planting": {
+    "request_type_id": "519",
+    "issue": "Planting",
+    "category": "Tree Issues",
+    "department": "DPW - Forestry Division"
+  },
+  "Check Conditions": {
+    "request_type_id": "363",
+    "issue": "Check Conditions",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Litter": {
+    "request_type_id": "428",
+    "issue": "Litter",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "City Steps, Need Cleared": {
+    "request_type_id": "822",
+    "issue": "City Steps, Need Cleared",
+    "category": "City Facilities and Infrastructure",
+    "department": "DPW - Street Maintenance"
+  },
+  "Shelters": {
+    "request_type_id": "40181",
+    "issue": "Shelters",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Loose Dog(s)": {
+    "request_type_id": "10220",
+    "issue": "Loose Dog(s)",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Water/Drinking Fountains": {
+    "request_type_id": "827",
+    "issue": "Water/Drinking Fountains",
+    "category": "City Facilities and Infrastructure",
+    "department": "DPW - Facilities"
+  },
+  "Parks Trails": {
+    "request_type_id": "44921",
+    "issue": "Parks Trails",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Tree Removal": {
+    "request_type_id": "345",
+    "issue": "Tree Removal",
+    "category": "Tree Issues",
+    "department": "DPW - Forestry Division"
+  },
+  "Dead tree (Public property)": {
+    "request_type_id": "518",
+    "issue": "Dead tree (Public property)",
+    "category": "Tree Issues",
+    "department": "DPW - Forestry Division"
+  },
+  "Lights": {
+    "request_type_id": "27441",
+    "issue": "Lights",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Tree Fallen Across Road": {
+    "request_type_id": "341",
+    "issue": "Tree Fallen Across Road",
+    "category": "Tree Issues",
+    "department": "DPW - Street Maintenance"
+  },
+  "Dog License": {
+    "request_type_id": "365",
+    "issue": "Dog License",
+    "category": "Animal Issues",
+    "department": "Finance"
+  },
+  "City Facility": {
+    "request_type_id": "375",
+    "issue": "City Facility",
+    "category": "City Facilities and Infrastructure",
+    "department": "DPW - Facilities"
+  },
+  "Other (please describe)": {
+    "request_type_id": "367",
+    "issue": "Other (please describe)",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Playground": {
+    "request_type_id": "432",
+    "issue": "Playground",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Animal Waste": {
+    "request_type_id": "361",
+    "issue": "Animal Waste",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  },
+  "Fence": {
+    "request_type_id": "378",
+    "issue": "Fence",
+    "category": "City Facilities and Infrastructure",
+    "department": "DPW - Construction Division"
+  },
+  "Program": {
+    "request_type_id": "537",
+    "issue": "Program",
+    "category": "Parks Issues",
+    "department": "Parks & Recs-Programs"
+  },
+  "Overgrowth": {
+    "request_type_id": "480",
+    "issue": "Overgrowth",
+    "category": "Parks Issues",
+    "department": "DPW - Park Maintenance"
+  },
+  "Barking Dog": {
+    "request_type_id": "272",
+    "issue": "Barking Dog",
+    "category": "Animal Issues",
+    "department": "Animal Care & Control"
+  }
+}

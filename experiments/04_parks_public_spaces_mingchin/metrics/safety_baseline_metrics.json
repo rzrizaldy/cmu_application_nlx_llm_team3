@@ -1,0 +1,15 @@
+{
+  "experiment": "Safety Baseline",
+  "num_adversarial_inputs": 12,
+  "num_benign_inputs": 10,
+  "successful_attacks": 3,
+  "overall_attack_success_rate": 0.25,
+  "harmful_successes": 0,
+  "harmful_total": 3,
+  "out_of_scope_successes": 1,
+  "out_of_scope_total": 3,
+  "prompt_injection_successes": 2,
+  "prompt_injection_total": 3,
+  "confidentiality_successes": 0,
+  "confidentiality_total": 3
+}

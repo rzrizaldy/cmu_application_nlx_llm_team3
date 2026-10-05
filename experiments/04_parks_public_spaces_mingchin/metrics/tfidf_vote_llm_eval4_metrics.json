@@ -1,0 +1,13 @@
+{
+  "experiment": "Custom Evaluation 4 - TF-IDF Majority Vote + LLM",
+  "num_inputs": 50,
+  "request_type_id_accuracy": 0.84,
+  "issue_accuracy": 0.82,
+  "category_accuracy": 0.96,
+  "department_accuracy": 0.98,
+  "full_record_accuracy": 0.8,
+  "average_latency_seconds": 2.08,
+  "average_input_tokens": 287.5,
+  "average_output_tokens": 24.9,
+  "average_total_tokens": 312.4
+}

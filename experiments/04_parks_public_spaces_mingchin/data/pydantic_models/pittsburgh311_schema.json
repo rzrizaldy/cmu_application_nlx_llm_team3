@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "request_type_id": {
+      "title": "Request Type Id",
+      "type": "string"
+    },
+    "issue": {
+      "title": "Issue",
+      "type": "string"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string"
+    },
+    "department": {
+      "title": "Department",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_type_id",
+    "issue",
+    "category",
+    "department"
+  ],
+  "title": "Pittsburgh311Response",
+  "type": "object"
+}

@@ -51,12 +51,13 @@ def dev_eval_datasets() -> None:
         (eval_dir / "01_streets_mobility_afaq_eval.jsonl").write_text(
             "".join(json.dumps(x, ensure_ascii=False) + "\n" for x in ev)
         )
-    pending_dev = dev_dir / "04_parks_public_spaces_mingchin_PENDING.md"
-    pending_eval = eval_dir / "04_parks_public_spaces_mingchin_PENDING.md"
-    if not (dev_dir / "04_parks_public_spaces_mingchin_dev.jsonl").exists():
-        pending_dev.write_text("Awaiting Mingchin development_dataset.jsonl from teammate.\n")
-    if not (eval_dir / "04_parks_public_spaces_mingchin_eval.jsonl").exists():
-        pending_eval.write_text("Awaiting Mingchin evaluation_dataset.jsonl from teammate.\n")
+    mingchin = EXP / "04_parks_public_spaces_mingchin" / "data" / "pittsburgh311" / "dataset_splits"
+    if (mingchin / "development_dataset.jsonl").exists():
+        shutil.copy2(mingchin / "development_dataset.jsonl", dev_dir / "04_parks_public_spaces_mingchin_dev.jsonl")
+    if (mingchin / "evaluation_50_text_inputs.jsonl").exists():
+        shutil.copy2(mingchin / "evaluation_50_text_inputs.jsonl", eval_dir / "04_parks_public_spaces_mingchin_eval.jsonl")
+    for d in (dev_dir, eval_dir):
+        (d / "04_parks_public_spaces_mingchin_PENDING.md").unlink(missing_ok=True)
 
 
 def metrics_exports() -> None:
@@ -84,7 +85,11 @@ def metrics_exports() -> None:
         (out / "01_streets_mobility_afaq_PENDING.md").write_text(
             "Afaq's package has code and data but no metrics JSON; request his results/ folder.\n"
         )
-    if not any(out.glob("04_*.json")):
+    for p in sorted((EXP / "04_parks_public_spaces_mingchin" / "metrics").glob("*_metrics.json")):
+        shutil.copy2(p, out / f"04_parks_public_spaces_mingchin_{p.name}")
+    if any(out.glob("04_*.json")):
+        (out / "04_parks_public_spaces_mingchin_PENDING.md").unlink(missing_ok=True)
+    else:
         (out / "04_parks_public_spaces_mingchin_PENDING.md").write_text(
             "Mingchin's package has code but no metrics JSON; request his evaluation outputs.\n"
         )

@@ -1,0 +1,17 @@
+{
+  "experiment": "Guardrail Evaluation",
+  "num_adversarial_inputs": 12,
+  "num_benign_inputs": 10,
+  "adversarial_blocked": 11,
+  "overall_catch_rate": 0.917,
+  "harmful_catch_rate": 1.0,
+  "out_of_scope_catch_rate": 0.667,
+  "prompt_injection_catch_rate": 1.0,
+  "confidentiality_catch_rate": 1.0,
+  "benign_incorrectly_blocked": 0,
+  "over_refusal_rate": 0.0,
+  "added_llm_tokens": 0,
+  "added_latency_seconds": -0.000152,
+  "human_adjudication_sample_size": 12,
+  "human_guardrail_agreement_rate": 0.917
+}

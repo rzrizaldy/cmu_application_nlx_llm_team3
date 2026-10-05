@@ -41,7 +41,7 @@ On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints 
 | [experiments/](experiments/) | Each member's Assignment 2 work and our `05_team` runs |
 | [api/](api/) | Rutomo's LLMBox fork (M0–M5) and our `team311` routing layer |
 | [appendix/](appendix/) | Canvas datasets, metrics, and API ZIP, built by `appendix/build_appendix.py` |
-| [memo/](memo/) | Our Assignment 1 and Assignment 2 memos |
+| [memo/](memo/) | Our Assignment 1 and Assignment 2 memos, and [member_summaries.md](memo/member_summaries.md), which summarizes all eight |
 | [brief/](brief/) | The team brief and the appendix requirements |
 
 ## Status
@@ -61,13 +61,14 @@ All four Assignment 2 packages are in.
 | Team API (`api/team311`, `route_complaint`) | Done |
 | DEV/EVAL split with codebook gold labels and leakage check | Done (534 / 50, no overlap) |
 | T0–T3 on 50 EVAL inputs | Done; T2 and T3 route 82% correctly |
-| T4 LoRA finetune | Run, but under-trained: right issue 56% of the time, right department never, no clarification questions |
-| Canvas appendix (datasets, metrics, chatlogs, API ZIP) | Done; rebuild after any rerun |
+| T4 LoRA finetune | First run (149 rows, 1 epoch) is committed. It is under-trained: right issue 56% of the time, right department never, and no clarification questions. The retrain is set up but not run yet |
+| Member memo summaries | Done ([memo/member_summaries.md](memo/member_summaries.md)) |
+| Canvas appendix (datasets, metrics, chatlogs, API ZIP) | Done for the first T4 run; rebuild after the retrain |
 | Final memo | Not started |
 
 What we still need to do:
 
-1. Retrain T4 on more DEV rows (about 300, 2 epochs). Its training answers should include the knowledge card's clarification question. Then rerun T4 and rebuild the appendix (about 40 minutes).
+1. Run the T4 retrain. `finetune_lora.py` now defaults to 80 DEV rows per subtopic (269 rows, since waste has only 29) and 2 epochs. Training answers now include the gold issue's knowledge-card clarification question and the first two required details. It needs about 12 GB of GPU memory, so close other large apps first; with them open it stalls at step 0. After training, rerun T4, `build_chatlogs.py`, and `appendix/build_appendix.py` (about 40 minutes in total).
 2. Write the final memo. It should report T0–T4 with their confidence intervals, the guardrail probe results, and the historical resolution baselines, within the evaluation boundary below.
 3. Look at where T2 fails. On waste items it routes 12 of 12 correctly, but those inputs are codebook rows ("Resident reports: <issue>."), and the row names the issue. On Afaq's free-text resident complaints it routes 8 of 13 correctly (62%), and streets issue accuracy is only 31%. Real complaints are the case that matters, so the memo should report this split. In 28% of items T2 also fell back to the retrieval vote's issue.
 

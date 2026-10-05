@@ -3,7 +3,9 @@
 
 Training conversations use the same system and user prompt as the T0 run, so
 T4 (adapter, T0 prompt) is a direct comparison against T0. Only DEV rows are
-used; loss is computed on the assistant turn only.
+used; loss is computed on the assistant turn only. The target's
+missing_information and clarification_question come from the gold issue's
+knowledge card, which the team wrote per category, so they are not WPRDC labels.
 """
 from __future__ import annotations
 
@@ -17,6 +19,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO / "api"))
+from team311.knowledge import find_card, load_knowledge  # noqa: E402
 from team311.pipeline import SYSTEM, t0_prompt  # noqa: E402
 
 DATA = HERE / "data"
@@ -43,15 +46,17 @@ def sample_dev(per_subtopic: int) -> list[dict]:
 def build_training_jsonl(per_subtopic: int) -> Path:
     OUT.mkdir(parents=True, exist_ok=True)
     train_path = OUT / "train_conversations.jsonl"
+    index = load_knowledge()
     with train_path.open("w") as f:
         for r in sample_dev(per_subtopic):
+            card = find_card(index, r["gold"]["issue"]) or {}
             assistant = json.dumps({
                 "domain": r["gold"]["domain"],
                 "category": r["gold"]["category"],
                 "issue": r["gold"]["issue"],
                 "department": r["gold"]["department"],
-                "missing_information": [],
-                "clarification_question": None,
+                "missing_information": (card.get("required_information") or [])[:2],
+                "clarification_question": card.get("clarification_question"),
                 "confidence": 0.9,
                 "abstain": False,
                 "historical_resolution_range": None,
@@ -69,14 +74,14 @@ def build_training_jsonl(per_subtopic: int) -> Path:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--per-subtopic", type=int, default=40)
-    ap.add_argument("--epochs", type=float, default=1.0)
+    ap.add_argument("--per-subtopic", type=int, default=80)
+    ap.add_argument("--epochs", type=float, default=2.0)
     args = ap.parse_args()
 
     import torch
     from peft import LoraConfig, get_peft_model
     from torch.utils.data import Dataset as TorchDataset
-    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments
+    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainerCallback, TrainingArguments
 
     torch.manual_seed(SEED)
     train_path = build_training_jsonl(args.per_subtopic)
@@ -125,7 +130,13 @@ def main() -> None:
         remove_unused_columns=False,
         seed=SEED,
     )
-    trainer = Trainer(model=model, args=targs, train_dataset=ChatDS())
+    class FreeMPSCache(TrainerCallback):
+        # Variable-length batches fragment the MPS cache; without this, 24 GB runs out mid-epoch.
+        def on_step_end(self, args, state, control, **kwargs):
+            if torch.backends.mps.is_available():
+                torch.mps.empty_cache()
+
+    trainer = Trainer(model=model, args=targs, train_dataset=ChatDS(), callbacks=[FreeMPSCache()])
     result = trainer.train()
     model.save_pretrained(adapter_dir)
     tokenizer.save_pretrained(adapter_dir)

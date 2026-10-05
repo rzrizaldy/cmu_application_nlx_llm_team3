@@ -14,6 +14,8 @@ Scripts that load Phi look there by default:
 - [corpora/02_waste_neighborhood_rutomo/extraction.py](../corpora/02_waste_neighborhood_rutomo/extraction.py) uses it when `PHI_MODEL_PATH` is unset.
 - [api/team311/model.py](../api/team311/model.py) (`PhiRunner`) runs every team experiment, T0 to T4. It uses MPS and bf16, greedy decoding, no repetition penalty, and at most 320 new tokens. T4 loads the LoRA adapter from `experiments/05_team/finetune/adapter` on top of the same weights.
 
+Inference fits comfortably on a 24 GB machine. LoRA training does not always: it needs about 12 GB of GPU memory on top of everything else that is open, so close browsers and other large apps before running `experiments/05_team/finetune_lora.py`.
+
 A repetition penalty breaks this task. It also penalizes prompt tokens, and the ticket has to copy category and issue names from the prompt verbatim. In our first full run with a penalty of 1.15, the finetuned model returned an empty category and issue for every item.
 
 If the weights are elsewhere, copy [.env.example](../.env.example) to `.env` (gitignored) or export the path:

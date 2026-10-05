@@ -5,7 +5,7 @@
 | `make_split.py` | Builds `data/dev.jsonl` (534) and `data/eval.jsonl` (50), stratified by member corpus, seed 952 |
 | `leakage_check.py` | Fails if any EVAL item's id or text is in the knowledge base or the DEV neighbors |
 | `run_team.py` | Runs one experiment (`T0_generate`, `T1_structured_rag`, `T2_tools`, `T3_guarded`, `T4_finetuned`) through `api/team311` `Router.route_complaint` and scores it |
-| `finetune_lora.py` | LoRA-finetunes Phi-4-mini on DEV with the T0 prompt; adapter goes to `finetune/adapter/` (gitignored) |
+| `finetune_lora.py` | LoRA-finetunes Phi-4-mini on DEV with the T0 prompt (r 8, alpha 16, attention projections). Targets take missing information and the clarification question from the gold issue's knowledge card. The adapter goes to `finetune/adapter/` (gitignored), and `finetune/train_metrics.json` records the run |
 | `build_chatlogs.py` | Turns the T4 responses into LLMBox chat logs in `chatlogs/` |
 | `run_all.sh` | Runs T0 to T3, finetune, T4, chatlogs, and the appendix build in order |
 
@@ -31,7 +31,9 @@ Each `metrics.json` reports issue, department, routed-correctly (category and de
 
 T0 never gets the department right because the prompt lists categories but no department names, and nothing grounds the model's guess ("Public Works") to a codebook department. T2 fell back to the retrieval vote's issue for 28% of items. None of the EVAL inputs is adversarial, so T3 matches T2 on EVAL; its guardrail blocks 100%, 86%, and 42% of the adversarial probes from Mahika, Rutomo, and Mingchin, and passes 100%, 94%, and 100% of their benign probes.
 
-T4 learned the issue and category vocabulary (domain 0.72 against T0's 0.60), but one epoch on 149 DEV rows did not teach it the department strings, and its training targets always had empty `missing_information`, so it never asks a clarification question.
+This T4 row comes from our first finetune: 40 DEV rows per subtopic (149 rows), 1 epoch, train loss 0.41. It learned the issue and category vocabulary (domain 0.72 against T0's 0.60). But one epoch did not teach it the department strings, so it falls back to generic names such as "Permits" or "Parks and Recreation". Its training targets always had empty `missing_information`, so it never asks a clarification question.
+
+The retrain is set up but has not run yet. It uses 80 rows per subtopic (269 rows), 2 epochs, and targets that carry the knowledge card's clarification question and first two required details. 220 of the 269 rows have a card; the rest keep empty values. On our 24 GB M4, training needs about 12 GB of GPU memory, so close other large apps first. With them open, one attempt ran out of memory at step 45 of 136 and two stalled at step 0. The script now frees the MPS cache after every step.
 
 ## Outputs
 

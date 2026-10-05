@@ -1,5 +1,7 @@
 # Memos
 
+[member_summaries.md](member_summaries.md) summarizes all eight memos in one place: what each of us built and found, and what it gives the team project.
+
 | File | Assignment |
 |---|---|
 | `01_streets_mobility_afaq.pdf` | A1 — Afaq |

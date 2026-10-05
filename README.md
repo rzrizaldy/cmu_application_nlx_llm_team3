@@ -33,6 +33,8 @@ We run the API on Phi-4-mini locally and compare five designs on the same 50 hel
 
 On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints to the right category and department (95% CI 70–92%), against 0% for the prompt-only baseline, and every ticket it returns is schema-valid. Our LoRA-finetuned model (T4) routes 50% correctly with the same short prompt as the baseline and no retrieval, and it is the fastest design. It is strong on parks and buildings but weak on waste, which had few training rows, and on free-text streets complaints. Full results are in [experiments/05_team/README.md](experiments/05_team/README.md#results-50-eval-inputs-phi-4-mini-greedy-no-repetition-penalty).
 
+Every fact and number in one place, with links to each artifact and chart-ready data for a poster: [docs/project_facts.md](docs/project_facts.md).
+
 ## Layout
 
 | Path | Contents |

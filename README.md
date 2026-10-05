@@ -20,7 +20,6 @@ flowchart LR
 | [api/](api/) | LLMBox fork (Rutomo M0–M5) + `team311` routing layer |
 | [appendix/](appendix/) | Canvas datasets, metrics, API ZIP — run `appendix/build_appendix.py` |
 | [memo/](memo/) | A1 and A2 memos |
-| [sources/](sources/) | Original submission ZIPs (`*_as01.zip`, `*_as02.zip`) |
 | [brief/](brief/) | Team brief + appendix requirements |
 
 ## Commands

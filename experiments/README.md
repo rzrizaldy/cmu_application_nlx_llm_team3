@@ -14,4 +14,4 @@
 
 **Mingchin:** `data/pittsburgh311/dataset_splits/`, experiment metrics JSON, AS02 report, and a ZIP without `.venv`.
 
-Source archives: [sources/](../sources/) (`*_as02.zip`).
+Each folder is the member's Assignment 2 ZIP unpacked, without `.venv`, `__pycache__`, or `__MACOSX`. The ZIPs themselves are not kept.

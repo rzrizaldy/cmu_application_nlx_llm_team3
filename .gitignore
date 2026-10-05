@@ -14,13 +14,12 @@ __pycache__/
 .pytest_cache/
 cache/
 
-# Full WPRDC archive (237 MB); available inside sources/04_parks_public_spaces_mingchin.zip
+# Full WPRDC 311 export (237 MB): https://data.wprdc.org/dataset/311-data/resource/6a2c9de6-9cb8-4da6-bd78-0a913cc5790c
 corpora/04_parks_public_spaces_mingchin/311_data.csv
 
-# Original member drops (canonical repacks are sources/*_as02.zip)
-sources/Assignment 2_mingchin*.zip
-sources/afaqk_AS02*.zip
-sources/mgunjkar_AS02*.zip
+# Member submission ZIPs: unpack into corpora/ or experiments/, then delete
+*.zip
+!appendix/llm_api_code/llm_api_code.zip
 
 # LLM weights and training artifacts
 api/llmbox/models/

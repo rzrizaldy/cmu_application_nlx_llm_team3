@@ -31,6 +31,8 @@ The ticket has the fields the brief suggests: domain, category, issue, departmen
 
 We run the API on Phi-4-mini locally and compare five designs on the same 50 held-out evaluation inputs: prompt only (T0), plus retrieved knowledge (T1), plus codebook tools (T2), plus a guardrail (T3), and a LoRA-finetuned model (T4).
 
+On the 50 evaluation inputs, our best design is T2. It routes 82% of complaints to the right category and department (95% CI 70–92%), against 0% for the prompt-only baseline, and every ticket it returns is schema-valid. Full results are in [experiments/05_team/README.md](experiments/05_team/README.md#results-50-eval-inputs-phi-4-mini-greedy-no-repetition-penalty).
+
 ## Layout
 
 | Path | Contents |
@@ -66,7 +68,7 @@ python3 corpora/05_all/operational_evidence.py
 python3 experiments/05_team/make_split.py
 python3 experiments/05_team/leakage_check.py
 
-# Full team experiment pipeline (Phi-4-mini; about 2 to 3 hours on an M4)
+# Full team experiment pipeline (Phi-4-mini; about 1 hour on an M4)
 ./experiments/05_team/run_all.sh
 
 # Refresh the Canvas appendix

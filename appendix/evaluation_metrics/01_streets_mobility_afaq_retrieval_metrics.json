@@ -1,0 +1,12 @@
+{
+  "experiment": "retrieval",
+  "n": 50,
+  "parse_fail": 0,
+  "cat%": 72.0,
+  "dept%": 32.0,
+  "ent_recall%": 100.0,
+  "full%": 24.0,
+  "avg_lat": 3.75,
+  "avg_in_tok": 162,
+  "avg_out_tok": 38
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import subprocess
 import zipfile
 from pathlib import Path
 
@@ -117,18 +118,19 @@ def api_zip() -> None:
     out_dir = APP / "llm_api_code"
     out_dir.mkdir(parents=True, exist_ok=True)
     zpath = out_dir / "llm_api_code.zip"
+    # Tracked files only: the repo is public, and ignored files such as api/llmbox/.env hold tokens.
+    tracked = subprocess.run(
+        ["git", "ls-files", "-z", "--", "api", "experiments/05_team"],
+        cwd=REPO, capture_output=True, text=True, check=True,
+    ).stdout.split("\0")
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as zf:
-        for base in [REPO / "api", REPO / "experiments" / "05_team"]:
-            if not base.exists():
+        for rel in sorted(filter(None, tracked)):
+            path = REPO / rel
+            if not path.is_file():
                 continue
-            for path in base.rglob("*"):
-                if path.is_dir():
-                    continue
-                if any(p in path.parts for p in (".venv", "__pycache__", "finetune", "runs", "chatlogs", "outputs", "models")):
-                    continue
-                if path.suffix in {".pyc"}:
-                    continue
-                zf.write(path, path.relative_to(REPO))
+            if any(p in path.parts for p in ("finetune", "runs", "chatlogs", "outputs", "models")):
+                continue
+            zf.write(path, rel)
 
 
 def main() -> None:

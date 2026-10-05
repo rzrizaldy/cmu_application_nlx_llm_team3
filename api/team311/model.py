@@ -37,11 +37,13 @@ class PhiRunner:
         t0 = time.perf_counter()
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
         prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
+        inputs = self.tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to(self.device)
+        # No repetition penalty: it also penalizes prompt tokens, and the ticket must
+        # copy category and issue names verbatim from the prompt.
         with torch.no_grad():
             out = self.model.generate(
                 **inputs, max_new_tokens=max_new_tokens, do_sample=False,
-                repetition_penalty=1.15, pad_token_id=self.tokenizer.eos_token_id,
+                pad_token_id=self.tokenizer.eos_token_id,
             )
         new = out[0][inputs["input_ids"].shape[1]:]
         text = self.tokenizer.decode(new, skip_special_tokens=True)

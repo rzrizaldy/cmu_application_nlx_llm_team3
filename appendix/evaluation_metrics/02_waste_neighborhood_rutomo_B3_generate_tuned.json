@@ -1,0 +1,68 @@
+{
+  "run": "B3_generate_tuned",
+  "n": 50,
+  "reference_origin": "student_reviewed_reference",
+  "json_parse_rate": 1.0,
+  "valid_output_rate": 0.74,
+  "exact_match": 0.26,
+  "exact_match_ci95": [
+    0.14,
+    0.38
+  ],
+  "field_accuracy": {
+    "service_focus": 0.54,
+    "information_type": 0.52,
+    "responsible_department": 0.58
+  },
+  "field_accuracy_ci95": {
+    "service_focus": [
+      0.4,
+      0.68
+    ],
+    "information_type": [
+      0.38,
+      0.66
+    ],
+    "responsible_department": [
+      0.44,
+      0.72
+    ]
+  },
+  "kappa": {
+    "service_focus": 0.4415,
+    "information_type": 0.2253
+  },
+  "macro_f1": {
+    "service_focus": 0.6228,
+    "information_type": 0.4778
+  },
+  "department": {
+    "precision": 0.7272727272727273,
+    "recall": 0.9523809523809523,
+    "predicted_names": 55,
+    "ungrounded_name_rate": 0.03636363636363636,
+    "records_with_ungrounded_name": 0.04,
+    "non_codebook_name_rate": 0.45454545454545453
+  },
+  "truncation_rate": 0.0,
+  "blocked_rate": 0.0,
+  "mean_retries": 0.0,
+  "latency_s": {
+    "mean": 4.631,
+    "p50": 4.251,
+    "p95": 6.264,
+    "total": 231.5
+  },
+  "tokens": {
+    "prompt_mean": 351.0,
+    "completion_mean": 39.4,
+    "completion_p99": 121,
+    "completion_max": 121,
+    "total_per_request": 390.3
+  },
+  "by_kind_exact": {
+    "issue_taxonomy": 0.3333,
+    "operational_summary": 0.0,
+    "service_guidance": 0.3103
+  }
+}

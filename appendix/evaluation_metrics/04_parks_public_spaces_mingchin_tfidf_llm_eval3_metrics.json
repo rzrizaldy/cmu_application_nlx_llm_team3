@@ -1,0 +1,13 @@
+{
+  "experiment": "Custom Evaluation 3 - TF-IDF Retrieval + LLM",
+  "num_inputs": 50,
+  "request_type_id_accuracy": 0.54,
+  "issue_accuracy": 0.46,
+  "category_accuracy": 0.8,
+  "department_accuracy": 0.76,
+  "full_record_accuracy": 0.36,
+  "average_latency_seconds": 2.06,
+  "average_input_tokens": 83.1,
+  "average_output_tokens": 25.1,
+  "average_total_tokens": 108.2
+}

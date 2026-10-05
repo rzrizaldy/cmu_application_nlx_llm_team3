@@ -17,4 +17,4 @@ Rebuild everything:
 python3 appendix/build_appendix.py
 ```
 
-Pending teammate artifacts are marked with `*_PENDING.md` under the relevant subfolders.
+All slots are filled. If a teammate artifact goes missing, the build writes a `PENDING.md` in its folder instead.

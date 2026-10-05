@@ -1,0 +1,81 @@
+{
+  "run": "C2_tools",
+  "n": 50,
+  "reference_origin": "student_reviewed_reference",
+  "json_parse_rate": 1.0,
+  "valid_output_rate": 0.9,
+  "exact_match": 0.3,
+  "exact_match_ci95": [
+    0.18,
+    0.44
+  ],
+  "field_accuracy": {
+    "service_focus": 0.74,
+    "information_type": 0.72,
+    "responsible_department": 0.56
+  },
+  "field_accuracy_ci95": {
+    "service_focus": [
+      0.62,
+      0.86
+    ],
+    "information_type": [
+      0.6,
+      0.84
+    ],
+    "responsible_department": [
+      0.42,
+      0.7
+    ]
+  },
+  "kappa": {
+    "service_focus": 0.5932,
+    "information_type": 0.5676
+  },
+  "macro_f1": {
+    "service_focus": 0.5482,
+    "information_type": 0.7098
+  },
+  "department": {
+    "precision": 0.75,
+    "recall": 0.9,
+    "predicted_names": 60,
+    "ungrounded_name_rate": 0.25,
+    "records_with_ungrounded_name": 0.3,
+    "non_codebook_name_rate": 0.2
+  },
+  "truncation_rate": 0.0,
+  "blocked_rate": 0.0,
+  "mean_retries": 0.0,
+  "latency_s": {
+    "mean": 15.399,
+    "p50": 13.714,
+    "p95": 22.884,
+    "total": 770.0
+  },
+  "tokens": {
+    "prompt_mean": 1786.0,
+    "completion_mean": 105.9,
+    "completion_p99": 186,
+    "completion_max": 186,
+    "total_per_request": 1891.9
+  },
+  "tools": {
+    "rows_with_executed_call": 0.9,
+    "calls_total": 76,
+    "calls_rejected": 0,
+    "calls_by_name": {
+      "get_issue_stats": 11,
+      "lookup_codebook": 21,
+      "queue_tag_update": 44
+    },
+    "queue_writes": 44,
+    "rows_final_text_is_unexecuted_call": 0.1,
+    "rows_nudged": 0.1
+  },
+  "by_kind_exact": {
+    "issue_taxonomy": 0.4545,
+    "operational_summary": 0.5,
+    "service_guidance": 0.1724
+  }
+}

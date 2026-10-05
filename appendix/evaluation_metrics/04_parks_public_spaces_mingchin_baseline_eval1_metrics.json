@@ -1,0 +1,13 @@
+{
+  "experiment": "Baseline Evaluation 1",
+  "num_inputs": 50,
+  "request_type_id_accuracy": 0.0,
+  "issue_accuracy": 0.0,
+  "category_accuracy": 0.0,
+  "department_accuracy": 0.0,
+  "full_record_accuracy": 0.0,
+  "average_latency_seconds": 2.57,
+  "temperature": 1.0,
+  "top_p": 0.95,
+  "max_new_tokens": 512
+}

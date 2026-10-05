@@ -1,0 +1,87 @@
+{
+  "run": "T0_generate",
+  "mode": "T0_generate",
+  "split": "eval",
+  "n": 50,
+  "issue_accuracy": 0.56,
+  "issue_accuracy_ci95": [
+    0.42,
+    0.7
+  ],
+  "department_accuracy": 0.0,
+  "department_accuracy_ci95": [
+    0.0,
+    0.0
+  ],
+  "routed_correctly_accuracy": 0.0,
+  "routed_correctly_accuracy_ci95": [
+    0.0,
+    0.0
+  ],
+  "domain_accuracy": 0.6,
+  "domain_accuracy_ci95": [
+    0.46,
+    0.74
+  ],
+  "category_accuracy": 0.4,
+  "category_accuracy_ci95": [
+    0.26,
+    0.54
+  ],
+  "schema_valid_rate": 1.0,
+  "completeness_rate": 1.0,
+  "clarification_rate": 0.88,
+  "abstention_rate": 0.0,
+  "mean_latency_s": 11.934,
+  "mean_prompt_tokens": 291.96,
+  "mean_output_tokens": 115.24,
+  "by_domain": {
+    "buildings_construction": {
+      "n": 11,
+      "issue": 1.0,
+      "department": 0.0,
+      "routed_correctly": 0.0,
+      "category": 0.2727
+    },
+    "parks_public_spaces": {
+      "n": 14,
+      "issue": 0.1429,
+      "department": 0.0,
+      "routed_correctly": 0.0,
+      "category": 0.3571
+    },
+    "streets_mobility": {
+      "n": 13,
+      "issue": 0.3077,
+      "department": 0.0,
+      "routed_correctly": 0.0,
+      "category": 0.5385
+    },
+    "waste_neighborhood": {
+      "n": 12,
+      "issue": 0.9167,
+      "department": 0.0,
+      "routed_correctly": 0.0,
+      "category": 0.4167
+    }
+  },
+  "by_input_origin": {
+    "codebook_row": {
+      "n": 12,
+      "routed_correctly": 0.0
+    },
+    "complaint": {
+      "n": 13,
+      "routed_correctly": 0.0
+    },
+    "intake": {
+      "n": 25,
+      "routed_correctly": 0.0
+    }
+  },
+  "raw_json_rate": 1.0,
+  "vote_fallback_rate": 0.0,
+  "gold_from_codebook": 36,
+  "model_path": "/Users/rzrizaldy/CodeFolder/cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct",
+  "adapter": null
+}

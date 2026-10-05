@@ -19,6 +19,20 @@ Gold labels follow the brief's label contract: `request_type_id`, issue, exact c
 
 Each `metrics.json` reports issue, department, routed-correctly (category and department), domain, and category accuracy with 95% bootstrap intervals; schema validity against `Ticket311`; completeness; clarification and abstention rates; how often the raw output was valid JSON; how often T2/T3 fell back to the vote's issue; latency and tokens; and accuracy by gold domain and by input origin. T3 also scores the guardrail on the Part D probe sets from Rutomo, Mahika, and Mingchin.
 
+## Results (50 EVAL inputs, Phi-4-mini, greedy, no repetition penalty)
+
+| Run | Issue | Department | Routed correctly (95% CI) | Domain | Schema valid | Clarification | Mean latency |
+|---|---|---|---|---|---|---|---|
+| T0 prompt only | 0.56 | 0.00 | 0.00 (0.00–0.00) | 0.60 | 1.00 | 0.88 | 11.9 s |
+| T1 + retrieved knowledge | 0.56 | 0.70 | 0.38 (0.26–0.52) | 0.68 | 0.98 | 0.94 | 15.2 s |
+| T2 + codebook tools and vote | 0.60 | 0.82 | 0.82 (0.70–0.92) | 0.88 | 1.00 | 1.00 | 15.0 s |
+| T3 T2 + guardrail | 0.60 | 0.82 | 0.82 (0.70–0.92) | 0.88 | 1.00 | 1.00 | 18.5 s |
+| T4 LoRA, T0 prompt | 0.56 | 0.00 | 0.00 (0.00–0.00) | 0.72 | 0.96 | 0.00 | 9.3 s |
+
+T0 never gets the department right because the prompt lists categories but no department names, and nothing grounds the model's guess ("Public Works") to a codebook department. T2 fell back to the retrieval vote's issue for 28% of items. None of the EVAL inputs is adversarial, so T3 matches T2 on EVAL; its guardrail blocks 100%, 86%, and 42% of the adversarial probes from Mahika, Rutomo, and Mingchin, and passes 100%, 94%, and 100% of their benign probes.
+
+T4 learned the issue and category vocabulary (domain 0.72 against T0's 0.60), but one epoch on 149 DEV rows did not teach it the department strings, and its training targets always had empty `missing_information`, so it never asks a clarification question.
+
 ## Outputs
 
 - `runs/<run>/` holds `responses.jsonl` and `metrics.json` for the 50 EVAL inputs. These feed `appendix/evaluation_metrics/`.

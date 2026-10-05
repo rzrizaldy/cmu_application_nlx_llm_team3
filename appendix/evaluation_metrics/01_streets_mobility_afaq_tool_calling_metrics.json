@@ -1,0 +1,12 @@
+{
+  "experiment": "tool_calling",
+  "n": 50,
+  "parse_fail": 0,
+  "cat%": 70.0,
+  "dept%": 36.0,
+  "ent_recall%": 100.0,
+  "full%": 30.0,
+  "avg_lat": 2.42,
+  "avg_in_tok": 111,
+  "avg_out_tok": 24
+}

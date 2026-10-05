@@ -33,7 +33,7 @@ def load_enriched() -> tuple[pd.DataFrame, pd.DataFrame]:
     requests = pd.read_csv(
         REQUESTS_CSV,
         dtype={"request_type_id": "string"},
-        usecols=["request_type_id", "status_name", "create_date_utc", "closed_date_utc"],
+        usecols=["request_type_id", "request_type_name", "status_name", "create_date_utc", "closed_date_utc"],
     )
     codebook = pd.read_csv(CODEBOOK_CSV, dtype={"request_type_id": "string"}, encoding="utf-8-sig")
     codebook_clean = (
@@ -74,6 +74,7 @@ def main() -> int:
             "issue": issue,
             "category": category,
             "department": department,
+            "aliases": sorted({n.strip() for n in grp["request_type_name"].dropna()} - {issue.strip()}),
             "request_volume": int(len(grp)),
             "closed_requests": int(len(days)),
         }

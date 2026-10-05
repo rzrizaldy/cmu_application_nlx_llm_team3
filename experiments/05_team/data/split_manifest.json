@@ -7,5 +7,30 @@
     "waste_neighborhood": 12,
     "buildings_construction": 12,
     "parks_public_spaces": 13
-  }
+  },
+  "gold_source": {
+    "eval": {
+      "buildings_construction:codebook": 9,
+      "buildings_construction:member": 3,
+      "parks_public_spaces:codebook": 13,
+      "streets_mobility:codebook": 5,
+      "streets_mobility:member": 8,
+      "waste_neighborhood:member": 3,
+      "waste_neighborhood:codebook": 9
+    },
+    "dev": {
+      "streets_mobility:codebook": 67,
+      "streets_mobility:member": 35,
+      "waste_neighborhood:member": 5,
+      "waste_neighborhood:codebook": 24,
+      "buildings_construction:codebook": 198,
+      "buildings_construction:member": 50,
+      "parks_public_spaces:codebook": 155
+    }
+  },
+  "member_vs_codebook_disagreement": {
+    "category": 114,
+    "department": 28
+  },
+  "gold_domain_differs_from_member_corpus": 37
 }

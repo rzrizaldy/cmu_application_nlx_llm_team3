@@ -57,14 +57,14 @@ def export_eval() -> int:
     resp = RUN / "responses.jsonl"
     if not resp.exists():
         return 0
-    from run_team import SYSTEM, build_prompt
+    from team311.pipeline import SYSTEM, t0_prompt
 
     rows = [json.loads(l) for l in resp.read_text().splitlines() if l.strip()]
     OUT.mkdir(parents=True, exist_ok=True)
     with (OUT / "finetuned_eval_sessions.jsonl").open("w") as f:
         for r in rows:
             rec = session(
-                r["doc_id"], SYSTEM, build_prompt(r, "T0_generate", []),
+                r["doc_id"], SYSTEM, t0_prompt(r["input"]),
                 r.get("raw") or json.dumps(r.get("pred", {}), ensure_ascii=False),
                 adapter="experiments/05_team/finetune/adapter",
             )
@@ -79,7 +79,7 @@ def export_eval() -> int:
 def main() -> None:
     import sys
 
-    sys.path.insert(0, str(HERE))
+    sys.path.insert(0, str(HERE.parents[1] / "api"))
     print("dev_train sessions:", export_train())
     print("eval sessions:", export_eval())
 

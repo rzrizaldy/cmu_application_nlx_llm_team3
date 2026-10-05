@@ -25,7 +25,16 @@ python3 corpora/05_all/merge.py
 python3 corpora/05_all/operational_evidence.py
 ```
 
-The team311 knowledge index loads `operational_evidence.jsonl` alongside `corpus.jsonl`, and `resolution_range()` fills the ticket's `historical_resolution_range` from it.
+| `knowledge_cards.py` | Writes `knowledge_cards.jsonl` from the operational evidence |
+| `knowledge_cards.jsonl` | 127 cards, one per issue, with the brief's knowledge fields: codebook definition (5 issues have one), aliases, confusable issues (similar names routed elsewhere), required information, clarification question, resolution times |
+
+Required information and the clarification question are written by us per category (`CATEGORY_GUIDANCE` in `knowledge_cards.py`), because no member corpus has them per issue. Each card lists them in `metadata.team_authored_fields`.
+
+```bash
+python3 corpora/05_all/knowledge_cards.py
+```
+
+The team311 knowledge base is `corpus.jsonl` without intake examples, plus `knowledge_cards.jsonl`. `resolution_range()` fills the ticket's `historical_resolution_range` from the cards.
 
 The merge also refreshes [appendix/original_dataset.jsonl](../../appendix/original_dataset.jsonl).
 

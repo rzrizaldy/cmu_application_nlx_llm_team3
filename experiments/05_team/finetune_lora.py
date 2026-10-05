@@ -16,8 +16,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-sys.path.insert(0, str(HERE))
-from run_team import SYSTEM, build_prompt  # noqa: E402
+sys.path.insert(0, str(REPO / "api"))
+from team311.pipeline import SYSTEM, t0_prompt  # noqa: E402
 
 DATA = HERE / "data"
 OUT = HERE / "finetune"
@@ -46,7 +46,7 @@ def build_training_jsonl(per_subtopic: int) -> Path:
     with train_path.open("w") as f:
         for r in sample_dev(per_subtopic):
             assistant = json.dumps({
-                "domain": r["subtopic_key"],
+                "domain": r["gold"]["domain"],
                 "category": r["gold"]["category"],
                 "issue": r["gold"]["issue"],
                 "department": r["gold"]["department"],
@@ -60,7 +60,7 @@ def build_training_jsonl(per_subtopic: int) -> Path:
                 "doc_id": r["doc_id"],
                 "messages": [
                     {"role": "system", "content": SYSTEM},
-                    {"role": "user", "content": build_prompt(r, "T0_generate", [])},
+                    {"role": "user", "content": t0_prompt(r["input"])},
                     {"role": "assistant", "content": assistant},
                 ],
             }, ensure_ascii=False) + "\n")

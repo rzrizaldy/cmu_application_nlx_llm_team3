@@ -29,3 +29,6 @@ experiments/05_team/finetune/adapter/
 experiments/**/cache/
 experiments/05_team/finetune/checkpoints/
 experiments/05_team/*.log
+
+# Poster speaker notes (local only)
+poster/speaker_notes*

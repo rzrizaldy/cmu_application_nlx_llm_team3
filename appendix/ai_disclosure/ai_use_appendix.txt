@@ -1,0 +1,230 @@
+Appendix: AI prompts and responses (Final Project, Team 3)
+
+Rizaldy Utomo on behalf of Team 3, coding and tooling assistance only.
+Tools: Cursor agent (Claude Opus), 2026-10-02 and 2026-10-04 to
+2026-10-05. We used AI for Python wiring, repo layout, debugging, and
+how to hook into LLMBox. Responses are shortened when the assistant
+pasted long code.
+
+------------------------------------------------------------------------
+
+Session 1, repo merge (2026-10-02)
+
+1, Public team repo and merge four A1 corpora
+
+Our prompt
+
+    init the repo as this name make it public
+
+    the task is to merge just like in another folder (nlx and llm) now still assignemnt 1 but in this fodler is collection of works b this team
+
+    accroding to @code_appendix_team prepare submission format that ready (assignment 02 still pending)
+
+    and merge and struture the code here to make it work all together
+
+Assistant response
+
+    The four Assignment 1 corpora already share the same record shape and have no overlapping IDs, so they can be concatenated. Assignment 2 stays a ready-but-empty appendix scaffold.
+
+    Scaffold: assignment01/team/merge_corpus.py -> 854 records in corpus.jsonl; appendix/original_dataset.jsonl copy for Canvas.
+
+    [... merge script and folder layout ...]
+
+What we did: locked the one-repo layout and Canvas slot names from the brief.
+
+------------------------------------------------------------------------
+
+2, One continuous project and Phi path
+
+Our prompt
+
+    no need to split as01 and 02 make it all contunuation
+
+    it will based on this @code_appendix_team
+
+    rapihin nama zip nya jadi di source dan memo juga
+
+    dan bis apoint out ke local model phi yg ada di other repo juga
+
+Assistant response
+
+    Restructured into appendix/, corpora/, experiments/, memo/, brief/. ZIP names as01_* / memo_* by subtopic.
+
+    docs/local_phi_model.md -> ../cmu_application_of_nlx_llm/lab01/models/phi-4-mini-instruct
+
+    .env.example with PHI_MODEL_PATH
+
+What we did: no model weights in git; Phi path points at the sibling repo.
+
+------------------------------------------------------------------------
+
+3, Streamline into corpora/05_all
+
+Our prompt
+
+    can we make streamline and merge code and corpora like 05_all and merged dataset also?
+
+Assistant response
+
+    merge.py under corpora/05_all/; human_labels.jsonl and taxonomy.json merged from four members.
+
+    python3 corpora/05_all/merge.py also refreshes appendix/original_dataset.jsonl.
+
+What we did: one folder for merged code and data.
+
+------------------------------------------------------------------------
+
+4, Waste taxonomy.json
+
+Our prompt
+
+    can it make taxonomy on rutomo or check that another or sibling repo?
+
+Assistant response
+
+    Built taxonomy.json from extraction.py field literals and the recovery prompt from the sibling repo's recovery_design.json.
+
+    Same fields/prompts layout as the other three members.
+
+What we did: verified all 25 waste human labels fit allowed values.
+
+------------------------------------------------------------------------
+
+Session 2, final project implementation (2026-10-04 to 2026-10-05)
+
+5, Ingest A2 packages and team API
+
+Our prompt
+
+    now I already drop assignment 2 source code for my team and also for mine take it from the main repo (the one without _team 3)
+
+    Plan and scan deeply before execute what need to do to do final project accroding the project dir requirement
+
+    Final project: team API, finetune, and Canvas appendix
+
+    Implement the plan [...]
+
+Assistant response
+
+    Unpack experiments/01-04; copy LLMBox fork to api/; team311 ticket schema, knowledge index, tools, guardrail.
+
+    make_split.py: 534 DEV / 50 EVAL, leakage check so EVAL ids are not in the knowledge index.
+
+    [... run_team.py T0-T4 scaffolding ...]
+
+What we did: reviewed prompts and gold-label rules before full EVAL runs.
+
+------------------------------------------------------------------------
+
+6, Operational evidence join
+
+Our prompt
+
+    yes please, how long gonna take if its under 30 mins then go
+
+    (after brief explanation of WPRDC join and knowledge cards)
+
+Assistant response
+
+    operational_evidence.py joins 311_data.csv to the codebook per brief contract; writes operational_evidence.jsonl (127 issues) and knowledge_cards.jsonl.
+
+    About 2 seconds runtime; medians checked against Mingchin's stats.
+
+What we did: ran the script and wired cards into retrieval.
+
+------------------------------------------------------------------------
+
+7, Codebook gold and input cleaning
+
+Our prompt
+
+    yes but update the readme first using 1st person perspective also "We"
+
+    (continue merge: gold labels, leakage sentences, codebook rows)
+
+Assistant response
+
+    Gold from codebook where ID or issue name matches; 36/50 EVAL labels from codebook.
+
+    Strip "It was routed to ..."; rewrite codebook rows as "Resident reports: <issue>."
+
+    route_complaint API with TF-IDF vote and issue snap.
+
+What we did: we wrote README policy text; AI changed Python and data prep only.
+
+------------------------------------------------------------------------
+
+8, Full pipeline run and repetition penalty
+
+Our prompt
+
+    I dropped new file combined from afaq please merge and refactor and run
+
+Assistant response
+
+    Ran T0-T4 on 50 EVAL; T2 routed 82% after fixes.
+
+    Repetition penalty 1.15 made category/issue empty because it penalizes prompt tokens; removed in model.py.
+
+    [... metrics table ...]
+
+What we did: committed results after rescoring; chose T2 as the main grounded design.
+
+------------------------------------------------------------------------
+
+9, LoRA retrain on MPS
+
+Our prompt
+
+    now run 1, close any app that you need, im using ipad now, and i will colok to speed up
+
+    (T4 retrain after OOM / Trainer stall)
+
+Assistant response
+
+    Replaced HF Trainer with a plain PyTorch loop on MPS; 269 rows, 2 epochs, card clarification targets.
+
+    T4 routed 0% -> 50%; clarification 0% -> 86%.
+
+    [... train_metrics.json, adapter under finetune/adapter/ gitignored ...]
+
+What we did: closed apps for GPU memory; kept adapter out of git.
+
+------------------------------------------------------------------------
+
+10, Appendix ZIP without secrets
+
+Our prompt
+
+    (implicit from Canvas brief and public repo)
+
+Assistant response
+
+    api_zip() uses git ls-files only on api/ and experiments/05_team; skips finetune/runs/chatlogs; never packs api/llmbox/.env.
+
+    [... build_appendix.py main() copies dev/eval/metrics/chatlogs ...]
+
+What we did: ran python3 appendix/build_appendix.py before upload.
+
+------------------------------------------------------------------------
+
+11, Submission ZIP (light)
+
+Our prompt
+
+    zip the submission (please be light but corpus, data, can be seen, nut not venv and model)
+
+    make ai usage log txt just like my assignment 02 for coding and code completion only
+
+Assistant response
+
+    build_submission_zip.py: appendix Canvas slots + ai_disclosure txt files + tracked corpora/*.jsonl and team data; excludes .venv, adapter, .env, 311_data.csv.
+
+What we did: coding-only disclosure; paper and poster not listed as AI-assisted in the log.
+
+------------------------------------------------------------------------
+
+Not documented here (no AI for these)
+
+Reference labels, probe wording, paper text, poster and speaker notes,
+memo summaries, project facts document, and team chat handover messages.

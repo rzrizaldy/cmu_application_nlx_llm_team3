@@ -10,11 +10,13 @@ Requirements: [brief/code_appendix_team.txt](../brief/code_appendix_team.txt).
 | Chatlogs LLM Evaluation | [chatlogs_llm_evaluation/](chatlogs_llm_evaluation/) | After `05_team` T4 + `build_chatlogs.py` |
 | Evaluation Metrics | [evaluation_metrics/](evaluation_metrics/) | Per-run `metrics.json` copies |
 | LLM API Code | [llm_api_code/llm_api_code.zip](llm_api_code/llm_api_code.zip) | From `api/` + `experiments/05_team` |
+| AI Disclosure | [ai_disclosure/](ai_disclosure/) | `ai_use_index.txt` + `ai_use_appendix.txt` |
 
 Rebuild everything:
 
 ```bash
 python3 appendix/build_appendix.py
+python3 appendix/build_submission_zip.py   # Canvas bundle at team3_final_submission.zip
 ```
 
 All slots are filled. If a teammate artifact goes missing, the build writes a `PENDING.md` in its folder instead.

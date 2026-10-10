@@ -1,0 +1,124 @@
+AI assistance index: Final Project (Team 3)
+
+Tools: Cursor agent (Claude Opus) for the 2026-10-02 repo merge session and
+the 2026-10-04 to 2026-10-05 implementation and run session. What this is:
+a short index of where AI helped with coding, code completion, repo
+structuring, and programming only. Full prompts and shortened assistant
+responses are in ai_use_appendix.txt. The research question, experiment
+design, labels, paper, poster, presentation slides, speaker notes, team
+reports, memo summaries, and README narrative are our work. Each member's
+Assignment 2 package keeps its own AI disclosure (for example
+experiments/03_buildings_construction_mahika/AI_USAGE.md).
+
+Our summary
+
+We set the plan for the final project: one team knowledge base from our
+four Assignment 1 corpora, one routing API, five designs (T0 to T4) on
+the same 50 held-out inputs, and the Canvas appendix layout from the
+brief. We decided that the official codebook is the gold label, that
+inputs which give away the answer must be cleaned, and that coordinates
+must not enter the public corpus. We chose to retrain T4 on the Mac and
+not on the shared CPU server.
+
+We used the Cursor agent like a coding helper: merge and join scripts,
+the team API wiring inside LLMBox, the experiment runner and scorer,
+the LoRA training loop, the appendix packaging script, debugging, and
+code completion while we edited Python and shell. All graded model calls
+use local Phi-4-mini weights. No hosted LLM was called in any team
+experiment. We read the outputs, checked numbers against metrics.json,
+and rescored after every code change.
+
+Session 1: 2026-10-02 (repo merge and data scripts)
+
+  ------------------------------------------------------------------------------------------------------
+  #   Our request      AI output        Decisions we made                 Main files
+  --- ---------------- ---------------- --------------------------------- ------------------------------
+  1   Create the       Repo scaffold,   Public repo name; one project     README.md, appendix/,
+      public team      merge script for instead of A1/A2 split; Canvas   corpora/05_all/merge.py
+      repo and merge   four A1 corpora  slot names from the brief
+      the four A1      (854 records)
+      corpora
+
+  2   Rename ZIPs and  File moves,      Naming by brief subtopic order;   corpora/, memo/,
+      memos; point to  .env.example     no copy of model weights in repo  docs/local_phi_model.md
+      the local Phi    with model path
+      model
+
+  3   Clean the root   Folder layout;   Remove exact coordinates from     corpora/05_all/merge.py
+      to match the     flagged 251      the merged corpus; keep street
+      brief            Mahika records   names without house numbers
+                       with lat/long
+
+  4   Merge labels and Label merge with (none)                            corpora/05_all/
+      taxonomy into    a check; waste                                     human_labels.jsonl,
+      05_all           taxonomy.json                                      taxonomy.json
+                       from the A1
+                       extraction.py
+  ------------------------------------------------------------------------------------------------------
+
+Session 2: 2026-10-04 to 2026-10-05 (implementation and runs)
+
+  ------------------------------------------------------------------------------------------------------
+  #   Our request      AI output        Decisions we made                 Main files
+  --- ---------------- ---------------- --------------------------------- ------------------------------
+  5   Bring in the     Unpack and       Delete member ZIPs that held a    experiments/01-04/,
+      four A2          checksum-verify  .venv after contents were in the  .gitignore
+      packages and     packages; tidy   repo
+      tidy the repo    repo (720 MB to
+                       319 MB)
+
+  6   Team API inside  team311 package: (none)                            api/team311/, api/llmbox/
+      the LLMBox fork  ticket schema,
+                       knowledge index,
+                       codebook tool,
+                       guardrail config
+
+  7   DEV/EVAL split   make_split.py    Seed 952; 50 EVAL items, about    experiments/05_team/
+      and leakage      and              12-13 per subtopic                make_split.py,
+      check            leakage_check.py                                   leakage_check.py
+
+  8   WPRDC join for   operational_     Use the brief's cleaning and      corpora/05_all/
+      resolution times evidence.py and  join contract                     operational_evidence.py,
+      and knowledge    knowledge card                                     knowledge_cards.py
+      cards            builder
+
+  9   Gold labels and  Codebook gold    Codebook is gold; remove "It was  experiments/05_team/
+      clean inputs     labels; input    routed to ..." sentences          data/
+                       rewrite in code
+
+  10  Run T0 to T4 and Runner, scorer   Which metrics to report; 50 EVAL  experiments/05_team/
+      score            with bootstrap   items only                        run_team.py, runs/
+                       CIs; label
+                       snapping and
+                       vote fallback
+
+  11  Debug empty T4   Found the        Drop the penalty for every design api/team311/model.py
+      output           repetition
+                       penalty cause
+
+  12  LoRA finetune    Chat log export; 269 rows, 2 epochs, card-based    experiments/05_team/
+      (T4) and retrain plain PyTorch    clarification targets; retrain    finetune_lora.py,
+                       loop after HF    on the Mac, not the CPU server    build_chatlogs.py
+                       Trainer stalled
+                       on MPS
+
+  13  Canvas appendix  build_appendix.  ZIP holds git-tracked files only  appendix/build_appendix.py
+      build            py; fix so the   so the .env never ships
+                       token file is
+                       not zipped
+
+  14  Submission ZIP   build_submission Light bundle: appendix slots,     appendix/build_submission_zip.py
+      script           _zip.py          corpora jsonl, team data; no
+                                        venv, weights, or adapter
+  ------------------------------------------------------------------------------------------------------
+
+What AI was not used for
+
+- The research question, the choice of the five designs, the decision
+  to use the codebook as gold, and which results to report.
+- Our Assignment 1 and 2 labels, probes, and review marks reused in the
+  team corpus.
+- The paper (paper/main.tex), poster deck, presentation, speaker notes,
+  member memo PDFs, memo/member_summaries.md, docs/project_facts.md,
+  and team chat handover text.
+- Hosted LLM calls in any experiment run reported in this repo.
